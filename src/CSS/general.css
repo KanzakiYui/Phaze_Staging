@@ -1,0 +1,32 @@
+body, body *{
+    margin: 0;
+    text-decoration: none;
+    box-sizing: border-box !important;
+    line-height: 1.5 !important;
+    -webkit-tap-highlight-color: transparent;
+    outline: none !important;
+}
+
+p{
+    text-align: center;
+}
+
+.GeneralTitle{
+    white-space: nowrap;
+    margin: 0.5rem;
+    font-size: var(--font-size-extra);
+    font-weight: 500;
+    color: var(--color-blue-dark);
+    text-shadow: 0.5px 0.75px var(--color-blue-light);
+    overflow: hidden;
+    animation: TitleScrollAnimation 6s forwards;
+}
+
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}

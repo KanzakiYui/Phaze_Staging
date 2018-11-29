@@ -1,0 +1,66 @@
+div.Dropdown{
+    color: var(--color-black-light);
+    position: relative;
+    font-size: var(--font-size-small);
+}
+div.Dropdown>p.Title{
+    text-align: left;
+}
+div.Dropdown>div.Select{
+    padding: 0.25rem 0.5rem;
+    border: 1px solid var(--color-grey-dark);
+    border-radius: 0.5rem;
+    position: relative;
+    text-align: left;
+}
+div.Dropdown>div.Select:hover{
+    cursor: pointer;
+}
+div.Dropdown>div.Select>i{
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-grey-dark);
+}
+div.Dropdown div.Dropdown-Item{
+    text-align: left
+}
+div.Dropdown div.Dropdown-Item>p{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+div.Dropdown div.Dropdown-Item>p>img{
+    height: 1.25rem;
+    margin-right: 0.5rem;
+}
+div.Dropdown-Content{
+    display: none;
+    z-index: -1;
+    position: absolute;
+    width: 100%;
+    transform: translateY(0.5rem);
+    background-color: var(--color-white-normal);
+    border-radius: 0.5rem;
+}
+div.Dropdown-Content.Active{
+    display: block;
+    z-index: 3;
+}
+div.Dropdown>div.Dropdown-Content>div.Dropdown-Item{
+    padding: 0.25rem 0.75rem;
+}
+div.Dropdown>div.Dropdown-Content>div.Dropdown-Item:hover{
+    cursor: pointer;
+    background-color: var(--color-gold-dark);
+    color: var(--color-white-light);
+}
+div.Dropdown>div.Dropdown-Content>div.Dropdown-Item:first-child{
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
+div.Dropdown>div.Dropdown-Content>div.Dropdown-Item:last-child{
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}

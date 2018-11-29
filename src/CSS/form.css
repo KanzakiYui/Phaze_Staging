@@ -1,0 +1,87 @@
+form{
+    width: 100%;
+}
+form>div.Inline-Input{
+    width: 100%;
+    max-width: 20rem;
+    margin: 1.25rem auto;
+    border: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+form>div.Inline-Input>label{
+    width: 25%;
+    max-width: 2.5rem;
+}
+form>div.Inline-Input>input{
+    width: 75%;
+    min-width: calc(100% - 2.5rem);
+}
+form>div.Inline-Input>span.Symbol{
+    position: absolute;
+    right: 0.5rem;
+    color: var(--color-grey-normal);
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+form>div.Inline-Input>span.Symbol:hover{
+    cursor: pointer;
+}
+form>div.Error-Input,
+form>div.Success-Input{
+    text-align: center;
+}
+form>div.Error-Input>span,
+form>div.Success-Input>span{
+    font-size: var(--font-size-small);
+    font-weight: 500;
+    display: block;
+    width: 100%;
+    max-width: 20rem;
+    margin: 1.25rem auto;
+    text-transform: capitalize;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.375rem;
+    color: var(--color-white-light);
+}   
+form>div.Error-Input>span{
+    background-color: var(--color-red-light);
+}
+form>div.Success-Input>span{
+    background-color: var(--color-green-normal);
+}
+input{
+    transition: all 0.75s;
+}
+
+input[type='text'],input[type='password'],input[type='number'],input[type='email']{
+    border-radius: 0.25rem;
+    background-color: transparent;
+    border: 1px solid var(--color-white-light);
+    box-shadow: 0 0 0.25rem 0 var(--color-white-light);
+    padding: 0.2rem 2rem 0.25rem 0.5rem;
+    color: var(--color-white-light);
+    font-weight: 500;
+    font-size: var(--font-size-normal);
+}
+
+input[type='text']:focus,input[type='password']:focus,input[type='number']:focus,input[type='email']:focus{
+    outline: none;
+}
+
+input[type='text']::placeholder,input[type='password']::placeholder,input[type='number']::placeholder,input[type='email']::placeholder{
+    color: var(--color-white-dark);
+}
+
+input[type='text'].Checked:invalid,
+input[type='password'].Checked:invalid,
+input[type='number'].Checked:invalid,
+input[type='email'].Checked:invalid{
+    border: 2.5px solid var(--color-red-normal);
+    box-shadow: 0 0 0.25rem 0 var(--color-red-light);
+    color: var(--color-red-light);
+}

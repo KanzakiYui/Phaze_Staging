@@ -1,0 +1,86 @@
+@import './CSS/a.css';
+@import './CSS/color.css';
+@import './CSS/general.css';
+@import './CSS/responsive.css';
+@import './CSS/animation.css';
+@import './CSS/button.css';
+@import './CSS/form.css';
+@import './CSS/font.css';
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    /*background-color: var(--color-white-normal);*/
+    background: linear-gradient(to right, var(--color-black-dark), var(--color-grey-dark) 50%, var(--color-black-dark));
+    font-weight: 400;
+    font-size: var(--font-size-normal);
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently */
+}
+body>div.scroll-content{
+    display: flex;
+    justify-content: center;
+}
+#root{
+    width: 100vw;
+    min-height: 100vh; 
+    max-width: calc(576px + calc((100vw - 576px) * 0.2));
+    background: linear-gradient(var(--color-white-dark), var(--color-white-normal));
+    position: relative;
+    transition: height 0.75s;
+}
+
+/*--------------    Custom Scrollbar   -------------*/
+div.scrollbar-track-y{
+    background-color: var(--color-black-dark);
+    border-radius: 0.25rem;
+}
+div.scrollbar-thumb{
+    right: 0;
+    background-color: var(--color-gold-light);
+    border-radius: 0.25rem;
+}
+div.scrollbar-thumb:hover{
+    cursor: pointer;
+}
+
+/* Slider Fixing */
+.slick-dots{
+    bottom: 0px !important;
+}
+div.slick-slider>div.slick-list,
+div.slick-slider>div.slick-list>div.slick-track,
+div.slick-slider>div.slick-list>div.slick-track>div>div{
+    height: 100%;
+}
+
+
+/* Browsers' Default Styling Fixing */
+@-webkit-keyframes autofill {
+    to {
+        color: inherit;
+        background: transparent;
+    }
+}
+input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+}
+select {
+    /* for Firefox */
+    -moz-appearance: none;
+    /* for Chrome */
+    -webkit-appearance: none;
+  }
+
+  /* For IE10 */
+  select::-ms-expand {
+    display: none;
+  }

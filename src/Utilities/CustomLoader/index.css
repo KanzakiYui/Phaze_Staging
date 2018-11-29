@@ -1,0 +1,15 @@
+div.CustomLoader{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    min-width: 10rem;
+    min-height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+div.CustomLoader>span{
+    line-height: 1 !important;
+}
+

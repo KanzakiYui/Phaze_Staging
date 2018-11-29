@@ -1,0 +1,101 @@
+#Initial{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0.75rem 1rem;
+    animation: FadeIn 2s;
+    height:  100%;
+    position: relative;
+}
+@media all and (orientation: portrait) and (max-width: 767px){
+    #Initial{
+        padding-top: 2rem;
+    }
+}
+#Initial>div.Slogan{
+    overflow: hidden;
+    width: 100%;
+    max-width: 30rem;
+}
+#Initial>div.Slogan>div.SloganSnippet{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    font-size: var(--font-size-small);
+    border-radius: 1rem;
+    box-shadow: inset 0px 0px 0.25rem 0.25rem var(--color-gold-light);
+    margin-bottom: 0.75rem;
+    transform: translateY(100vh);
+    opacity: 0;
+}
+#Initial>div.Slogan>div.SloganSnippet>*{
+    text-align: center;
+}
+#Initial>div.Slogan>div.SloganSnippet>div{
+    height: 2.5rem;
+    width: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color:var(--color-white-light);
+}
+#Initial>div.Slogan>div.SloganSnippet>div>i{
+    font-size: var(--font-size-large);
+}
+#Initial>div.Slogan>div.SloganSnippet>p{
+    width: calc(0.85* calc(100% - 2rem));
+    padding: 0 0.75rem;
+}
+#Initial>div.Slogan>div.SloganSnippet:nth-child(1)>p>span{
+    font-weight: 600;
+    color: var(--color-red-dark);
+}
+#Initial>div.Slogan>div.SloganSnippet:nth-child(2)>p>span{
+    font-weight: 600;
+    color: var(--color-blue-dark);
+}
+#Initial>div.Slogan>div.SloganSnippet:nth-child(3)>p>span{
+    font-weight: 600;
+    color: var(--color-green-dark);
+}
+#Initial>div.Slogan>div.SloganSnippet:nth-child(4)>p>span{
+    font-weight: 600;
+    color: var(--color-cyan-dark);
+}
+#Initial>div.Slogan>div.SloganSnippet>i:last-child{
+    flex-grow: 1;
+    color: var(--color-green-dark);
+    font-size: var(--font-size-extra);
+}
+#Initial>div.Slogan>div.SloganSnippet:nth-child(1){
+    animation: PopUpFromBottom 1.5s ease-out 1s forwards;
+}
+#Initial>div.Slogan>div.SloganSnippet:nth-child(1)>div{
+    background: linear-gradient(var(--color-red-light), var(--color-red-dark));
+}
+#Initial>div.Slogan>div.SloganSnippet:nth-child(2){
+    animation: PopUpFromBottom 1.5s ease-out 1.5s forwards;
+}
+#Initial>div.Slogan>div.SloganSnippet:nth-child(2)>div{
+    background: linear-gradient(var(--color-blue-light), var(--color-blue-dark));
+}
+#Initial>div.Slogan>div.SloganSnippet:nth-child(3){
+    animation: PopUpFromBottom 1.5s ease-out 2s forwards;
+}
+#Initial>div.Slogan>div.SloganSnippet:nth-child(3)>div{
+    background: linear-gradient(var(--color-green-light), var(--color-green-dark));
+}
+#Initial>div.Slogan>div.SloganSnippet:nth-child(4){
+    animation: PopUpFromBottom 1.5s ease-out 2.5s forwards;
+}
+#Initial>div.Slogan>div.SloganSnippet:nth-child(4)>div{
+    background: linear-gradient(var(--color-cyan-light), var(--color-cyan-dark));
+}
+#Initial>button:last-child{
+    opacity: 0;
+    animation: FadeIn 2s ease-out 4s forwards;
+}

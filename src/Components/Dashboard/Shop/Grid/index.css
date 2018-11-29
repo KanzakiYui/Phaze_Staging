@@ -1,0 +1,106 @@
+#Shop-Grid{
+    width: 100%;
+    height: 100%;
+    color: var(--color-black-light);
+    animation: FadeIn 1.5s;
+}
+#Shop-Grid p.Title{
+    text-align: left;
+    text-transform: uppercase;
+    font-weight: 600;
+    height: 1.5rem;
+}
+#Shop-Grid-Featured{
+    height: 12rem;
+}
+#Shop-Grid-Featured>div.Content{
+    height: calc(100% - 1.5rem);
+    padding-top: 0.25rem;
+}
+#Shop-Grid-Featured>div.Content>div.slick-slider{
+    height: 100%;
+}
+#Shop-Grid-Featured>div.Content div.slick-center div.Card-Featured{
+    transform: scale(1);
+}
+#Shop-Grid-Brands{
+    padding-top: 2rem;
+    position: relative;
+    height: calc(100% - 12rem);
+    display: flex;
+    flex-direction: column;
+}
+#Shop-Grid-Brands>p.Title>span{
+    font-size: var(--font-size-tiny);
+}
+#Shop-Grid-Brands>i.Pagination{
+    position: absolute;
+    top: 50%;
+    transform: translateY(calc(-0.25 * var(--font-size-extra)));
+    font-size: var(--font-size-extra);
+    color: var(--color-cyan-dark);
+}
+#Shop-Grid-Brands>i.Pagination:hover{
+    cursor: pointer;
+}
+#Shop-Grid-Brands>i.Pagination.Left{
+    left: -1.5rem;
+}
+#Shop-Grid-Brands>i.Pagination.Right{
+    right: -1.5rem;
+}
+#Shop-Grid-Brands>div.Content{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#Shop-Grid-Brands>div.Content>div{
+    height: 50%;
+    width: 100%;
+    padding: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#Shop-Grid-Brands>div.Content>div>div.Card{
+    height: 7rem;
+    width: 7em;
+}
+#Shop-Grid-Brands>p.Notice{
+    font-size: var(--font-size-small);
+    font-weight: 500;
+}
+#Grid-Jump{
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-white-light);
+    font-weight: 500;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-0.25rem);
+    background: linear-gradient(var(--color-cyan-dark), var(--color-cyan-light));
+    border-radius: 100%;
+}
+#Grid-Jump:hover{
+    cursor: pointer;
+}
+#Shop-Jump-Content{
+    color: var(--color-black-light);
+}
+#Shop-Jump-Content>input{
+    border-color: var(--color-grey-dark);
+    color: var(--color-black-dark);
+    font-weight: 500;
+    text-align: center;
+}
+#Shop-Jump-Content>button.button-1{
+    padding: 0.25rem 1.5rem;
+    margin-top: 2rem;
+    min-width: 10rem;
+}

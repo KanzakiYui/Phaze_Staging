@@ -1,0 +1,55 @@
+div.MessageScreen{
+    height: 100vh;
+    width: 100vw;
+    max-width: calc(576px + calc((100vw - 576px) * 0.2));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    padding: 1rem 1.25rem 5rem 1.25rem;
+    animation: FadeIn 1s;
+}
+
+div.MessageScreen.error{
+    background: linear-gradient(var(--color-red-light), var(--color-red-dark));
+    color: var(--color-gold-light);
+}
+div.MessageScreen.success{
+    background: linear-gradient(var(--color-green-light), var(--color-green-dark));
+    color: var(--color-white-light);
+}
+div.MessageScreen.info{
+    background: linear-gradient(var(--color-cyan-light), var(--color-cyan-dark));
+}
+div.MessageScreen.input{
+    background: linear-gradient(var(--color-white-dark), var(--color-white-light));
+}
+div.MessageScreen.search{
+    background: linear-gradient(rgba(235, 235, 235, 0.95), rgba(200, 200, 200, 0.95));
+    justify-content: space-between;
+    padding-bottom: 2.5rem;
+}
+div.MessageScreen.explain{
+    background: linear-gradient(var(--color-gold-dark), var(--color-gold-light));
+    justify-content: space-between;
+}
+div.MessageScreen>div.Content{
+    width: 100%;
+    font-weight: 500;
+    text-transform: capitalize;
+    font-size: var(--font-size-large);
+    letter-spacing: 0.1rem;
+    white-space: pre-wrap;
+    text-align: center;
+}
+div.MessageScreen>button{
+    padding: 0.25rem 1.5rem;
+    min-width: 10rem;
+    margin-top: 1.5rem;
+    font-weight: 600;
+}

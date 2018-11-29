@@ -1,0 +1,9 @@
+a:hover{
+    cursor: pointer;
+}
+a, a:hover, a:active{
+    text-decoration: none;
+}
+a, a:hover, a:active{
+    color: inherit;
+}
