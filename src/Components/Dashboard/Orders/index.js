@@ -126,6 +126,27 @@ class Orders extends React.Component{
                                         <p>Time</p>
                                         <p>{TimeShow(info.time)}</p>
                                     </div>
+                                    {info.code?
+                                        <div className='Code'>
+                                            <p>Code</p>
+                                            <p>{info.code}</p>
+                                        </div>
+                                        :null
+                                    }
+                                    {info.pin?
+                                        <div className='PIN'>
+                                            <p>PIN</p>
+                                            <p>{info.pin}</p>
+                                        </div>
+                                        :null
+                                    }
+                                    {info.link?
+                                        <div className='Link'>
+                                            <p>Link</p>
+                                            <a href={info.link} target="_blank" rel="noopener noreferrer">Click to View</a>
+                                        </div>
+                                        :null
+                                    }
                                 </div>
                                 {prevButton}
                                 {nextButton}
