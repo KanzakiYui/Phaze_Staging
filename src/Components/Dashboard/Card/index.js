@@ -65,6 +65,8 @@ class Card extends React.Component{
                                     <p className='CardCountry'>{this.props.country}</p>
                                 </div>
                             </div>
+            case 5:
+                return  <img src={this.state.url} alt="" />
             default:
                 return null
         }

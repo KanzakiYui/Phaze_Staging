@@ -83,6 +83,12 @@
     box-shadow: 0px 0px 1rem 0 var(--color-black-dark);
     color: var(--color-gold-light);
 }
+#Account>button.Orders{
+    background: linear-gradient(var(--color-black-light), var(--color-black-dark));
+    border-color: var(--color-black-light);
+    box-shadow: 0px 0px 1rem 0 var(--color-black-light);
+    color: var(--color-gold-normal);
+}
 #Account>button.KYC{
     background: linear-gradient(var(--color-red-dark), var(--color-red-light));
     border-color: var(--color-red-dark);

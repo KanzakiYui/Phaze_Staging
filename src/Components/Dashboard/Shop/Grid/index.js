@@ -25,6 +25,22 @@ class Grid extends React.Component{
         else
             window.scrollTo(0, 0)
     }
+    componentDidUpdate(){                                   // edge case handler
+        let max = Math.ceil(this.props.brandInfo.length/this.props.itemsPerPage) - 1
+        if(this.state.pageIndex > max)
+            this.setState({
+                pageIndex: max,
+                next: false
+            })
+        else if(this.state.pageIndex === max && this.state.next)
+            this.setState({
+                next: false
+            })
+        else if(this.state.pageIndex < max && !this.state.next)
+            this.setState({
+                next:  true
+            })
+    }
     Prev = ()=>{
         this.setState(prevState=>({
             pageIndex: prevState.pageIndex - 1,
@@ -37,7 +53,7 @@ class Grid extends React.Component{
         this.setState(prevState=>({
             pageIndex: prevState.pageIndex + 1,
             prev: true,
-            next: prevState.pageIndex === max - 1? false : true,
+            next: prevState.pageIndex === max - 1? false : true
         }))
     }
     TouchStart = (event)=>{
@@ -87,7 +103,7 @@ class Grid extends React.Component{
         let normalCards = this.props.brandInfo.slice(this.state.pageIndex*this.props.itemsPerPage, this.state.pageIndex*this.props.itemsPerPage+this.props.itemsPerPage)
                                      .map((item, index)=><Card key={index} type={1} name={item.name} country={item.country} urlpath={item.code} />)
         let jumpContent = <div id='Shop-Jump-Content'>
-                                        Navigate To <input type='number' min='1' autoFocus></input><br />
+                                        Go To Page<input type='number' min='1' autoFocus placeholder="Page Number"></input><br />
                                         <button className='button-1' onClick={this.JumpTo}>Confirm</button>
                                     </div>
         return  <div id='Shop-Grid'>

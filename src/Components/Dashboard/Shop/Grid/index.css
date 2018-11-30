@@ -94,10 +94,17 @@
     color: var(--color-black-light);
 }
 #Shop-Jump-Content>input{
+    width: 10rem;
+    margin-left: 1rem;
+    padding: 0.25rem 0.5rem;
     border-color: var(--color-grey-dark);
     color: var(--color-black-dark);
     font-weight: 500;
     text-align: center;
+}
+#Shop-Jump-Content>input::placeholder{
+    color: var(--color-grey-dark);
+    font-weight: 300;
 }
 #Shop-Jump-Content>button.button-1{
     padding: 0.25rem 1.5rem;

@@ -17,6 +17,7 @@ const Payment = Loadable({ loader: () => import('./Payment'), loading: LoadingIn
 const Checkout = Loadable({ loader: () => import('./Checkout'), loading: LoadingIndicator, delay: 1000, render(loaded, props){ let Component = loaded.default; return <Component {...props}/>} })
 const Account = Loadable({ loader: () => import('./Account'), loading: LoadingIndicator, delay: 1000, render(loaded, props){ let Component = loaded.default; return <Component {...props}/>} })
 const Identity = Loadable({ loader: () => import('./Identity'), loading: LoadingIndicator, delay: 1000, render(loaded, props){ let Component = loaded.default; return <Component {...props}/>} })
+const Orders = Loadable({ loader: () => import('./Orders'), loading: LoadingIndicator, delay: 1000, render(loaded, props){ let Component = loaded.default; return <Component {...props}/>} })
 
 class Dashboard extends React.Component{
     constructor(props){
@@ -135,6 +136,7 @@ class Dashboard extends React.Component{
                             <Route exact path="/dashboard/checkout" render={(props)=> <Checkout {...props} paymentInfo={this.state.paymentInfo} screenWidth={this.state.screenWidth} kycVerified={this.state.kycVerified} promoInfo={this.state.promoInfo} updateAfterPay={this.GetPromo}/>}/>
                             <Route exact path="/dashboard/account" render={(props)=> <Account {...props} username={this.state.username} kycVerified={this.state.kycVerified} kycCountry={this.state.kycCountry} promoInfo={this.state.promoInfo} Logout={this.Logout} />}/>
                             <Route exact path="/dashboard/identity" render={(props)=> <Identity {...props}  />}/>
+                            <Route exact path="/dashboard/orders" render={(props)=> <Orders {...props}  />}/>
                         </Switch>
                         <Menu type={this.state.menuAvailable?0:-1} kyc={this.state.kycVerified} />
                     </div>

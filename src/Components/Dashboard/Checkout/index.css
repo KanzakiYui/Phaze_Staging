@@ -209,6 +209,12 @@
     -ms-user-select: text; /* Internet Explorer/Edge */
     user-select: text;
 }
+#Checkout-Success>button{
+    font-size: var(--font-size-tiny);
+    display: block;
+    padding: 0.25rem 0.5rem;
+    margin: 1rem auto;
+}
 #Checkout-Success>p.Goback{
     display: inline-block;
     color: var(--color-red-light);

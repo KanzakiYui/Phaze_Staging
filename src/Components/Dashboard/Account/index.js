@@ -79,6 +79,7 @@ class Account extends React.Component{
                             </div>
                         </div>
                         <button className='button-1 ChangePIN' onClick={()=>this.setState({openChangePINBox: true})}>Change Password</button>
+                        <button className='button-1 Orders' onClick={()=>this.props.history.push('/dashboard/orders')}>View Order History</button>
                         {this.props.kycVerified?null:<button className='button-1 KYC' onClick={()=>this.props.history.push('/dashboard/identity')}>Verify Identity</button>}
                         <button className='button-2 Logout' onClick={this.props.Logout}>Logout</button>
                         <Messagebox open={this.state.openChangePINBox} type='input' buttonText='Close' content={<ChangePIN onError={this.props.Logout}/>} close={()=>this.setState({openChangePINBox: false})} />

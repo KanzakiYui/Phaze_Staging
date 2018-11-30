@@ -1,3 +1,4 @@
+import Scrollbar from 'smooth-scrollbar'
 export let Debounce = (handler, delay) =>{
     delay = delay || 200                                // default is 200ms delay
     let timer                                                  // closure
@@ -9,6 +10,11 @@ export let Debounce = (handler, delay) =>{
 }
 
 export let Responsive = () =>{
+    let hasBar = Scrollbar.has(document.body)
+    if(window.screen.width>=576 && !hasBar)
+        Scrollbar.init(document.body,{alwaysShowTracks: true})
+    else if(window.screen.width < 576 && hasBar)
+        Scrollbar.destroy(document.body)
     let root = document.getElementById('root')
     if(!root)
         return

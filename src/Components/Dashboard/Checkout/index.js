@@ -30,8 +30,6 @@ class Checkout extends React.Component{
             Scrollbar.get(document.body).scrollTo(0, 0, 500)
         else
             window.scrollTo(0, 0)
-        let PDF = new window.jsPDF()
-        console.log(PDF)
         this.FetchAllBalance()
     }
     FetchAllBalance = ()=>{
@@ -121,6 +119,7 @@ class Checkout extends React.Component{
         else if(this.state.status === 3)
             statusContent =   <div id='Checkout-Success'>
                                             <SucessInfo info={this.state.successInfo} brandCode = {this.props.paymentInfo.name.code}/>
+                                            <Receipt info={this.state.successInfo} brand = {this.props.paymentInfo.name.code} value={this.props.paymentInfo.value} subtotal={this.props.paymentInfo.subtotal}/>
                                             <p className='Goback' onClick={this.props.history.goBack}>
                                                 <i className="fas fa-sign-out-alt"></i>
                                                 Go Back
@@ -240,4 +239,71 @@ function SucessInfo(props){
                     <a className='AutoFill' href={autoFillLink} target="_blank" rel="noopener noreferrer">Auto Redeem Link</a>
                     <p className='Notice'>You can use above link to auto-redeem</p>
                 </React.Fragment>
+}
+
+function Receipt(props){
+    let brand = props.brand
+    let value = '$'+props.value.toFixed(2)
+    let fee = '$'+(props.value*0.02).toFixed(2)
+    let subtotal = '$'+(props.value*1.02).toFixed(2)
+    let grandtotal = '$'+props.subtotal.toFixed(2)
+    let credit = '$'+(props.value*1.02 - props.subtotal).toFixed(2)
+    function Download(){
+        let doc = new window.jsPDF()
+        let width = doc.internal.pageSize.getWidth()
+        let left = 30
+        let right = width - left
+        doc.setFont('arial')
+        doc.setFontStyle('bold')
+        doc.setFontSize(24)
+        doc.setTextColor(19, 127, 134)
+        doc.text('Phaze Receipt', width/2, 20, 'center')
+        doc.setFontSize(16)
+        doc.setTextColor(58, 61, 70)
+        doc.setFontStyle('bold')
+        doc.text('Gift Card Brand', left, 40)
+        doc.setFontStyle('normal')
+        doc.text(brand, right, 40, 'right')
+        doc.setFontStyle('bold')
+        doc.text('Gift Card Value', left, 50)
+        doc.setFontStyle('normal')
+        doc.text(value, right, 50, 'right')
+        doc.setFontStyle('bold')
+        doc.text('Transaction Fee', left, 60)
+        doc.setFontStyle('normal')
+        doc.text(fee, right, 60, 'right')
+        doc.setFontStyle('bold')
+        doc.text('Subtotal', left, 70)
+        doc.setFontStyle('normal')
+        doc.text(subtotal, right, 70, 'right')
+        doc.line(left, 80, right, 80)
+        doc.setFontStyle('bold')
+        doc.text('Credit Applied', left, 90)
+        doc.setFontStyle('normal')
+        doc.setTextColor(29, 165, 175)
+        doc.text(credit, right, 90, 'right')
+        doc.setTextColor(58, 61, 70)
+        doc.line(left, 100, right, 100)
+        doc.setTextColor(245, 13, 71)
+        doc.setFontStyle('bold')
+        doc.text('Grand Total', left, 110)
+        doc.setFontStyle('normal')
+        doc.text(grandtotal, right, 110, 'right')
+        doc.setTextColor(58, 61, 70)
+        doc.line(left, 120, right, 120)
+        doc.setFontSize(20)
+        doc.setTextColor(21, 61, 232)
+        doc.setFontStyle('bold')
+        if(props.info.link){
+            let linkLeft = (width - doc.getTextWidth('Gift Card Link'))/2
+            doc.textWithLink('Gift Card Link', linkLeft, 130, { url: props.info.link })
+        }
+        else{
+            doc.text(props.info.code, width/2, 130, 'center')
+            if(props.info.pin)                                  // sometimes, it may only have code, does not have pin
+                doc.text(props.info.pin, width/2, 140, 'center')
+        }
+        doc.save('Receipt.pdf')
+    }
+    return <button className='button-2' onClick={Download}>Download Receipt</button>
 }

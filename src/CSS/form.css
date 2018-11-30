@@ -58,7 +58,7 @@ input{
     transition: all 0.75s;
 }
 
-input[type='text'],input[type='password'],input[type='number'],input[type='email']{
+input[type='text'],input[type='password'],input[type='number'],input[type='email'],input[type='date']{
     border-radius: 0.25rem;
     background-color: transparent;
     border: 1px solid var(--color-white-light);
@@ -69,18 +69,19 @@ input[type='text'],input[type='password'],input[type='number'],input[type='email
     font-size: var(--font-size-normal);
 }
 
-input[type='text']:focus,input[type='password']:focus,input[type='number']:focus,input[type='email']:focus{
+input[type='text']:focus,input[type='password']:focus,input[type='number']:focus,input[type='email']:focus,input[type='date']:focus{
     outline: none;
 }
 
-input[type='text']::placeholder,input[type='password']::placeholder,input[type='number']::placeholder,input[type='email']::placeholder{
+input[type='text']::placeholder,input[type='password']::placeholder,input[type='number']::placeholder,input[type='email']::placeholder,input[type='date']::placeholder{
     color: var(--color-white-dark);
 }
 
 input[type='text'].Checked:invalid,
 input[type='password'].Checked:invalid,
 input[type='number'].Checked:invalid,
-input[type='email'].Checked:invalid{
+input[type='email'].Checked:invalid,
+input[type='date'].Checked:invalid{
     border: 2.5px solid var(--color-red-normal);
     box-shadow: 0 0 0.25rem 0 var(--color-red-light);
     color: var(--color-red-light);
