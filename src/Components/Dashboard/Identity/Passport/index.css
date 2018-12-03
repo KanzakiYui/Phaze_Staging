@@ -1,11 +1,8 @@
-div.Identity-Passport>button{
-    width: 12rem;
-}
 div.Identity-Passport>div.Browse{
-    height: 12rem;
+    height: 10rem;
     width: 85%;
     max-width: 30rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;

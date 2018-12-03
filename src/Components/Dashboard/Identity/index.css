@@ -7,6 +7,10 @@
     align-items: center;
     justify-content: flex-start;
 }
+#Identity button{
+    width: 12rem;
+    padding: 0.25rem 0.5rem;
+}
 #Identity>p.Title{
     width: 100%;
     font-size: var(--font-size-extra);
@@ -45,9 +49,6 @@
 #Identity-Content>p.Note{
     margin-bottom: 2rem;
     font-size: var(--font-size-small);
-}
-#Identity-Content.Identity-Legal>button{
-    width: 12rem;
 }
 #Identity-Content.Identity-Country>div.Select{
     width: 100%;
@@ -94,9 +95,6 @@
 #Identity-Content.Identity-Country>div.Select>div:hover>img{
     animation: HorinzontalShaking 0.5s;
 }
-#Identity-Content.Identity-Country>button{
-    width: 12rem;
-}
 #Identity-Success>p.Title{
     font-size: var(--font-size-large);
     font-weight: 500;
@@ -121,5 +119,4 @@
 #Identity-Success>button{
     display: block;
     margin: auto;
-    width: 12rem;
 }

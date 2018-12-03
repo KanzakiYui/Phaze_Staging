@@ -23,8 +23,8 @@ export let Responsive = () =>{
         let href = window.location.href.toLowerCase()
         let width = root.clientWidth
         height = width * 1.2
-        if(href.includes('checkout') || href.includes('payment') || href.includes('account') || href.includes('identity'))
-            height = Math.max(width, 640)
+        if( href.includes('account') || href.includes('identity'))
+            height = Math.max(width, 768)
     }
     root.style.height = height+'px'
 }
