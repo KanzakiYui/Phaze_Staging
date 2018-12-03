@@ -16,23 +16,23 @@ div.MessageScreen{
 }
 
 div.MessageScreen.error{
-    background: linear-gradient(var(--color-red-light), var(--color-red-dark));
+    background: linear-gradient(var(--color-red-dark), var(--color-red-light));
     color: var(--color-gold-light);
 }
 div.MessageScreen.success{
-    background: linear-gradient(var(--color-green-light), var(--color-green-dark));
-    color: var(--color-white-light);
+    background: linear-gradient(var(--color-green-darkest), var(--color-green-normal));
+    color: var(--color-gold-light);
 }
 div.MessageScreen.info{
-    background: linear-gradient(var(--color-cyan-light), var(--color-cyan-dark));
+    background: linear-gradient(var(--color-cyan-dark), var(--color-cyan-normal));
+    color: var(--color-white-light);
 }
 div.MessageScreen.input{
     background: linear-gradient(var(--color-white-dark), var(--color-white-light));
 }
 div.MessageScreen.search{
-    background: linear-gradient(rgba(235, 235, 235, 0.95), rgba(200, 200, 200, 0.95));
-    justify-content: space-between;
-    padding-bottom: 2.5rem;
+    background: linear-gradient(var(--color-white-dark), var(--color-white-light));
+    justify-content: flex-start;
 }
 div.MessageScreen.explain{
     background: linear-gradient(var(--color-gold-dark), var(--color-gold-light));

@@ -1,7 +1,7 @@
 import requestPromise from 'request-promise'
 
-//let API = "http://10.164.110.231:8080/api/"
-let API = "https://webstaging.phaze.io/api/"
+let API = "http://10.164.107.62:8080/api/"
+//let API = "https://webstaging.phaze.io/api/"
 // let API = "https://www.webapp.phaze.io/api/"
 
 export function GetAPI(url){

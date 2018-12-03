@@ -3,7 +3,7 @@ div.VerifyEmailNotice{
 }
 div.VerifyEmailNotice>p.Title{
     font-size: var(--font-size-extra);
-    color: var(--color-red-light);
+    color: var(--color-red-lightest);
     margin-bottom: 1.25rem;
 }
 div.VerifyEmailNotice>p.Description{

@@ -19,7 +19,7 @@
     transition: 1.25s;
 }
 #Shop-Nav>div:first-child>a.Active{
-    color: var(--color-gold-dark);
+    color: var(--color-gold-normal);
 }
 #Shop-Nav>div:first-child>a>span{
     font-size: var(--font-size-small);
@@ -82,6 +82,4 @@
 }
 #Shop-Seachbox>div.Filter>div:last-child{
     padding-left: 0.5rem;
-}
-#Shop-Seachbox>div.Content{
 }

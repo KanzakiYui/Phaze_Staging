@@ -36,9 +36,8 @@
 #Shop-Grid-Brands>i.Pagination{
     position: absolute;
     top: 50%;
-    transform: translateY(calc(-0.25 * var(--font-size-extra)));
     font-size: var(--font-size-extra);
-    color: var(--color-cyan-dark);
+    color: var(--color-cyan-normal);
 }
 #Shop-Grid-Brands>i.Pagination:hover{
     cursor: pointer;
@@ -53,7 +52,7 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
 }
 #Shop-Grid-Brands>div.Content>div{
     height: 50%;
@@ -70,24 +69,45 @@
 #Shop-Grid-Brands>p.Notice{
     font-size: var(--font-size-small);
     font-weight: 500;
+    color: var(--color-grey-dark);
 }
 #Grid-Jump{
     position: absolute;
+    padding: 0;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#Grid-Jump>span{
     width: 2rem;
     height: 2rem;
-    padding: 0;
-    display: flex;
+    background: linear-gradient(var(--color-cyan-dark), var(--color-cyan-light));
+    border-radius: 100%;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     color: var(--color-white-light);
     font-weight: 500;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-0.25rem);
-    background: linear-gradient(var(--color-cyan-dark), var(--color-cyan-light));
-    border-radius: 100%;
 }
-#Grid-Jump:hover{
+#Grid-Jump>i{
+    position: absolute;
+    left: -0.5rem;
+    top: 0;
+    transform: translateX(-100%) translateY(0.25rem);
+    font-style: normal;
+    color: var(--color-grey-dark);
+}
+@media all and (max-width: 576px){
+    #Grid-Jump>span{
+        display: flex;
+    }
+    #Grid-Jump>i{
+        transform: translateX(-0.25rem) translateY(-100%);
+        left: 0;
+        top: -0.5rem;
+    }
+}
+#Grid-Jump>span:hover{
     cursor: pointer;
 }
 #Shop-Jump-Content{

@@ -43,16 +43,16 @@
     width: 25rem;
     height: 3rem;
     max-width: 80vw;
-    border-radius: 0.5rem;
+    border-radius: 0.25rem;
     font-weight: 500;
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
-    background: linear-gradient(var(--color-gold-dark), var(--color-gold-normal));
-    border: 0.2px solid var(--color-gold-normal);
+    background-color: var(--color-grey-light);
+    border: 0.2px solid var(--color-grey-light);
     color: var(--color-black-dark);
-    box-shadow: 0 0 1.5rem 0 var(--color-gold-normal);
+    box-shadow: 0 0 1.5rem 0 var(--color-grey-dark);
 }
 #Checkout-Flow>div.Flow-1>p>span{
     color: var(--color-red-light);
@@ -78,7 +78,6 @@
     justify-content: center;
     align-items: center;
     padding: 1rem 0;
-    color: var(--color-cyan-dark);
     font-weight: 600;
     opacity: 0;
 }
@@ -124,7 +123,7 @@
     width: 25rem;
     height: 3rem;
     max-width: 80vw;
-    border-radius: 0.5rem;
+    border-radius: 0.25rem;
     background: linear-gradient(var(--color-black-light), var(--color-grey-dark));
     border: 0.2px solid var(--color-grey-dark);
     box-shadow: 0 0 1.5rem var(--color-grey-dark);
@@ -174,8 +173,8 @@
     height: auto;
     padding: 0.5rem;
     max-width: 80vw;
-    border-radius: 0.5rem;
-    background: linear-gradient(var(--color-black-normal), var(--color-black-dark));
+    border-radius: 0.25rem;
+    background: linear-gradient(var(--color-black-light), var(--color-black-dark));
     border: 0.2px solid var(--color-black-dark);
     box-shadow: 0 0 1.5rem var(--color-black-dark);
 }
@@ -187,27 +186,32 @@
 #Checkout-Success>a{
     display: block;
     text-align: center;
-    color: var(--color-cyan-light);
+    color: var(--color-cyan-normal);
     font-weight: 500;
-    animation: TextShinning 2s ease-in-out infinite alternate forwards;
     margin: 0.25rem 0;
 }
-#Checkout-Success>p.Code{
+#Checkout-Success>p.Code,
+#Checkout-Success>p.PIN{
     color: var(--color-white-dark);
     font-size: var(--font-size-tiny);
     margin: 0.25rem 0;
 }
-#Checkout-Success>p.Code>span{
+#Checkout-Success>p.Code>span,
+#Checkout-Success>p.PIN>span{
     font-size: var(--font-size-normal);
-    color: var(--color-cyan-light);
     font-weight: 500;
-    animation: TextShinning 2s ease-in-out infinite alternate forwards;
     margin-right: 0.5rem;
     -webkit-user-select: text; /* Safari */
     -khtml-user-select: text; /* Konqueror HTML */
     -moz-user-select: text; /* Firefox */
     -ms-user-select: text; /* Internet Explorer/Edge */
     user-select: text;
+}
+#Checkout-Success>p.Code>span{
+    color: var(--color-cyan-lightest);
+}
+#Checkout-Success>p.PIN>span{
+    color: var(--color-cyan-light);
 }
 #Checkout-Success>button{
     font-size: var(--font-size-tiny);
@@ -230,7 +234,7 @@
 }
 
 #Checkout-Success>p.Notice{
-    color: var(--color-white-dark);
+    color: var(--color-grey-dark);
     font-size: var(--font-size-small);
 }
 

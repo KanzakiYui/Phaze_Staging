@@ -1,4 +1,7 @@
 #Menu{
+    position: absolute;
+    bottom: 0.5rem;
+    left: calc(50% - 7.5rem);
     display: flex;
     width: 15rem;
     margin: 0.5rem auto 0 auto;
@@ -12,9 +15,9 @@
     border-radius: 0.25rem;
     height: 4rem;
     width: 7.2rem;
-    background-image: -webkit-radial-gradient(100% 0, circle, transparent 35%, var(--color-grey-normal) 35%, var(--color-white-dark)  70%, var(--color-grey-normal)  100%);
-    background-image: -o-radial-gradient(100% 0, circle, transparent 35%, var(--color-grey-normal)  35%, var(--color-white-dark)  70%, var(--color-grey-normal)  100%);
-    background-image: -moz-radial-gradient(100% 0, circle, transparent 35%, var(--color-grey-normal)  35%, var(--color-white-dark) 70%, var(--color-grey-normal)  100%);
+    background-image: -webkit-radial-gradient(100% 0, circle, transparent 35%, var(--color-white-dark) 35%, var(--color-white-light)  70%, var(--color-white-dark)  100%);
+    background-image: -o-radial-gradient(100% 0, circle, transparent 35%, var(--color-white-dark)  35%, var(--color-white-light)  70%, var(--color-white-dark)  100%);
+    background-image: -moz-radial-gradient(100% 0, circle, transparent 35%, var(--color-white-dark)  35%, var(--color-white-light) 70%, var(--color-grey-dark)  100%);
 }
 #Menu-Left>*{
     width: 100%;
@@ -36,9 +39,9 @@
     border-radius: 0.25rem;
     height: 4rem;
     width: 7.2rem;
-    background-image: -webkit-radial-gradient(0 0, circle, transparent 35%, var(--color-grey-normal) 35%, var(--color-white-dark)  70%, var(--color-grey-normal) 100%);
-    background-image: -o-radial-gradient(0 0, circle, transparent 35%, var(--color-grey-normal) 35%, var(--color-white-dark)  70%, var(--color-grey-normal)  100%);
-    background-image: -moz-radial-gradient(0 0, circle, transparent 35%, var(--color-grey-normal) 35%, var(--color-white-dark)  70%, var(--color-grey-normal)  100%);
+    background-image: -webkit-radial-gradient(0 0, circle, transparent 35%, var(--color-white-dark) 35%, var(--color-white-light)  70%, var(--color-white-dark) 100%);
+    background-image: -o-radial-gradient(0 0, circle, transparent 35%, var(--color-white-dark) 35%, var(--color-white-light)  70%, var(--color-white-dark)  100%);
+    background-image: -moz-radial-gradient(0 0, circle, transparent 35%, var(--color-white-dark) 35%, var(--color-white-light)  70%, var(--color-white-dark)  100%);
     position: relative;
 }
 #Menu-Right>*:not(i){
@@ -58,7 +61,7 @@
 }
 #Menu-Center{
     z-index: 2;
-    background-image: -webkit-radial-gradient(50% 50%, circle, var(--color-white-dark) 25%, var(--color-grey-normal) 100%);
+    background-image: -webkit-radial-gradient(50% 50%, circle, var(--color-white-light) 25%, var(--color-white-dark) 100%);
     width: 5rem;
     height: 5rem;
     border-radius: 50%;
@@ -79,7 +82,7 @@
 #Menu-Left>*.Active,
 #Menu-Center>*.Active,
 #Menu-Right>*.Active{
-    color: var(--color-gold-dark);
+    color: var(--color-red-light);
     font-weight: 600;
 }
 #Menu-Left>*>*,

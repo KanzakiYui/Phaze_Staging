@@ -16,8 +16,7 @@ p{
     margin: 0.5rem;
     font-size: var(--font-size-extra);
     font-weight: 500;
-    color: var(--color-blue-dark);
-    text-shadow: 0.5px 0.75px var(--color-blue-light);
+    letter-spacing: 0.1rem;
     overflow: hidden;
     animation: TitleScrollAnimation 6s forwards;
 }

@@ -32,7 +32,8 @@ body>div.scroll-content{
     width: 100vw;
     min-height: 100vh; 
     max-width: calc(576px + calc((100vw - 576px) * 0.2));
-    background: linear-gradient(var(--color-white-dark), var(--color-white-normal));
+    background-color: var(--color-white-light);
+    /*background: linear-gradient(var(--color-white-dark), var(--color-white-normal));*/
     position: relative;
     transition: height 0.75s;
 }

@@ -231,7 +231,7 @@ function SucessInfo(props){
                         <span>{props.info.code}</span>(CODE)
                     </p>
                     {props.info.pin?
-                        <p className='Code'>
+                        <p className='PIN'>
                             <span>{props.info.pin}</span>(PIN)
                         </p>:
                         null
@@ -303,7 +303,7 @@ function Receipt(props){
             if(props.info.pin)                                  // sometimes, it may only have code, does not have pin
                 doc.text(props.info.pin, width/2, 140, 'center')
         }
-        doc.save('Receipt.pdf')
+        window.open(URL.createObjectURL(doc.output("blob")), '_blank')
     }
     return <button className='button-2' onClick={Download}>Download Receipt</button>
 }

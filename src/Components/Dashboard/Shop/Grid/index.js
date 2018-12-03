@@ -129,7 +129,7 @@ class Grid extends React.Component{
                             {prevButton}
                             {nextButton}
                             <p id='Grid-Jump' onClick={()=>this.setState({openJumpBox: true})}>
-                                {this.state.pageIndex+1}
+                                <i>Page</i><span>{this.state.pageIndex+1}</span>
                             </p>
                         </div>
                         <Messagebox open={this.state.openJumpBox} type='input' content={jumpContent} buttonText='Cancel' close={()=>this.setState({openJumpBox: false})} />

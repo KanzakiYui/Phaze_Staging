@@ -1,7 +1,8 @@
 :root{
+    --color-gold-darkest: rgb(161, 105, 15);
     --color-gold-dark: rgb(207, 157, 77);
-    --color-gold-normal: rgb(211, 176, 102);
-    --color-gold-light: rgb(246, 224, 189);
+    --color-gold-normal: rgb(226, 190, 111);
+    --color-gold-light: rgb(238, 212, 170);
 
     --color-black-dark: rgb(25, 25, 25);
     --color-black-normal: rgb(45, 47, 51);
@@ -12,24 +13,28 @@
     --color-grey-light: rgb(228, 228, 229);
 
     --color-white-dark: rgb(225, 225, 225);
-    --color-white-normal: rgb(251, 251, 251);
+    --color-white-normal: rgb(246, 246, 246);
     --color-white-light: rgb(255, 255, 255);
 
+    --color-blue-darkest: rgb(16, 32, 105);
     --color-blue-dark: rgb(17, 42, 149);
     --color-blue-normal: rgb(21, 61, 232);
     --color-blue-light: rgb(116, 142, 254);
 
-    --color-green-dark: rgb(67, 129, 28);
-    --color-green-normal: rgb(79, 170, 23);
+    --color-green-darkest: rgb(14, 109, 2);
+    --color-green-dark: rgb(71, 146, 24);
+    --color-green-normal: rgb(76, 172, 17);
     --color-green-light: rgb(114, 235, 38);
 
     --color-red-dark: rgb(173, 36, 71);
     --color-red-normal: rgb(206, 21, 68);
     --color-red-light: rgb(245, 13, 71);
+    --color-red-lightest: rgb(255, 0, 0);
 
     --color-cyan-dark: rgb(19, 127, 134);
     --color-cyan-normal: rgb(29, 165, 175);
     --color-cyan-light: rgb(21, 212, 226);
+    --color-cyan-lightest: rgb(11, 232, 248);
 
 
     /* Below colors will have alpha channel */

@@ -4,7 +4,7 @@ button{
     font-weight: 400;
     transition: all 0.5s;
     text-transform: uppercase;
-    border-radius: 0.375rem;
+    border-radius: 0.25rem;
     letter-spacing: 0.125rem;
     text-transform: uppercase;
 }

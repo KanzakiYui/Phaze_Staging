@@ -62,7 +62,7 @@ class Signup extends React.Component{
                 this.setState({
                     openMessage: true,
                     success: true,
-                    message: 'Account is created with Phaze credit\nUse link sent to you to active account'
+                    message: 'Account is created with credit\nCheck your mailbox to active the account'
                 },this.Reset)
             }).catch(error=>{
                 let message = 'Please Try Again'

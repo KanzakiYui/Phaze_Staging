@@ -10,7 +10,8 @@ import CanadaIcon from '../../../Media/Images/Search/Canada.png'
 import USAIcon from '../../../Media/Images/Search/USA.png'
 import RestaurantIcon from '../../../Media/Images/Search/restaurant.png'
 import TravelIcon from '../../../Media/Images/Search/travel.png'
-import MallIcon from '../../../Media/Images/Search/mall.png'
+import RetailIcon from '../../../Media/Images/Search/retail.png'
+import FashionIcon from '../../../Media/Images/Search/fashion.png'
 import OthersIcon from '../../../Media/Images/Search/others.png'
 import Card from '../Card'
 
@@ -46,9 +47,13 @@ class Shop extends React.Component{
     }
     render(){
         let countryData = [ <p data-value='All'>All</p>, <p data-value='Canada'><img src={CanadaIcon} alt=""/>Canada</p>, <p data-value='United States'><img src={USAIcon} alt=""/>United States</p> ]
-        let categoryData = [ <p data-value='All'>All</p>, <p data-value='Restaurant'><img src={RestaurantIcon} alt=""/>Restaurant</p>, 
-                                        <p data-value='Travel'><img src={TravelIcon} alt=""/>Travel</p>, <p data-value='Mall'><img src={MallIcon} alt=""/>Mall</p>, 
-                                        <p data-value='Others'><img src={OthersIcon} alt=""/>Others</p>]
+        let categoryData = [ <p data-value='All'>All</p>, 
+                                        <p data-value='Fashion'><img src={FashionIcon} alt=""/>Fashion</p>, 
+                                        <p data-value='Restaurant'><img src={RestaurantIcon} alt=""/>Restaurant</p>, 
+                                        <p data-value='Travel'><img src={TravelIcon} alt=""/>Travel</p>, 
+                                        <p data-value='Retail'><img src={RetailIcon} alt=""/>Retail</p>, 
+                                        <p data-value='Others'><img src={OthersIcon} alt=""/>Others</p>
+                                    ]
         let brands = this.props.brandInfo.filter(item=>this.state.CountrySelected.includes(item.country))
         //brands = brands.filter(item=>this.state.CategorySelected.includes(item.category))
         brands = brands.filter(item=>item.code.indexOf(this.state.keywords)!==-1||item.name.indexOf(this.state.keywords)!==-1)

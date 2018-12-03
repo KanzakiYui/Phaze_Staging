@@ -18,11 +18,14 @@ export let Responsive = () =>{
     let root = document.getElementById('root')
     if(!root)
         return
-    let height = window.innerHeight
-    if(window.location.href.toLowerCase().indexOf('dashboard') !== -1)
-        height = root.clientWidth*1.25  
-    if(window.innerHeight < 450)
-        height = 640                                        // hard coded for now             
+    let height = Math.max(window.innerHeight, 640)
+    if(window.screen.width >= 768 && window.location.href.toLowerCase().includes('dashboard')){
+        let href = window.location.href.toLowerCase()
+        let width = root.clientWidth
+        height = width * 1.2
+        if(href.includes('checkout') || href.includes('payment') || href.includes('account') || href.includes('identity'))
+            height = Math.max(width, 640)
+    }
     root.style.height = height+'px'
 }
 
