@@ -248,7 +248,6 @@ function Receipt(props){
     let subtotal = '$'+(props.value*1.02).toFixed(2)
     let grandtotal = '$'+props.subtotal.toFixed(2)
     let credit = '$'+(props.value*1.02 - props.subtotal).toFixed(2)
-    let URL = null
     function Download(){
         let doc = new window.jsPDF()
         let width = doc.internal.pageSize.getWidth()
@@ -304,10 +303,7 @@ function Receipt(props){
             if(props.info.pin)                                  // sometimes, it may only have code, does not have pin
                 doc.text(props.info.pin, width/2, 140, 'center')
         }
-        let data = doc.output("dataurl")
-        data = data.slice(data.indexOf('base64,')+7)
-        URL = `${process.env.PUBLIC_URL}/receipt.html?${data}`
+        doc.save('Phaze Receipt.pdf')
     }
-    Download()
-    return <a href={URL} target="_blank" rel="noopener noreferrer">Download Receipt</a>
+    return <button className='button-2' onClick={Download}>Download Receipt</button>
 }

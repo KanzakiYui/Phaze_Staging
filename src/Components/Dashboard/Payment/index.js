@@ -111,7 +111,7 @@ class Payment extends React.Component{
             explanation =  <div id='Promotion-Explanation'>
                                         <p>Phaze Credit Guideline</p>
                                         <p>According to your promo code, you are eligible for applying <span>Phaze Credit</span> as part of your payment</p>
-                                        <p>The maximum appliable amount is <span>{this.props.maxCreditRate*100}</span>% of total fee</p>
+                                        <p>The maximum appliable amount is <span>{(this.props.maxCreditRate*100).toFixed(2)}</span>% of total fee</p>
                                         <p>The actual appliable amount will not be larger than your current credit balance, which is <span>${this.props.availableCredit}</span></p>
                                         <p>You can click <span>Apply Phaze Credit</span> to apply/remove credit and see how much you can actually apply</p>
                                     </div>
