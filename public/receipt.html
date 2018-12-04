@@ -17,6 +17,7 @@
     <title>Receipt</title>
 </head>
 <body>
+    <button onClick="Test()">Download</button>
     <iframe id='Frame'>
 
     </iframe>
@@ -32,9 +33,10 @@
     }
 </style>
 <script>
-    window.onload=function(){
+    function Test(){
         let URL = window.location.href
-        let data = URL.slice(URL.indexOf('data'))
+        let data = 'data:application/pdf;base64,'+URL.slice(URL.indexOf('?')+1)
+        console.log(data)
         document.getElementById('Frame').src=data
     }
 </script>
