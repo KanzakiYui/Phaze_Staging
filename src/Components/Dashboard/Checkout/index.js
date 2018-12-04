@@ -303,7 +303,9 @@ function Receipt(props){
             if(props.info.pin)                                  // sometimes, it may only have code, does not have pin
                 doc.text(props.info.pin, width/2, 140, 'center')
         }
-        window.open(URL.createObjectURL(doc.output("blob")), '_blank')
+        let data = doc.output("dataurl")
+        let URL = `${process.env.PUBLIC_URL}/receipt.html?${data}`
+        window.open(URL, '_blank')
     }
     return <button className='button-2' onClick={Download}>Download Receipt</button>
 }
