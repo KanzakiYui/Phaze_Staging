@@ -1,42 +1,31 @@
 :root{
-    --color-gold-darkest: rgb(161, 105, 15);
-    --color-gold-dark: rgb(207, 157, 77);
-    --color-gold-normal: rgb(226, 190, 111);
-    --color-gold-light: rgb(238, 212, 170);
-
-    --color-black-dark: rgb(25, 25, 25);
-    --color-black-normal: rgb(45, 47, 51);
-    --color-black-light: rgb(58, 61, 70);
-
-    --color-grey-dark: rgb(147, 151, 167);
-    --color-grey-normal: rgb(205, 206, 214);
-    --color-grey-light: rgb(228, 228, 229);
-
-    --color-white-dark: rgb(225, 225, 225);
-    --color-white-normal: rgb(246, 246, 246);
-    --color-white-light: rgb(255, 255, 255);
-
-    --color-blue-darkest: rgb(16, 32, 105);
-    --color-blue-dark: rgb(17, 42, 149);
+    /* Blue sets */
+    --color-blue-light: rgb(90, 177, 252);
     --color-blue-normal: rgb(21, 61, 232);
-    --color-blue-light: rgb(116, 142, 254);
+    --color-blue-dark: rgb(17, 42, 149);
+    --color-blue-darkest: rgb(5, 14, 79);
 
-    --color-green-darkest: rgb(14, 109, 2);
-    --color-green-dark: rgb(71, 146, 24);
-    --color-green-normal: rgb(76, 172, 17);
-    --color-green-light: rgb(114, 235, 38);
+    /* Gold/Yellow sets */
+    --color-gold-light:rgb(236, 231, 88);
+    --color-gold-normal: rgb(214, 176, 116);
+    --color-gold-dark: rgb(154, 148, 124);
 
-    --color-red-dark: rgb(173, 36, 71);
-    --color-red-normal: rgb(206, 21, 68);
-    --color-red-light: rgb(245, 13, 71);
-    --color-red-lightest: rgb(255, 0, 0);
+    /* White sets */
+    --color-white-normal: rgb(246, 246, 246);
+    --color-white-dark: rgb(224, 224, 224);
+    --color-white-darkest: rgb(184, 184, 184);
 
-    --color-cyan-dark: rgb(19, 127, 134);
-    --color-cyan-normal: rgb(29, 165, 175);
-    --color-cyan-light: rgb(21, 212, 226);
-    --color-cyan-lightest: rgb(11, 232, 248);
+    /* Grey sets */
+    --color-grey-normal: rgb(154, 154, 154);
+    --color-grey-dark: rgb(124, 124, 124);
+    --color-grey-darkest: rgb(85, 85, 85);
 
+    /* Black sets */
+    --color-black-normal: rgb(55, 55, 55);
+    --color-black-dark: rgb(21, 21, 21);
 
-    /* Below colors will have alpha channel */
-    --color-cyan-transparent: rgba(4, 160, 182, 0.75);
+    /*Other colors*/
+    --color-red-normal: rgb(232, 21, 93);
+    --color-green-normal: rgb(21, 232, 97);
+    --color-egg-normal: rgb(230, 226, 211);
 }

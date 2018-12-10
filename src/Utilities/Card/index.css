@@ -1,0 +1,126 @@
+
+/* Suppose all cards' initial size is 480*300 */
+/*
+div.Card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+div.Card p.CardName{
+    font-size: var(--font-size-small);
+    color: var(--color-black-dark);
+}
+div.Card p.CardCountry{
+    font-size: var(--font-size-tiny);
+}
+div.Card:hover{
+    cursor: pointer;
+}
+div.Card-Featured{
+    height: 100%;
+    transform: scale(0.8);
+    transition: all 0.75s;
+}
+div.Card-Featured:hover{
+    transform: scale(1);
+}
+div.Card-Featured>img{
+    max-height: calc(100% - 3rem);
+    max-width: 100%;
+}
+div.Card-Featured>div{
+    width: 100%;
+    padding: 0.25rem 0.5rem;
+    background-color: var(--color-black-light);
+    border-radius: 0.25rem;
+}
+div.Card-Featured:hover>div{
+    filter: brightness(1.5);
+}
+div.Card-Featured>div>p.CardName{
+    color: var(--color-gold-light);
+}
+div.Card-Featured>div>p.CardCountry{
+    color: var(--color-gold-dark);
+}
+div.Card-Normal{
+    margin: 0.2rem;
+    padding: 0.5rem;
+    background-color: var(--color-white-normal);
+    border: 0.5px solid var(--color-white-dark);
+    box-shadow: 0 0 0.5rem 0 var(--color-white-dark);
+}
+div.Card-Normal:hover>div{
+    filter: brightness(1.5);
+}
+div.Card-Normal>img{
+    height: calc(100% - 2.5rem);
+    width: auto;
+}
+div.Card-Normal:hover>img{
+    animation: HorinzontalShaking ease-in-out 0.5s;
+}
+div.Card-Normal p.CardName{
+    color: var(--color-black-dark);
+    font-size: var(--font-size-tiny);
+    font-weight: 600;
+}
+div.Card-Normal p.CardCountry{
+    color: var(--color-black-light);
+    font-size: var(--font-size-tiny);
+}
+div.Card-Denomination,
+div.Card-Arbitrary{
+    margin-left: auto;
+    margin-right: auto;
+}
+div.Card-Denomination>img,
+div.Card-Arbitrary>img{
+    width: 100%;
+}
+div.Card-Denomination>p.CardValue,
+div.Card-Arbitrary>p.CardValue{
+    width: 100%;
+    color: var(--color-black-dark);
+    font-weight: 700;
+    margin-top: 0.5rem;
+    padding: 0.25rem;
+    background: linear-gradient(var(--color-black-dark), var(--color-black-light));
+    border-radius: 0.25rem;
+    color: var(--color-gold-light);
+}
+div.Card-Search{
+    width: 100%;
+    height: 5rem;
+    min-height: 15vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1.5rem;
+    margin: 0.75rem 0;
+    border: 0.5px solid var(--color-white-dark);
+    border-radius: 0.25rem;
+    box-shadow: 0 0 0.25rem 0 var(--color-black-light);
+    transition: 0.5s;
+}
+div.Card-Search:hover{
+    background: var(--color-white-light);
+}
+div.Card-Search>img{
+    height: 100%;
+}
+div.Card-Search>div{
+    color: var(--color-black-dark);
+}
+div.Card-Search>div>p.CardName{
+    font-size: var(--font-size-normal);
+    font-weight: 600;
+}
+div.Card-Search>div>p.CardCountry{
+    font-size: var(--font-size-small);
+    font-weight: 400;
+    text-align: right;
+}
+*/

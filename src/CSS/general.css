@@ -1,4 +1,4 @@
-body, body *{
+body *{
     margin: 0;
     text-decoration: none;
     box-sizing: border-box !important;
@@ -6,25 +6,15 @@ body, body *{
     -webkit-tap-highlight-color: transparent;
     outline: none !important;
 }
-
 p{
     text-align: center;
 }
-
-.GeneralTitle{
-    white-space: nowrap;
-    margin: 0.5rem;
-    font-size: var(--font-size-extra);
-    font-weight: 500;
-    letter-spacing: 0.1rem;
-    overflow: hidden;
-    animation: TitleScrollAnimation 6s forwards;
+a{
+    color: inherit;
 }
-
 input[type='number'] {
     -moz-appearance:textfield;
 }
-
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;

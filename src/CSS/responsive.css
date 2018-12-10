@@ -1,100 +1,78 @@
 :root{
-    font-size: 13px;
+    font-size: 12px;
 }
 @media all and (min-width: 320px){
     :root{
-        font-size: 14px;
+        font-size: 13px;
     }
 }
 @media all and (min-width: 480px){
     :root{
-        font-size: 14.5px;
+        font-size: 13.5px;
     }
 }
 @media all and (min-width: 576px){
     :root{
-        font-size: 15px;
+        font-size: 14px;
     }
 }
-
 @media all and (min-width: 768px){
     :root{
-        font-size: 15.5px;
+        font-size: 14.5px;
     }
 }
 @media all and (min-width: 992px){
     :root{
-        font-size: 16px;
+        font-size: 15px;
     }
 }
 @media all and (min-width: 1024px){
     :root{
-        font-size: 16.5px;
+        font-size: 15.5px;
     }
 }
 @media all and (min-width: 1280px){
     :root{
-        font-size: 17px;
-    }
-}
-@media all and (min-width: 1366px){
-    :root{
-        font-size: 18px;
+        font-size: 16px;
     }
 }
 @media all and (min-width: 1440px){
     :root{
-        font-size: 19px;
+        font-size: 16.5px;
     }
 }
 @media all and (min-width: 1680px){
     :root{
-        font-size: 20px;
+        font-size: 17px;
     }
 }
 @media all and (min-width: 1920px){
     :root{
+        font-size: 20px;
+    }
+}
+@media all and (min-width: 2160px){
+    :root{
         font-size: 21px;
     }
 }
-
-@media all and (min-width: 2160px){
+@media all and (min-width: 2320px){
     :root{
         font-size: 22px;
     }
 }
-@media all and (min-width: 2340px){
+@media all and (min-width: 2560px){
     :root{
         font-size: 23px;
     }
 }
-@media all and (min-width: 2560px){
+@media all and (min-width: 2880px){
     :root{
         font-size: 24px;
     }
 }
-@media all and (min-width: 2880px){
+@media all and (min-width: 3120px){
     :root{
         font-size: 25px;
-    }
-}
-@media all and (min-width: 3240px){
-    :root{
-        font-size: 26px;
-    }
-}
-@media all and (min-width: 3560px){
-    :root{
-        font-size: 27px;
-    }
-}
-@media all and (min-width: 3840px){
-    :root{
-        font-size: 28px;
-    }
-}
-@media all and (min-width: 4096px){
-    :root{
-        font-size: 29px;
     }
 }

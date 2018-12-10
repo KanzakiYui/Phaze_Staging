@@ -1,42 +1,44 @@
 #Compatibility{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    min-height: 100vh;
-    background-color: rgb(246, 224, 189);
-    color: rgb(45, 47, 51);
-    padding: 1.25rem 0.75rem;
-    animation: FadeIn 1.75s;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    background:  linear-gradient(rgb(246, 246, 246) 0%, rgb(224, 224, 224) 100%);
+    color: rgb(21, 21, 21);
+    padding: 1.5rem 3rem;
+}
+#Compatibility>img{
+    height: 3rem;
+    display: block;
+    margin: 0.5rem auto;
 }
 #Compatibility>p.Title{
-    color: rgb(17, 42, 149);
-}
-#Compatibility>div.Content,
-#Compatibility>div.Content>p{
-    width: 100%;
-}
-#Compatibility>div.Content>p:first-child>i{
-    font-size: 1.25rem;
-    color: rgb(206, 21, 68);
-}
-#Compatibility>div.Content>p:nth-child(3){
+    font-size: 1.75rem;
     margin-bottom: 1rem;
+}
+#Compatibility>div.Content>p.Description{
+    color: #7c7c7c;
 }
 #Compatibility>div.Content>div.List{
     width: 100%;
-    padding: 0 10%;
+    max-width: 24rem;
+    margin: 1.5rem auto;
+    margin-bottom: 1.5rem;
 }
 #Compatibility>div.Content>div.List>p{
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     margin-bottom: 0.75rem;
 }
-#Compatibility>div.Content>div.List>p>a{
-    color: rgb(15, 49, 143);
+#Compatibility>div.Content>div.List>button{
+    margin-top: 1.75rem;
+}
+
+/*The following are for sake of incompatible browers which does not support var */
+
+#Compatibility>div.Content>div.List>button{
+    font-size: 0.7rem;
+    box-shadow: 0 0.5rem 2rem 0 rgb(184, 184, 184);
+    background-color: rgb(21, 61, 232);
+    border: 0.5px solid rgb(21, 61, 232);
+    color: rgb(246, 246, 246);
 }

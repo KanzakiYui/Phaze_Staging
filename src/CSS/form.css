@@ -1,88 +1,47 @@
 form{
     width: 100%;
 }
+input{
+    font-size: inherit;
+}
 form>div.Inline-Input{
-    width: 100%;
-    max-width: 20rem;
-    margin: 1.25rem auto;
-    border: 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    margin: auto;
     position: relative;
 }
-form>div.Inline-Input>label{
-    width: 25%;
-    max-width: 2.5rem;
-}
 form>div.Inline-Input>input{
-    width: 75%;
-    min-width: calc(100% - 2.5rem);
-}
-form>div.Inline-Input>span.Symbol{
+    width: 100%;  
+    padding: 0.75rem 4rem 0.75rem 1.25rem;
+} 
+form>div.Inline-Input>label{
     position: absolute;
-    right: 0.5rem;
-    color: var(--color-grey-normal);
-    height: 100%;
-    display: flex;
-    align-items: center;
+    right: 1rem;
+    top: 1.25rem;
 }
-form>div.Inline-Input>span.Symbol:hover{
-    cursor: pointer;
-}
-form>div.Error-Input,
-form>div.Success-Input{
-    text-align: center;
-}
-form>div.Error-Input>span,
-form>div.Success-Input>span{
+form>div.Inline-Input>p{
+    opacity: 0;
+    text-align: left;
     font-size: var(--font-size-small);
-    font-weight: 500;
-    display: block;
-    width: 100%;
-    max-width: 20rem;
-    margin: 1.25rem auto;
-    text-transform: capitalize;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.375rem;
-    color: var(--color-white-light);
-}   
-form>div.Error-Input>span{
-    background-color: var(--color-red-light);
+    padding-left: 1.25rem;
+    color: var(--color-red-normal);
+    transition: 1s;
 }
-form>div.Success-Input>span{
-    background-color: var(--color-green-normal);
+form>div.Inline-Input>input.Checked:invalid~p{
+    opacity: 1;
 }
-input{
-    transition: all 0.75s;
-}
-
-input[type='text'],input[type='password'],input[type='number'],input[type='email'],input[type='date']{
-    border-radius: 0.25rem;
-    background-color: transparent;
-    border: 1px solid var(--color-white-light);
-    box-shadow: 0 0 0.25rem 0 var(--color-white-light);
-    padding: 0.2rem 2rem 0.25rem 0.5rem;
-    color: var(--color-white-light);
-    font-weight: 500;
-    font-size: var(--font-size-normal);
-}
-
-input[type='text']:focus,input[type='password']:focus,input[type='number']:focus,input[type='email']:focus,input[type='date']:focus{
+input[type='text'],input[type='password'],input[type='email'],input[type='number'],input[type='number']{
+    border: 0;
+    border-bottom: 1px solid var(--color-black-normal);
     outline: none;
 }
-
-input[type='text']::placeholder,input[type='password']::placeholder,input[type='number']::placeholder,input[type='email']::placeholder,input[type='date']::placeholder{
-    color: var(--color-grey-light);
+input::placeholder{
+    color: var(--color-white-darkest);
 }
 
-input[type='text'].Checked:invalid,
-input[type='password'].Checked:invalid,
-input[type='number'].Checked:invalid,
-input[type='email'].Checked:invalid,
-input[type='date'].Checked:invalid{
-    border: 2.5px solid var(--color-red-normal);
-    box-shadow: 0 0 0.25rem 0 var(--color-red-light);
-    color: var(--color-red-light);
+input[type='text'].Checked:invalid, input[type='text'].Checked:invalid+label,
+input[type='password'].Checked:invalid, input[type='password'].Checked:invalid+label,
+input[type='email'].Checked:invalid, input[type='email'].Checked:invalid+label,
+input[type='date'].Checked:invalid, input[type='date'].Checked:invalid+label,
+input[type='number'].Checked:invalid, input[type='number'].Checked:invalid+label{
+    color: var(--color-red-normal);
+    border-bottom-color: var(--color-red-normal);
 }

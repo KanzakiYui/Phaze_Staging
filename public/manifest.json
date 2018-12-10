@@ -1,7 +1,7 @@
 {
-  "short_name": "Phaze V1.0",
+  "short_name": "Phaze V2.0",
   "name": "Phaze Web Application",
-  "description": "Web App Ver. 1.0",
+  "description": "Web App Ver. 2.0. This is unstable version, please be careful when using.",
   "lang": "en-US",
   "icons": [
     {
