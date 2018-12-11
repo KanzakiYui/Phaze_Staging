@@ -22,7 +22,7 @@
     position: absolute;
     color: var(--color-grey-darkest);
     top: 2.5rem;
-    padding: 0 1rem;
+    padding-right: 1rem;
 }
 #Signup-Main>p.Goback:hover{
     cursor: pointer;

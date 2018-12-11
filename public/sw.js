@@ -10,7 +10,7 @@ self.addEventListener('activate', function() {
     console.log('Service Worker is Activated')
 })
 
-/*
+
 self.addEventListener('notificationclick', function(event) {
     if(event.action){
         switch(event.action){
@@ -30,4 +30,4 @@ self.addEventListener('notificationclick', function(event) {
 self.addEventListener('notificationclose', function(event) {
     console.log(event)
 })
-*/
+

@@ -5,6 +5,9 @@ import Load from './Loading'
 
 const Login = Loadable({ loader: () => import('./Login'), loading: Load, delay: 1000 })
 const Signup = Loadable({ loader: () => import('./Signup'), loading: Load, delay: 1000 })
+const Forgot = Loadable({ loader: () => import('./Forgot'), loading: Load, delay: 1000 })
+const Notfound = Loadable({ loader: () => import('./Notfound'), loading: Load, delay: 1000 })
+const Dashboard = Loadable({ loader: () => import('./Dashboard'), loading: Load, delay: 1000 })
 
 class App extends React.Component{
     render(){
@@ -14,6 +17,10 @@ class App extends React.Component{
                         <Route exact path="/login" component={Login}/>
                         <Route exact path="/signup/:code" component={Signup}/>
                         <Route exact path="/signup" component={Signup}/>
+                        <Route exact path="/forgot/:code" component={Forgot}/>
+                        <Route exact path="/forgot" component={Forgot}/>
+                        <Route exact path="/dashboard" component={Dashboard}/>
+                        <Route component={Notfound}/>
                     </Switch>
     }
 }

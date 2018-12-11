@@ -18,7 +18,7 @@ class Signup extends React.Component{
     OpenTerms = ()=>{
         import('../../Media/Files/Terms.pdf').then(file=>window.open(file.default, '_blank'))
     }
-    PreCheck = (event)=>{
+    CreateAccount = (event)=>{
         event.preventDefault()
         let emailEl = event.target['signup-email']
         let passEl = event.target['signup-password']
@@ -61,7 +61,7 @@ class Signup extends React.Component{
                             <p className='Goback' onClick={()=>this.props.history.push('/login')}><i className="fas fa-long-arrow-alt-left"></i></p>
                             <img src={LOGO} alt="" />
                             <p className='Title'>Create your account</p>
-                            <form noValidate onSubmit={(event)=>this.PreCheck(event)}>
+                            <form noValidate onSubmit={(event)=>this.CreateAccount(event)}>
                                 <div className='Inline-Input'>
                                     <input id='signup-email' name='signup-email' type='email' maxLength='24' placeholder='e-mail' required spellCheck="false"></input>
                                     <label htmlFor='signup-email'>
@@ -82,10 +82,10 @@ class Signup extends React.Component{
                                     <label htmlFor='signup-password-confirm'>
                                         <i className="fas fa-key"></i>
                                     </label>
-                                <p>Two passwords should be identical</p>
+                                    <p>Two passwords should be identical</p>
                                 </div>
                                 <div className='Inline-Input'>
-                                    <input id='signup-promo' name='signup-promo' type='text' maxLength='24' placeholder='promo code' spellCheck="false" required></input>
+                                    <input id='signup-promo' name='signup-promo' type='text' maxLength='24' placeholder='promo code' spellCheck="false" required defaultValue={this.props.match.params.code}></input>
                                     <label htmlFor='signup-promo'>
                                         <i className="fas fa-gift"></i>
                                     </label>

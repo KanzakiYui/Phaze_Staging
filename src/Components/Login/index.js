@@ -3,7 +3,6 @@ import './index.css'
 import LOGO from '../../Media/Images/Logo.png'
 import {POSTAPI} from '../../https'
 import Card from '../../Utilities/Card'
-import Picture from '../../Media/Images/Credential/login.png'
 
 class Login extends React.Component{
     constructor(props){
@@ -15,7 +14,7 @@ class Login extends React.Component{
     componentDidMount(){
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth'})
     }
-    PreCheck = (event)=>{
+    LoginAccount = (event)=>{
         event.preventDefault()
         let emailEl = event.target['login-email']
         let passEl = event.target['login-password']
@@ -29,10 +28,10 @@ class Login extends React.Component{
                 username: emailEl.value,
                 password: passEl.value
             }
-            POSTAPI('public/login', body).then(()=>{
+            POSTAPI('public/login', body).then(response=>{
                 this.setState({
                     authMessage: null
-                })
+                },()=>this.props.history.push('/dashboard'))
             }).catch(error=>this.setState({authMessage: error.statusCode === 401?'Wrong credentiail':'Please try again'}))
         }
     }
@@ -50,9 +49,6 @@ class Login extends React.Component{
                                 <div className='Row'>
                                     {Row2}
                                 </div>
-                                <div className='Picture'>
-                                    <img src={Picture} alt="" />
-                                </div>
                             </div>
                             <div className='Right'>
                             </div>
@@ -60,8 +56,8 @@ class Login extends React.Component{
                         <div id='Login-Main'>
                             <img src={LOGO} alt="" />
                             <p className='Title'>Free your <br/>cryptocurrency</p>
-                            <p className='Description'>Spend your crypto internationally at over 100,000 locations - online and in-store</p>
-                            <form noValidate onSubmit={(event)=>this.PreCheck(event)}>
+                            <p className='Description'>Spend your crypto internationally at over 100,000 locations - online and in-store.</p>
+                            <form noValidate onSubmit={(event)=>this.LoginAccount(event)}>
                                 <div className='Inline-Input'>
                                     <input id='login-email' name='login-email' type='email' maxLength='24' placeholder='e-mail' required spellCheck="false"></input>
                                     <label htmlFor='login-email'>
@@ -74,7 +70,7 @@ class Login extends React.Component{
                                     <label htmlFor='login-password'>
                                         <i className="fas fa-key"></i>
                                     </label>
-                                    <p>Password should be 8~24 letters or numbers</p>
+                                    <p>Password is required</p>
                                 </div>
                                 {this.state.authMessage?
                                     <p className='AuthError'>{this.state.authMessage}</p>
@@ -83,7 +79,7 @@ class Login extends React.Component{
                                 <button type='submit' className='button-1'>login<i className="fas fa-arrow-right"></i></button>
                                 <button type='button' className='button-2' onClick={()=>this.props.history.push('/signup')}>sign up<i className="fas fa-arrow-right"></i></button>
                             </form>
-                            <p className='Forgot'>Forgot your password?</p>
+                            <p className='Forgot' onClick={()=>this.props.history.push('/forgot')}>Forgot your password?</p>
                         </div>
                     </div>
     }
