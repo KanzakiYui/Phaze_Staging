@@ -19,7 +19,7 @@ class App extends React.Component{
                         <Route exact path="/signup" component={Signup}/>
                         <Route exact path="/forgot/:code" component={Forgot}/>
                         <Route exact path="/forgot" component={Forgot}/>
-                        <Route exact path="/dashboard" component={Dashboard}/>
+                        <Route path="/dashboard" component={Dashboard}/>
                         <Route component={Notfound}/>
                     </Switch>
     }

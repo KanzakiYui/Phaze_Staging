@@ -3,7 +3,6 @@
     height: 100%;
     position: relative;
     animation: FadeIn 1.5s;
-    position: relative;
     background-image: linear-gradient(205deg, var(--color-egg-normal), var(--color-gold-normal));
 }
 #Notfound>img.Mobile{
@@ -58,7 +57,9 @@
         display: block;
     }
     #Notfound-Main{
-        margin-left: 3rem;
+        position: absolute;
+        top:0;
+        left: 3rem;
         width: 28rem;
         height: 50rem;
     }

@@ -11,11 +11,12 @@ form>div.Inline-Input{
 form>div.Inline-Input>input{
     width: 100%;  
     padding: 0.75rem 4rem 0.75rem 1.25rem;
+    background-color: transparent;
 } 
 form>div.Inline-Input>label{
     position: absolute;
     right: 1rem;
-    top: 1.25rem;
+    top: 0.75rem;
 }
 form>div.Inline-Input>p{
     opacity: 0;

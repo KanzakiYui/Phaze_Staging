@@ -1,0 +1,133 @@
+#Dashboard{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    animation: FadeIn 1.5s;
+    overflow-y: auto;
+}
+
+#Dashboard-Menu{
+    padding: 0 1.5rem;
+    position: fixed;                                                                                                    /* this part may be changed */
+    top: 1rem;
+    left: 5%;
+    width: 90%;
+    height: 4rem;
+    z-index: 2;
+    background-color: white;
+}
+#Dashboard-Menu>div.Bar{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+#Dashboard-Menu>div.Bar i{
+    font-size: var(--font-size-large);
+}
+#Dashboard-Menu>div.Bar i:hover{
+    cursor: pointer;
+}
+#Dashboard-Menu>div.Bar>div.Controller{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+#Dashboard-Menu>div.Bar>div.Controller>span{
+    margin-left: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+#Dashboard-Menu>div.Bar>div.SubMenu i{
+    margin-left: 1.5rem;
+}
+#Dashboard-Menu>div.Bar>div.SubMenu>a.Actived{
+    color: var(--color-gold-normal);
+}
+#Dashboard-Menu>div.Bar>img{
+    display: none;
+}
+#Dashboard-Menu>div.Panel{
+    position: relative;
+    left: -1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: 1s;
+    background-color: white;
+}
+#Dashboard-Menu>div.Panel>a{
+    margin-top: 0.5rem;
+    font-weight: 600;
+}
+#Dashboard-Menu>div.Panel>a:last-child{
+    margin-bottom: 1rem;
+}
+#Dashboard-Menu>div.Panel.Active{
+    opacity: 1;
+    height: 8rem;
+}
+
+@media all and (min-width: 1024px){
+    #Dashboard-Menu{
+        box-shadow: 0 1rem 2rem 0 var(--color-white-darkest);
+        padding: 1.5rem 0;
+        position: absolute;
+        top: calc(66rem * 0.05);                                                                                                              
+        left: 2rem;
+        width: 4rem;
+        height: calc(66rem * 0.9);                                                                                /* It will be hardcode for now */
+    }
+    #Dashboard-Menu>div.Bar{
+        flex-direction: column;
+    }
+    #Dashboard-Menu>div.Bar>div.Controller{
+        padding-left: 0;
+        flex-direction: column;
+    }
+    #Dashboard-Menu>div.Bar>div.Controller>span{
+        margin-left: 0;
+        margin-top: 3rem;
+        transform: rotateZ(270deg);
+    }
+    #Dashboard-Menu>div.Bar>div.SubMenu{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    #Dashboard-Menu>div.Bar>div.SubMenu i{
+        margin-left: 0;
+        margin-top: 1.5rem;
+    }
+    #Dashboard-Menu>div.Bar>img{
+        width: 2rem;
+        display: inline-block;
+    }
+    #Dashboard-Menu>div.Panel{
+        position: absolute;
+        top: 0;
+        left: 4rem;
+        width: 0rem;
+        height: 10rem;
+        padding: 1.5rem 0;
+        z-index: 3;
+        justify-content: space-between;
+    }
+    #Dashboard-Menu>div.Panel>a{
+        margin-top: 0;
+        margin-left: 3rem;
+    }
+    #Dashboard-Menu>div.Panel.Active{
+        height: 10rem;
+        width: 10rem;
+    }
+}
