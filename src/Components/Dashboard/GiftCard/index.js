@@ -30,7 +30,7 @@ class GiftCard extends React.Component{
         })).catch(()=>{})
     }
     render(){
-        return  <img className='GiftCard-Simple' src={this.state.url} alt="" />
+        return  <img data-value={this.props.urlpath} className='GiftCard-Simple' src={this.state.url} alt="" />
     }
 }
 

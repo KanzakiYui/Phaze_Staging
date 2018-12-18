@@ -7,15 +7,21 @@ import Loadable from 'react-loadable'
 import {codeToCurrency, currencyToCountry} from '../../constants'
 import {Switch, Route, NavLink} from 'react-router-dom'
 import LOGO from '../../Media/Images/Logo.png'
+import CanadaLOGO from '../../Media/Images/CountryLogos/Canada.png'
+import USALOGO from  '../../Media/Images/CountryLogos/United States.png'
 
 const Notverified = Loadable({ loader: () => import('./Notverified'), loading: Loading, delay: 1000, render(loaded, props){ let Component = loaded.default; return <Component {...props}/>} })
 const Shop = Loadable({ loader: () => import('./Shop'), loading: Loading, delay: 1000, render(loaded, props){ let Component = loaded.default; return <Component {...props}/>} })
+const Payment = Loadable({ loader: () => import('./Payment'), loading: Loading, delay: 1000, render(loaded, props){ let Component = loaded.default; return <Component {...props}/>} })
+const Checkout = Loadable({ loader: () => import('./Checkout'), loading: Loading, delay: 1000, render(loaded, props){ let Component = loaded.default; return <Component {...props}/>} })
 
 class Dashboard extends React.Component{
     constructor(props){
         super(props)
         this.state={
-            location: 'shop',                                               // shop, wallet, account
+            location: 'dashboard',                                               // shop, wallet, account
+            country: 'Canada',                                          // by default
+            openCountrySelection: false,
             menuActive: false,
             username: null,
             emailVerified: false,
@@ -25,11 +31,21 @@ class Dashboard extends React.Component{
             brandInfo: null,
             showContent: false,                                  // when everything is done, show content
             openSearch: false,
+            selectedBrand: null,
+            amountInfo: null
         }
     }
     componentDidMount(){
         this.UserCheck()
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth'})
+    }
+    componentDidUpdate(){
+        let url = window.location.href.split('/')
+        url = url[url.length-1] === ''? url[url.length - 2] : url[url.length - 1]
+        if(url !== this.state.location)
+            this.setState({
+                location: url.toLowerCase()
+            })
     }
     UserCheck = async () =>{
         CheckAuth().then(response=>{
@@ -66,23 +82,40 @@ class Dashboard extends React.Component{
             return null
         }).catch(()=>{})
     }
-    SelectBrand = (value)=>{
-        console.log(value)
-        /*
-        let brand = this.state.brandInfo.filter(item=>item.code === value)[0]
+    CountryChanged=()=>{
         this.setState({
-            selectedBrand: brand
+            country: this.state.country === 'Canada' ? 'United States' : 'Canada',
+            openCountrySelection: false
+        })
+    }
+    SelectBrand = (value)=>{
+        this.setState({
+            selectedBrand: this.state.brandInfo.filter(item=>item.code === value)[0]
         },()=>this.props.history.push('/dashboard/payment'))
-        */
+    }
+    ConfirmAmount = (value)=>{
+        this.setState({
+            amountInfo: value
+        },()=>this.props.history.push('/dashboard/checkout'))
     }
     render(){
         if(!this.state.showContent)
             return  <CustomLoader type='Oval' message='Loading Data' color='var(--color-red-normal)'/>
         else if(!this.state.emailVerified)
             return  <Notverified Logout={this.Logout}/>
+        let menu = null
         let subMenu = null
         let menuActive = this.state.menuActive?"Active":""
-        if(this.state.location === 'shop')
+        let countrySelectionPanel = null
+        if(this.state.openCountrySelection)
+            countrySelectionPanel = <div id='CountrySelection'>
+                                                        <i className="fas fa-times" onClick={()=>this.setState({openCountrySelection: false})}></i>
+                                                        <p><i className="far fa-compass"></i></p>
+                                                        <p>You're shopping in<br/>{this.state.country}</p>
+                                                        <p>Changing the country you shop from may affect product price and availability.</p>
+                                                        <button className='button-1' onClick={this.CountryChanged}>Shop {this.state.country==='Canada'?'United States':'Canada'}<i className="fas fa-arrow-right"></i></button>
+                                                    </div>
+        if(this.state.location === 'dashboard')
             subMenu =  <React.Fragment>
                                     <NavLink exact to='/dashboard/' activeClassName="Actived">
                                         <i className="fas fa-th-large"></i>
@@ -92,17 +125,21 @@ class Dashboard extends React.Component{
                                     </NavLink> 
                                     <i className="fas fa-search" onClick={()=>this.setState({openSearch: true})}></i>
                                 </React.Fragment>
-            return  <div id='Dashboard'>
-                            <div id='Dashboard-Menu'>
+            
+            if(!['payment', 'checkout'].includes(this.state.location))
+                menu =  <div id='Dashboard-Menu'>
                                 <div className='Bar'>
                                     <div className='Controller'>
                                         <i className="fas fa-bars" onClick={()=>this.setState(prevState=>({menuActive: !prevState.menuActive}))}></i>
-                                        <span>{this.state.location}</span>
-                                    </div>
-                                    <div className='SubMenu'>
-                                        {subMenu}
-                                    </div>
+                                    <span>{this.state.location}</span>
+                                </div>
+                                <div className='SubMenu'>
+                                    {subMenu}
+                                </div>
+                                <div className='Bottom'>
+                                    <img src={this.state.country==='Canada'?CanadaLOGO:USALOGO} alt="" onClick={()=>this.setState({openCountrySelection: true})} />
                                     <img src={LOGO} alt="" />
+                                </div>
                                 </div>
                                 <div className={'Panel '+menuActive}>
                                     <NavLink exact to='/dashboard' onClick={()=>this.setState({location: 'shop'})}>Shop</NavLink>
@@ -110,10 +147,15 @@ class Dashboard extends React.Component{
                                     <NavLink exact to='/dashboard/account' onClick={()=>this.setState({location: 'account'})}>Account</NavLink>
                                 </div>
                             </div>
+            return  <div id='Dashboard'>
+                            {menu}
                             <Switch>
-                                <Route exact path="/dashboard" render={(props)=> <Shop {...props} brandInfo={this.state.brandInfo} openSearch={this.state.openSearch} CloseSearch={()=>this.setState({openSearch: false})} Select={this.SelectBrand} />}/>
+                                <Route exact path="/dashboard" render={(props)=> <Shop {...props} country={this.state.country} brandInfo={this.state.brandInfo} openSearch={this.state.openSearch} CloseSearch={()=>this.setState({openSearch: false})} SelectBrand={this.SelectBrand} />}/>
                                 <Route exact path="/dashboard/map" render={(props)=> <Shop {...props} />}/>
+                                <Route exact path="/dashboard/payment" render={(props)=> <Payment {...props} brandInfo={this.state.selectedBrand} promoInfo={this.state.promoInfo} ConfirmAmount={this.ConfirmAmount}/>}/>
+                                <Route exact path="/dashboard/checkout" render={(props)=> <Checkout {...props} amountInfo={this.state.amountInfo}/>}/>
                             </Switch>
+                            {countrySelectionPanel}
                         </div>
     }
 }
@@ -141,11 +183,28 @@ function BrandParse(rawData){
         if(item.denominations.indexOf('-')!== -1){
             let min = Number(item.denominations.split('-').shift())/100
             let max = Number(item.denominations.split('-').pop())/100
-            return {index: item.index, code: item.internal_id, name: item.brand_name, country: country, min: min, max: max}
+            return {
+                index: item.index ? item.index : 9999,                      // this solution is just a placeholder here 
+                code: item.internal_id, 
+                name: item.brand_name, 
+                country: country, 
+                min: min, 
+                max: max,
+                acceptCents: item.openRange === false ? false : true,
+                category: item.category
+            }
         }
         else{
             let array = item.denominations.split(' ').map(item=>Number(item)/100)
-            return {index: item.index, code: item.internal_id, name: item.brand_name, country: country, array: array}
+            return {
+                index: item.index ? item.index : 9999,                      // this solution is just a placeholder here 
+                code: item.internal_id, 
+                name: item.brand_name, 
+                country: country, 
+                array: array, 
+                acceptCents: item.openRange === false ? false : true,
+                category: item.category
+            }
         }
     })
     newArray.sort((a, b)=>a.index - b.index)

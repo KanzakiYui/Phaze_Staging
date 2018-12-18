@@ -8,12 +8,15 @@ const Grid = Loadable({ loader: () => import('./Grid'), loading: Loading, delay:
 const Map = Loadable({ loader: () => import('./Map'), loading: Loading, delay: 1000, render(loaded, props){ let Component = loaded.default; return <Component {...props}/>} })
 
 class Shop extends React.Component{
+    componentDidMount(){
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth'})
+    }
     render(){
         return  <div id='Shop'>
                         <Switch>
-                            <Route exact path="/dashboard" render={(props)=> <Grid {...props} brandInfo={this.props.brandInfo} openSearch={this.props.openSearch} CloseSearch={this.props.CloseSearch}/>} />
+                            <Route exact path="/dashboard" render={(props)=> <Grid {...props} country={this.props.country} brandInfo={this.props.brandInfo} openSearch={this.props.openSearch} CloseSearch={this.props.CloseSearch} SelectBrand={this.props.SelectBrand}/>} />
                             <Route exact path="/dashboard/map" render={(props)=> <Map {...props} brandInfo={this.props.brandInfo}/>} />
-                        </Switch>
+                        </Switch> 
                     </div>
     }
 }

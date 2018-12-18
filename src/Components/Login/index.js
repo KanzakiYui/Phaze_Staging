@@ -2,7 +2,7 @@ import React from 'react'
 import './index.css'
 import LOGO from '../../Media/Images/Logo.png'
 import {POSTAPI} from '../../https'
-import Card from '../../Utilities/Card'
+import GiftCard from '../Dashboard/GiftCard'
 
 class Login extends React.Component{
     constructor(props){
@@ -36,8 +36,8 @@ class Login extends React.Component{
         }
     }
     render(){
-        let Row1 = ['amazonca', 'aircanada', 'starbucksca', 'walmart'].map((url, index)=><Card type={0} key={index} urlpath={url} />)
-        let Row2 = ['keg', 'sephora', 'cineplex', 'milestones'].map((url, index)=><Card type={0} key={index} urlpath={url} />)
+        let Row1 = ['amazonca', 'aircanada', 'starbucksca', 'walmart'].map((url, index)=><GiftCard type={0} key={index} urlpath={url} />)
+        let Row2 = ['keg', 'sephora', 'cineplex', 'milestones'].map((url, index)=><GiftCard type={0} key={index} urlpath={url} />)
         return  <div id='Login'>
                         <div id='Login-Desktop-Background'>
                             <div className='Left'>

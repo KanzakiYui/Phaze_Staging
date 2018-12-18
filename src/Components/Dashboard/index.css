@@ -22,7 +22,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 #Dashboard-Menu>div.Bar i{
     font-size: var(--font-size-large);
@@ -31,6 +31,7 @@
     cursor: pointer;
 }
 #Dashboard-Menu>div.Bar>div.Controller{
+    width: 5rem;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -41,14 +42,34 @@
     font-weight: 600;
     text-transform: uppercase;
 }
-
+#Dashboard-Menu>div.Bar>div.SubMenu{
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
+    align-items: center
+}
 #Dashboard-Menu>div.Bar>div.SubMenu i{
     margin-left: 1.5rem;
 }
 #Dashboard-Menu>div.Bar>div.SubMenu>a.Actived{
     color: var(--color-gold-normal);
 }
-#Dashboard-Menu>div.Bar>img{
+#Dashboard-Menu>div.Bar>div.Bottom{
+    width: auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center
+}
+#Dashboard-Menu>div.Bar>div.Bottom>img{
+    height: 2rem;
+}
+#Dashboard-Menu>div.Bar>div.Bottom>img{
+    margin-left: 1.5rem;
+}
+#Dashboard-Menu>div.Bar>div.Bottom>img:first-child:hover{
+    cursor: pointer;
+}
+#Dashboard-Menu>div.Bar>div.Bottom>img:last-child{
     display: none;
 }
 #Dashboard-Menu>div.Panel{
@@ -76,7 +97,41 @@
     opacity: 1;
     height: 8rem;
 }
-
+#CountrySelection{
+    animation: FadeIn 1s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 50% calc(5% + 1.5rem) 0 calc(5% + 1.5rem);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+#CountrySelection>i{
+    font-size: var(--font-size-larger);
+    position: absolute;
+    top: 5rem;
+}
+#CountrySelection>p:nth-child(2){
+    font-size: var(--font-size-extra);
+    margin-bottom: 0.5rem;
+}
+#CountrySelection>p:nth-child(3){
+    font-size: var(--font-size-extra);
+    text-align: left;
+    margin-bottom: 1rem;
+}
+#CountrySelection>p:nth-child(4){
+    font-size: var(--font-size-normal);
+    text-align: left;
+    color: var(--color-grey-normal);
+    margin-bottom: 1rem;
+}
 @media all and (min-width: 1024px){
     #Dashboard-Menu{
         box-shadow: 0 1rem 2rem 0 var(--color-white-darkest);
@@ -89,6 +144,7 @@
     }
     #Dashboard-Menu>div.Bar{
         flex-direction: column;
+        justify-content: space-between;
     }
     #Dashboard-Menu>div.Bar>div.Controller{
         padding-left: 0;
@@ -102,15 +158,23 @@
     #Dashboard-Menu>div.Bar>div.SubMenu{
         display: flex;
         flex-direction: column;
+        justify-content: center;
         align-items: center;
     }
     #Dashboard-Menu>div.Bar>div.SubMenu i{
         margin-left: 0;
         margin-top: 1.5rem;
     }
-    #Dashboard-Menu>div.Bar>img{
-        width: 2rem;
+    #Dashboard-Menu>div.Bar>div.Bottom{
+        flex-direction: column;
+    }
+    #Dashboard-Menu>div.Bar>div.Bottom>img:first-child{
+        margin-left: 0;
+    }
+    #Dashboard-Menu>div.Bar>div.Bottom>img:last-child{
         display: inline-block;
+        margin-left: 0;
+        margin-top: 1.5rem;
     }
     #Dashboard-Menu>div.Panel{
         position: absolute;
@@ -129,5 +193,11 @@
     #Dashboard-Menu>div.Panel.Active{
         height: 10rem;
         width: 10rem;
+    }
+    #CountrySelection{
+        padding: 15% 15% 0 15%;
+    }
+    #CountrySelection>*{
+        max-width: 30rem;
     }
 }

@@ -116,6 +116,7 @@
 }
 
 #Shop-Search-Overlay{
+    animation: FadeIn 1s;
     position: fixed;
     top: 0;
     left: 0;
@@ -123,22 +124,42 @@
     width: 100%;
     height: 100%;
     background-color: rgba(255, 255, 255, 0.95);
-    padding: 5rem calc(5% + 1.5rem);
+    padding: 50% calc(5% + 1.5rem) 0 calc(5% + 1.5rem);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-start;
 }
-
 #Shop-Search-Overlay>i{
     font-size: var(--font-size-larger);
     position: absolute;
     top: 5rem;
 }
-
+#Shop-Search-Overlay>i:hover{
+    cursor: pointer;
+}
+#Shop-Search-Overlay>p.Error{
+    color: var(--color-red-normal);
+    font-size: var(--font-size-smallest);
+    padding-left: 1.25rem;
+}
+#Shop-Search-Overlay>form>div.Inline-Input>input.error{
+    border-bottom-color: var(--color-red-normal);
+}
+#Shop-Search-Overlay>div.Results{
+    padding: 1.5rem 0 0 1.25rem;
+    font-size: var(--font-size-small);
+}
+#Shop-Search-Overlay>div.Results>p{
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+#Shop-Search-Overlay>div.Results>p:hover{
+    cursor: pointer;
+}
 @media all and  (min-width: 1024px){
     #Shop-Search-Overlay{
-        padding: 5rem 15%;
+        padding: 25% 15% 0 15%;
     }
     #Shop-Search-Overlay>form>div.Inline-Input{
         max-width: 30rem;

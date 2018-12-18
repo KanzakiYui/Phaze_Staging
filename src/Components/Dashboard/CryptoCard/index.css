@@ -1,0 +1,25 @@
+div.CryptoCard{
+    height: 12rem;
+    width: 19.2rem;                                           /* Hard-coded for now */
+    padding: 1.25rem 1.25rem 2rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 0.25rem;
+}
+div.CryptoCard>div:first-child{
+    display: flex;
+    align-self: flex-end;
+    align-items: center;
+    justify-content: flex-end;
+}
+div.CryptoCard>div:first-child>img{
+    height: 2rem;
+    margin-right: 0.25rem;
+}
+div.CryptoCard>div:last-child{
+    align-self: flex-start;
+}
+div.CryptoCard.Bitcoin{
+    background: linear-gradient(238deg, var(--color-grey-dark), var(--color-black-dark));
+}

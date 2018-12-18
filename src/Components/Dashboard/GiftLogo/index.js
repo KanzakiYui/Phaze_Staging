@@ -30,7 +30,7 @@ class GiftLogo extends React.Component{
         })).catch(()=>{})
     }
     render(){
-        return  <div className='GiftLogo-Simple'>
+        return  <div data-value={this.props.urlpath} className='GiftLogo-Simple'>
                         <img src={this.state.url} alt="" />
                     </div>
     }
