@@ -14,6 +14,7 @@ const Notverified = Loadable({ loader: () => import('./Notverified'), loading: L
 const Shop = Loadable({ loader: () => import('./Shop'), loading: Loading, delay: 1000, render(loaded, props){ let Component = loaded.default; return <Component {...props}/>} })
 const Payment = Loadable({ loader: () => import('./Payment'), loading: Loading, delay: 1000, render(loaded, props){ let Component = loaded.default; return <Component {...props}/>} })
 const Checkout = Loadable({ loader: () => import('./Checkout'), loading: Loading, delay: 1000, render(loaded, props){ let Component = loaded.default; return <Component {...props}/>} })
+const Result = Loadable({ loader: () => import('./Result'), loading: Loading, delay: 1000 })
 
 class Dashboard extends React.Component{
     constructor(props){
@@ -98,6 +99,12 @@ class Dashboard extends React.Component{
             amountInfo: value
         },()=>this.props.history.push('/dashboard/checkout'))
     }
+    PurchaseResult = (value)=>{
+        this.props.history.push({
+            pathname: '/dashboard/result',
+            state: value
+        })
+    }
     render(){
         if(!this.state.showContent)
             return  <CustomLoader type='Oval' message='Loading Data' color='var(--color-red-normal)'/>
@@ -142,9 +149,9 @@ class Dashboard extends React.Component{
                                 </div>
                                 </div>
                                 <div className={'Panel '+menuActive}>
-                                    <NavLink exact to='/dashboard' onClick={()=>this.setState({location: 'shop'})}>Shop</NavLink>
-                                    <NavLink exact to='/dashboard/wallet' onClick={()=>this.setState({location: 'wallet'})}>Wallet</NavLink>
-                                    <NavLink exact to='/dashboard/account' onClick={()=>this.setState({location: 'account'})}>Account</NavLink>
+                                    <NavLink exact to='/dashboard' onClick={()=>this.setState({location: 'shop', menuActive: false})}>Shop</NavLink>
+                                    <NavLink exact to='/dashboard/wallet' onClick={()=>this.setState({location: 'wallet', menuActive: false})}>Wallet</NavLink>
+                                    <NavLink exact to='/dashboard/account' onClick={()=>this.setState({location: 'account', menuActive: false})}>Account</NavLink>
                                 </div>
                             </div>
             return  <div id='Dashboard'>
@@ -153,7 +160,8 @@ class Dashboard extends React.Component{
                                 <Route exact path="/dashboard" render={(props)=> <Shop {...props} country={this.state.country} brandInfo={this.state.brandInfo} openSearch={this.state.openSearch} CloseSearch={()=>this.setState({openSearch: false})} SelectBrand={this.SelectBrand} />}/>
                                 <Route exact path="/dashboard/map" render={(props)=> <Shop {...props} />}/>
                                 <Route exact path="/dashboard/payment" render={(props)=> <Payment {...props} brandInfo={this.state.selectedBrand} promoInfo={this.state.promoInfo} ConfirmAmount={this.ConfirmAmount}/>}/>
-                                <Route exact path="/dashboard/checkout" render={(props)=> <Checkout {...props} amountInfo={this.state.amountInfo}/>}/>
+                                <Route exact path="/dashboard/checkout" render={(props)=> <Checkout {...props} amountInfo={this.state.amountInfo} PurchaseResult={this.PurchaseResult}/>}/>
+                                <Route exact path="/dashboard/result" component={Result}/>
                             </Switch>
                             {countrySelectionPanel}
                         </div>

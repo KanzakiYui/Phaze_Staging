@@ -1,7 +1,7 @@
 button{
     border-radius: 0.125rem;
     padding: 1.25rem;
-    box-shadow: 0 1rem 2rem 0.1rem var(--color-white-dark);
+    box-shadow: 0 1rem 2rem 0.1rem rgba(21, 21, 21, 0.2);
     text-transform: uppercase;
     width: 100%;
     display: flex;

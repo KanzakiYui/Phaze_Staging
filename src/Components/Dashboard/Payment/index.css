@@ -41,6 +41,14 @@
     margin: 0 2rem 0 0;
     filter: drop-shadow(0.5rem 0.25rem 0.25rem var(--color-white-darkest));
 }
+#Payment>div.Denomination-Content>img:last-child{
+    margin-right: calc(100vw - 2.5rem - 19.2rem);
+}
+@media all and (min-width: 1024px){
+    #Payment>div.Denomination-Content>img:last-child{
+        margin-right: calc(85vw - 19.2rem + 0.5rem);                                 /* 19.2 - 0.5  = 18.7 since there is a shadow on the card? */
+    }
+}
 #Payment>div.DetailPanel{
     margin-top: 2rem;
 }
@@ -101,7 +109,7 @@
     color: var(--color-white-normal);
 }
 #Payment>div.Total{
-    margin: 2rem 0 0 3.5rem;
+    margin: 2rem 0 5rem 3.5rem;
 }
 #Payment>div.Total>span:first-child{
     font-size: var(--font-size-smallest);
@@ -112,7 +120,6 @@
     color: var(--color-grey-normal);
 }
 #Payment>button.Confirm{
-    margin-top: 5rem;
     width: 15rem;
 }
 #Payment>p.Goback{
@@ -137,7 +144,6 @@
         text-align: center;
         position: absolute;
         left: calc(15% - 5rem);
-        transform: translateY(5rem)
     }
 }
 

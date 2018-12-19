@@ -1,8 +1,8 @@
 import React from 'react'
 import './index.css'
 import BitcoinLOGO from '../../../Media/Images/Coins/Bitcoin.png'
-//import EthereumLOGO from '../../../Media/Images/Coins/Ethereum.png'
-//import LiteCoinLOGO from '../../../Media/Images/Coins/Litecoin.png'
+import EthereumLOGO from '../../../Media/Images/Coins/Ethereum.png'
+import LiteCoinLOGO from '../../../Media/Images/Coins/Litecoin.png'
 import {walletToCode} from '../../../constants'
 
 class CryptoCard extends React.Component{
@@ -14,6 +14,28 @@ class CryptoCard extends React.Component{
                                 <div>
                                     <img src={BitcoinLOGO} alt="" />
                                     <p>bitcoin</p>
+                                </div>
+                                <div>
+                                    <p>Your balance:</p>
+                                    <p>{walletToCode[this.props.type]} {this.props.balance}</p>
+                                </div>
+                            </div>
+            case 'Ethereum':
+                return  <div className= 'CryptoCard Ethereum'>
+                                <div>
+                                    <img src={EthereumLOGO} alt="" />
+                                    <p>ethereum</p>
+                                </div>
+                                <div>
+                                    <p>Your balance:</p>
+                                    <p>{walletToCode[this.props.type]} {this.props.balance}</p>
+                                </div>
+                            </div>
+            case 'Litecoin':
+                return  <div className= 'CryptoCard Litecoin'>
+                                <div>
+                                    <img src={LiteCoinLOGO} alt="" />
+                                    <p>litecoin</p>
                                 </div>
                                 <div>
                                     <p>Your balance:</p>

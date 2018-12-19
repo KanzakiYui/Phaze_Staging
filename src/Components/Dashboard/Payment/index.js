@@ -3,11 +3,11 @@ import './index.css'
 import GiftCard from '../GiftCard'
 import LOGO from '../../../Media/Images/Logo.png'
 import {countryToCode, codeToCurrency} from "../../../constants"
+import Debounce from '../../../Utilities/Debounce'
 
 class Payment extends React.Component{
     constructor(props){
         super(props)
-        this.setWidth = false
         this.state={
             type: null,
             price: 0,
@@ -28,13 +28,7 @@ class Payment extends React.Component{
         })
     }
     ScrollLoad = (event)=>{
-        if(!this.setWidth){
-            this.setWidth = true
-            let container = event.currentTarget
-            let lastChild = container.querySelector('img:last-child')
-            lastChild.style.marginRight = (container.offsetWidth -  lastChild.offsetWidth) + 'px'
-            container.addEventListener('scroll', Debounce(this.Scroll, 500))
-        }
+        event.currentTarget.addEventListener('scroll', Debounce(this.Scroll, 500))
     }
     Scroll = (event)=>{
         let offset = event.target.getBoundingClientRect().left
@@ -67,13 +61,16 @@ class Payment extends React.Component{
         if(this.state.priceError)
             return
         let price = Number(this.state.price)
-        let discount = this.state.apply?Math.min(this.props.promoInfo.amount, price*this.props.promoInfo.rate):0
+        let total = price * 1.02
+        let discount = this.state.apply?Math.min(this.props.promoInfo.amount, total*this.props.promoInfo.rate):0
         let result = {
             name: this.props.brandInfo.name,
             code: this.props.brandInfo.code,
+            country: this.props.brandInfo.country,
             price : price,
             apply : this.state.apply,
-            total: Number((price*1.02 - discount).toFixed(2))
+            promo: this.props.promoInfo.code,
+            total: Number((total - discount).toFixed(2))
         }
         this.props.ConfirmAmount(result)
     }
@@ -81,12 +78,13 @@ class Payment extends React.Component{
         if(!this.props.brandInfo)
             return null
         let price = Number(this.state.price)
-        let creditBalance = this.props.promoInfo.amount
-        let discount = price*this.props.promoInfo.rate
-        discount = Math.min(creditBalance, discount)
         let total = price*1.02
+        let discount = total*this.props.promoInfo.rate                          // Note the rate has maximum of 1, which means discount <= total
+        // The following is considering all available credit user currently has
+        let creditBalance = this.props.promoInfo.amount
+        discount = Math.min(creditBalance, discount)                        // Still discount <= total
         if(this.state.apply)
-            total = total - discount
+            total = total - discount                                                         // In this case, total >= 0 (won't be negative)
         let currency = codeToCurrency[countryToCode[this.props.brandInfo.country]]
         let content = null
         let amount = null
@@ -154,12 +152,3 @@ class Payment extends React.Component{
 export default Payment
 
 
-export let Debounce = (handler, delay) =>{
-    delay = delay || 200                                // default is 200ms delay
-    let timer                                                  // closure
-    return function(event){
-        if(timer)
-            clearTimeout(timer)
-        timer = setTimeout(handler, delay, event)
-    }
-}

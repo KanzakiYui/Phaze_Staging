@@ -1,0 +1,119 @@
+#Result{
+    width: 100%;
+    height: 100%;
+    animation: FadeIn 1.5s;
+    background-color: transparent;
+    position: relative;
+    padding: 7rem 2.5rem 0 2.5rem;
+    position: relative;
+}
+@media all and (min-width: 1024px){
+    #Result{
+        padding: 7rem 0 0 15%;
+    }
+}
+#Result p{
+    text-align: left;
+}
+#Result button{
+    font-size: var(--font-size-small);
+}
+#Result button>i{
+    font-size: var(--font-size-large);
+}
+#Result>p.Title{
+    font-size: var(--font-size-extra);
+    margin-bottom: 1rem;
+}
+#Result>div.Card{
+    height: 12rem;
+    margin-bottom: 2rem;
+}
+#Result>div.Card>img{
+    height: 100%;
+    margin: 0;
+    filter: drop-shadow(0 2rem 4rem rgba(21, 21, 21, 0.2));
+}
+#Result>p.Amount{
+    font-size: var(--font-size-smaller);
+    color: var(--color-white-darkest);
+    font-weight: 600;
+}
+#Result>p.Amount>span{
+    margin-left: 3rem;
+    font-size: var(--font-size-large);
+    font-weight: 400;
+}
+#Result>p.Amount>small{
+    margin-left: 0.5rem;
+    font-size: var(--font-size-smaller);
+}
+#Result>div:last-child{
+    margin-top: 3rem;
+}
+#Result>div.LinkType>button:first-child{
+    width: 100%;
+    margin-bottom: 1rem;
+}   
+#Result>div.LinkType>button:nth-child(2){
+    width: 100%;
+    margin-bottom: 8rem;
+}
+#Result>div.LinkType>button:last-child{
+    width: 19.2rem;
+}
+#Result>div.CodeType>p:first-child{
+    font-size: var(--font-size-smaller);
+    color: var(--color-white-darkest);
+    font-weight: 600;
+}
+#Result>div.CodeType>p:nth-child(2){
+    font-size: var(--font-size-larger);
+    font-weight: 500;
+    letter-spacing: 0.05rem;
+    margin-bottom: 4rem;
+}
+#Result>div.CodeType>button:nth-of-type(1){
+    margin-bottom: 1rem;
+    width: 19.2rem;
+}
+#Result>div.CodeType>button:nth-of-type(2){
+    margin-bottom: 3rem;
+    width: 19.2rem;
+}
+#Result>div.CodeType>button:nth-of-type(3){
+    margin-bottom: 1rem;
+}
+#Result>div.PINType>p:nth-child(1),
+#Result>div.PINType>p:nth-child(3){
+    font-size: var(--font-size-smaller);
+    color: var(--color-white-darkest);
+    font-weight: 600;
+}
+#Result>div.PINType>p:nth-child(2),
+#Result>div.PINType>p:nth-child(4){
+    font-size: var(--font-size-larger);
+    font-weight: 500;
+    letter-spacing: 0.05rem;
+}
+#Result>div.PINType>p:nth-child(4){
+    margin-bottom: 4rem;
+}
+#Result>div.PINType>button:nth-of-type(1){
+    margin-bottom: 1rem;
+    width: 19.2rem;
+}
+#Result>div.PINType>button:nth-of-type(2){
+    margin-bottom: 3rem;
+    width: 19.2rem;
+}
+#Result>div.PINType>button:nth-of-type(3){
+    margin-bottom: 1rem;
+}
+#Result>div.PINType>button:nth-of-type(4){
+    margin-bottom: 3rem;
+}
+#Result>div.PINType>button:nth-of-type(5){
+    margin-bottom: 1.5rem;
+    width: 19.2rem;
+}
