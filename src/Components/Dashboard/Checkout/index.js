@@ -2,7 +2,7 @@ import React from 'react'
 import './index.css'
 import GiftCard from '../GiftCard'
 import CryptoCard from '../CryptoCard'
-import {GetAPI, GetOther, POSTAPI} from '../../../https'
+import {GetAPI, GetOther} from '../../../https'
 import Debounce from '../../../Utilities/Debounce'
 import {walletToCode, countryToCode, codeToCurrency} from '../../../constants'
 
