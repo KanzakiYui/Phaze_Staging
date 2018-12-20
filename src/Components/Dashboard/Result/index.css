@@ -42,6 +42,7 @@
 }
 #Result>p.Amount>span{
     margin-left: 3rem;
+    color: var(--color-black-dark);
     font-size: var(--font-size-large);
     font-weight: 400;
 }
@@ -49,72 +50,84 @@
     margin-left: 0.5rem;
     font-size: var(--font-size-smaller);
 }
+#Result p.Goback{
+    position: absolute;
+    top: 3rem;
+    left: 2.5rem;
+    font-weight: 600;
+}
+#Result p.Goback>i{
+    margin-right: 1.5rem;
+}
+#Result button.Goback{
+    display: none;
+}
+@media all and (min-width: 1024px){
+    #Result p.Goback{
+        display: none;
+    }
+    #Result button.Goback{
+        width: 4rem;
+        display: inline-block;
+        text-align: center;
+        position: absolute;
+        left: calc(15% - 5rem);
+    }
+}
 #Result>div:last-child{
     margin-top: 3rem;
 }
-#Result>div.LinkType>button:first-child{
+
+/* 1st Type */
+#Result>div.LinkType>button:nth-of-type(2){
     width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: 4rem;
 }   
-#Result>div.LinkType>button:nth-child(2){
-    width: 100%;
-    margin-bottom: 8rem;
-}
 #Result>div.LinkType>button:last-child{
     width: 19.2rem;
 }
-#Result>div.CodeType>p:first-child{
+
+#Result p.Tooltip{
     font-size: var(--font-size-smaller);
     color: var(--color-white-darkest);
     font-weight: 600;
 }
-#Result>div.CodeType>p:nth-child(2){
-    font-size: var(--font-size-larger);
+#Result p.Copyable{
+    font-size: var(--font-size-large);
     font-weight: 500;
     letter-spacing: 0.05rem;
-    margin-bottom: 4rem;
+    position: relative;
+    max-width: 30rem;
 }
-#Result>div.CodeType>button:nth-of-type(1){
-    margin-bottom: 1rem;
-    width: 19.2rem;
+#Result p.Copyable>i{
+    position: absolute;
+    color: var(--color-white-darkest);
+    right: 0;
+}
+#Result p.Copyable>i:hover{
+    cursor: pointer;
+}
+
+/* 2nd Type */
+#Result>div.CodeType>p.Copyable{
+    margin-bottom: 4rem;
 }
 #Result>div.CodeType>button:nth-of-type(2){
     margin-bottom: 3rem;
-    width: 19.2rem;
 }
 #Result>div.CodeType>button:nth-of-type(3){
     margin-bottom: 1rem;
-}
-#Result>div.PINType>p:nth-child(1),
-#Result>div.PINType>p:nth-child(3){
-    font-size: var(--font-size-smaller);
-    color: var(--color-white-darkest);
-    font-weight: 600;
-}
-#Result>div.PINType>p:nth-child(2),
-#Result>div.PINType>p:nth-child(4){
-    font-size: var(--font-size-larger);
-    font-weight: 500;
-    letter-spacing: 0.05rem;
-}
-#Result>div.PINType>p:nth-child(4){
-    margin-bottom: 4rem;
-}
-#Result>div.PINType>button:nth-of-type(1){
-    margin-bottom: 1rem;
     width: 19.2rem;
+}
+
+/* 3rd Type */
+#Result>div.PINType>p.PIN{
+    margin-bottom: 4rem;
 }
 #Result>div.PINType>button:nth-of-type(2){
     margin-bottom: 3rem;
-    width: 19.2rem;
 }
 #Result>div.PINType>button:nth-of-type(3){
     margin-bottom: 1rem;
-}
-#Result>div.PINType>button:nth-of-type(4){
-    margin-bottom: 3rem;
-}
-#Result>div.PINType>button:nth-of-type(5){
-    margin-bottom: 1.5rem;
     width: 19.2rem;
 }

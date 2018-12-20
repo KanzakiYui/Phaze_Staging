@@ -133,7 +133,7 @@ class Dashboard extends React.Component{
                                     <i className="fas fa-search" onClick={()=>this.setState({openSearch: true})}></i>
                                 </React.Fragment>
             
-            if(!['payment', 'checkout'].includes(this.state.location))
+            if(!['payment', 'checkout', 'result'].includes(this.state.location))
                 menu =  <div id='Dashboard-Menu'>
                                 <div className='Bar'>
                                     <div className='Controller'>

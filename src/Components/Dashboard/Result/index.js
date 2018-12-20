@@ -66,53 +66,44 @@ class Result extends React.Component{
     render(){
         if(!this.props.location.state || !this.state.info)
             return null
-        let content = null
-        let copyCodeContent =   <React.Fragment>
-                                                    copy code
-                                                    <i className="far fa-copy"></i>
-                                                </React.Fragment>
-        if(this.state.copyCode)
-            copyCodeContent =    <React.Fragment>
-                                                    copied
-                                                    <i className="fas fa-check"></i>
-                                                </React.Fragment>
-        let copyPINContent =      <React.Fragment>
-                                                    copy pin
-                                                    <i className="far fa-copy"></i>
-                                                </React.Fragment>
-        if(this.state.copyPIN)
-            copyPINContent =    <React.Fragment>
-                                                    copied
-                                                    <i className="fas fa-check"></i>
-                                                </React.Fragment>
+        let content = null                                    
         switch(this.state.type){
             case 0:
                 content = <div className='LinkType'>
+                                    <p className='Goback' onClick={()=>this.props.history.push('/dashboard')}><i className="fas fa-long-arrow-alt-left"></i> SHOP</p>
+                                    <button onClick={()=>this.props.history.push('/dashboard')} className='button-2 Goback'><i className="fas fa-long-arrow-alt-left"></i></button>
                                     <button className='button-1' onClick={()=>window.open(this.state.info.link, '_blank')}>view gift card<i className="fas fa-arrow-right"></i></button>
-                                    <button className='button-2' onClick={()=>this.props.history.push('/dashboard')}>back to shop<i className="fas fa-arrow-right"></i></button>
                                     <button className='button-2'>email me my gift card<i className="fas fa-directions"></i></button>
                                 </div>
                 break
             case 1:
                 content = <div className='CodeType'>
-                                    <p>GIFT CARD CODE</p>
-                                    <p>{this.state.info.code}</p>
-                                    <button className='button-2' onClick={this.CopyCode}>{copyCodeContent}</button>
+                                    <p className='Goback' onClick={()=>this.props.history.push('/dashboard')}><i className="fas fa-long-arrow-alt-left"></i> SHOP</p>
+                                    <p className='Tooltip'>GIFT CARD CODE</p>
+                                    <p className='Copyable'>
+                                        {this.state.info.code}
+                                        {this.state.copyCode?<i className="fas fa-check"></i>:<i onClick={this.CopyCode} className="far fa-copy"></i>}
+                                    </p>
+                                    <button onClick={()=>this.props.history.push('/dashboard')} className='button-2 Goback'><i className="fas fa-long-arrow-alt-left"></i></button>
+                                    <button className='button-1'>autofill gift card code<i className="fas fa-arrow-right"></i></button>
                                     <button className='button-2'>email me my gift card<i className="fas fa-directions"></i></button>
-                                    <button className='button-2'>autofill gift card code<i className="fas fa-arrow-right"></i></button>
-                                    <button className='button-2' onClick={()=>this.props.history.push('/dashboard')}>back to shop<i className="fas fa-arrow-right"></i></button>
                                 </div>
                 break
             case 2:
                 content = <div className='PINType'>
-                                    <p>GIFT CARD CODE</p>
-                                    <p>{this.state.info.code}</p>
-                                    <p>PIN NUMBER</p>
-                                    <p>{this.state.info.pin}</p>
-                                    <button className='button-2' onClick={this.CopyCode}>{copyCodeContent}</button>
-                                    <button className='button-2' onClick={this.CopyPIN}>{copyPINContent}</button>
-                                    <button className='button-2'>autofill gift card code<i className="fas fa-arrow-right"></i></button>
-                                    <button className='button-2' onClick={()=>this.props.history.push('/dashboard')}>back to shop<i className="fas fa-arrow-right"></i></button>
+                                    <p className='Goback' onClick={()=>this.props.history.push('/dashboard')}><i className="fas fa-long-arrow-alt-left"></i> SHOP</p>
+                                    <p className='Tooltip'>GIFT CARD CODE</p>
+                                    <p className='Copyable'>
+                                        {this.state.info.code}
+                                        {this.state.copyCode?<i className="fas fa-check"></i>:<i onClick={this.CopyCode} className="far fa-copy"></i>}
+                                    </p>
+                                    <p className='Tooltip'>PIN NUMBER</p>
+                                    <p className='Copyable PIN'>
+                                        {this.state.info.pin}
+                                        {this.state.copyPIN?<i className="fas fa-check"></i>:<i onClick={this.CopyPIN} className="far fa-copy"></i>}
+                                    </p>
+                                    <button onClick={()=>this.props.history.push('/dashboard')} className='button-2 Goback'><i className="fas fa-long-arrow-alt-left"></i></button>
+                                    <button className='button-1'>autofill gift card code<i className="fas fa-arrow-right"></i></button>
                                     <button className='button-2'>email me my gift card<i className="fas fa-directions"></i></button>
                                 </div>
                 break
