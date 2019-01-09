@@ -5,13 +5,11 @@
     animation: FadeIn 1.5s;
     overflow-y: auto;
 }
-
 #Dashboard-Menu{
-    padding: 0 1.5rem;
+    padding: 0 10%;
     position: fixed;                                                                                                    /* this part may be changed */
-    top: 1rem;
-    left: 5%;
-    width: 90%;
+    top: 2rem;
+    width: 100%;
     height: 4rem;
     z-index: 2;
     background-color: white;
@@ -31,7 +29,7 @@
     cursor: pointer;
 }
 #Dashboard-Menu>div.Bar>div.Controller{
-    width: 5rem;
+    width: auto;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -46,13 +44,21 @@
     display: flex;
     flex-grow: 1;
     justify-content: flex-end;
-    align-items: center
+    align-items: center;
+    position: relative;
 }
 #Dashboard-Menu>div.Bar>div.SubMenu i{
     margin-left: 1.5rem;
 }
 #Dashboard-Menu>div.Bar>div.SubMenu>a.Actived{
     color: var(--color-gold-normal);
+}
+#Dashboard-Menu>div.Bar>div.SubMenu>img{
+    margin-left: 1.5rem;
+    height: 2rem;
+}
+#Dashboard-Menu>div.Bar>div.SubMenu>img:hover{
+    cursor: pointer;
 }
 #Dashboard-Menu>div.Bar>div.Bottom{
     width: auto;
@@ -62,20 +68,14 @@
 }
 #Dashboard-Menu>div.Bar>div.Bottom>img{
     height: 2rem;
-}
-#Dashboard-Menu>div.Bar>div.Bottom>img{
     margin-left: 1.5rem;
-}
-#Dashboard-Menu>div.Bar>div.Bottom>img:first-child:hover{
-    cursor: pointer;
-}
-#Dashboard-Menu>div.Bar>div.Bottom>img:last-child{
     display: none;
 }
 #Dashboard-Menu>div.Panel{
     position: relative;
-    left: -1rem;
-    width: 100%;
+    left: -12.5%;                                                                       /* Note this part should be calculated carefully */
+    width: 125%;                                                                     /* Note this part should be calculated carefully */
+    padding: 0 10%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -89,9 +89,6 @@
 #Dashboard-Menu>div.Panel>a{
     margin-top: 0.5rem;
     font-weight: 600;
-}
-#Dashboard-Menu>div.Panel>a:last-child{
-    margin-bottom: 1rem;
 }
 #Dashboard-Menu>div.Panel.Active{
     opacity: 1;
@@ -132,6 +129,9 @@
     color: var(--color-grey-normal);
     margin-bottom: 1rem;
 }
+
+
+
 @media all and (min-width: 1024px){
     #Dashboard-Menu{
         box-shadow: 0 1rem 2rem 0 var(--color-white-darkest);
@@ -165,13 +165,15 @@
         margin-left: 0;
         margin-top: 1.5rem;
     }
+    #Dashboard-Menu>div.Bar>div.SubMenu>img{
+        margin-left: 0;
+        position: absolute;
+        bottom: 0;
+    }
     #Dashboard-Menu>div.Bar>div.Bottom{
         flex-direction: column;
     }
-    #Dashboard-Menu>div.Bar>div.Bottom>img:first-child{
-        margin-left: 0;
-    }
-    #Dashboard-Menu>div.Bar>div.Bottom>img:last-child{
+    #Dashboard-Menu>div.Bar>div.Bottom>img{
         display: inline-block;
         margin-left: 0;
         margin-top: 1.5rem;
@@ -200,4 +202,23 @@
     #CountrySelection>*{
         max-width: 30rem;
     }
+}
+
+
+/* More cases for menu bar */
+#Dashboard-Menu>div.Bar>div.SubMenu>div.Logout{
+    color: var(--color-white-darkest);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#Dashboard-Menu>div.Bar>div.SubMenu>div.Logout:hover{
+    cursor: pointer;
+}
+#Dashboard-Menu>div.Bar>div.SubMenu>div.Logout>i{
+    margin: 0;
+}
+#Dashboard-Menu>div.Bar>div.SubMenu>div.Logout>p{
+    font-size: var(--font-size-smaller);
 }

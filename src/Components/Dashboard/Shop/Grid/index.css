@@ -110,7 +110,6 @@
     }
     #Grid-AllBrands{
         justify-content: flex-start;
-        height: calc(66rem * 0.35);              /* Hard coded for now */
         padding: 0 15%;
     }
 }

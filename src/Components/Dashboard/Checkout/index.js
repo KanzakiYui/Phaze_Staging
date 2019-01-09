@@ -2,7 +2,7 @@ import React from 'react'
 import './index.css'
 import GiftCard from '../GiftCard'
 import CryptoCard from '../CryptoCard'
-import {GetAPI, GetOther} from '../../../https'
+import {GetAPI, GetOther, POSTAPI} from '../../../https'
 import Debounce from '../../../Utilities/Debounce'
 import {walletToCode, countryToCode, codeToCurrency} from '../../../constants'
 
@@ -19,11 +19,11 @@ class Checkout extends React.Component{
         this.currency = ''
     }
     componentDidMount(){
-        if(!this.props.amountInfo){
+        if(!this.props.location.state){
             this.props.history.push('/dashboard')
             return
         }
-        this.currency = codeToCurrency[countryToCode[this.props.amountInfo.country]]
+        this.currency = codeToCurrency[countryToCode[this.props.location.state.country]]
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth'})
         this.GetBalance()
         this.GetRate()          // Call once
@@ -80,33 +80,31 @@ class Checkout extends React.Component{
             payError: false
         },()=>{
             let body = {
-                brand: this.props.amountInfo.code,
-                price: this.props.amountInfo.price*100,
+                brand: this.props.location.state.code,
+                price: this.props.location.state.price*100,
                 currency: this.currency
             }
             // In most case, total will not be 0, and any number < 0.01 will be considered 0
-            body.crypto = this.props.amountInfo.total > 0.01 ? walletToCode[this.state.method] : 'CREDIT'
-            if(this.props.amountInfo.apply)
-                body.discount_code = this.props.amountInfo.promo
-            let result = {
-                brandcode: this.props.amountInfo.code,
-                brandname: this.props.amountInfo.name,
-                amount: this.props.amountInfo.price,
-                currency: this.currency
-            }
-            let resultA = Object.assign({}, result)
-            resultA.link = 'https://www.google.ca'
-            let resultB = Object.assign({}, result)
-            resultB.code = 'LOLLMAOROFL'
-            let resultC = Object.assign({}, result)
-            resultC.code = 'LOLLMAOROFL'
-            resultC.pin = 'LMFAO'
-            this.props.PurchaseResult(resultC)
-            /*
+            body.crypto = this.props.location.state.total > 0.01 ? walletToCode[this.state.method] : 'CREDIT'
+            if(this.props.location.state.apply)
+                body.discount_code = this.props.location.state.promo
             POSTAPI('merchant/purchase', body).then(response=>{
-                console.log(response)
-                // The following is some mock data
-                
+                let info = {
+                    brandcode: this.props.location.state.code,
+                    brandname: this.props.location.state.name,
+                    amount: this.props.location.state.price,
+                    currency: this.currency
+                }
+                if(response.link)
+                    info.link = response.link
+                if(response.code)
+                    info.code = response.code
+                if(response.pin)
+                    info.pin = response.pin
+                this.props.history.push({
+                    pathname: '/dashboard/result',
+                    state: info
+                })
                 return null
             }).catch(error=>{
                 if(error.statusCode === 401)
@@ -116,26 +114,25 @@ class Checkout extends React.Component{
                         payError: true,
                         errorMessage: error.statusCode === 400 ? 'Insufficient Balance' : 'Please Try Again'
                     })
-            })
-            */                          
+            })                       
         })
     }
     render(){
-        if(!this.props.amountInfo)
+        if(!this.props.location.state)
             return null
         let Cards = ['Bitcoin', 'Ethereum', 'Litecoin'].map((value, index)=><CryptoCard key={index} type={value} balance={this.state.balance[value]} />)
         let walletCode = walletToCode[this.state.method]
-        let price = (this.props.amountInfo.total / this.state.rate).toFixed(8)
+        let price = (this.props.location.state.total / this.state.rate).toFixed(8)
         let errorClass = this.state.payError?"Actived":""
         return  <div id='Checkout'>
                         <div id='Checkout-Background'></div>
                         <p className='Goback' onClick={()=>this.props.history.push('/dashboard')}><i className="fas fa-long-arrow-alt-left"></i> SHOP</p>
-                        <p className='Title'>{this.props.amountInfo.name}</p>
+                        <p className='Title'>{this.props.location.state.name}</p>
                         <div className='Half-Card'>
-                            <GiftCard urlpath={this.props.amountInfo.code} />
+                            <GiftCard urlpath={this.props.location.state.code} />
                         </div>
                         <p className='Tooltip-1'>You are converting</p>
-                        <p className='Tooltip-2'>${this.props.amountInfo.total.toFixed(2)}<span>(${this.props.amountInfo.price} gift card)</span></p>
+                        <p className='Tooltip-2'>${this.props.location.state.total.toFixed(2)}<span>(${this.props.location.state.price} gift card)</span></p>
                         <div className='CryptoCard-Content' onLoad={(event)=>this.ScrollLoad(event)}>
                             {Cards}
                         </div>

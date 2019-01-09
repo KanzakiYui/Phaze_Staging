@@ -1,10 +1,10 @@
 /* Suppose all cards' initial size is 480*300 */
 
 div.GiftLogo-Simple{
-    width: 25vw;
-    height: 25vw;
+    width: 6rem;
+    height: 6rem;
     margin: 0 0 1.5rem 0;
-    padding: 8.25vw;
+    padding: 1.25rem;
     background-color: var(--color-white-normal);
     display: flex;
     justify-content: center;
@@ -17,11 +17,10 @@ div.GiftLogo-Simple>img{
     max-height: 100%;
     max-width: 100%;
 }
-@media all and (min-width: 1024px){
+
+@media all and (min-width: 768px){                                                      /* use 1024 ?? */
     div.GiftLogo-Simple{
         margin: 0 1rem 1.5rem 0;
-        width: calc(100vw / 15);
-        height: calc(100vw / 15);
-        padding: calc(100vw / 60);
     }
 }
+

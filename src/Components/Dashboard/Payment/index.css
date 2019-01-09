@@ -75,6 +75,9 @@
 #Payment>div.DetailPanel>div:last-child>span:nth-child(3){
     padding-left: 1rem;
 }
+#Payment>div.DetailPanel>div:last-child>span:nth-child(3)>i{
+    color: var(--color-grey-normal) !important;
+}
 #Payment>div.DetailPanel>div:last-child>span:nth-child(3)>i:hover{
     cursor: pointer;
 }

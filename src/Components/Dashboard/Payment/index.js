@@ -58,7 +58,7 @@ class Payment extends React.Component{
         }
     }
     Confirm = ()=>{
-        if(this.state.priceError)
+        if(this.state.priceError || this.state.price === '' || this.state.price === 0)
             return
         let price = Number(this.state.price)
         let total = price * 1.02
@@ -72,7 +72,10 @@ class Payment extends React.Component{
             promo: this.props.promoInfo.code,
             total: Number((total - discount).toFixed(2))
         }
-        this.props.ConfirmAmount(result)
+        this.props.history.push({
+            pathname: '/dashboard/checkout',
+            state: result
+        })
     }
     render(){
         if(!this.props.brandInfo)

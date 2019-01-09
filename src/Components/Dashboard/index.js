@@ -15,6 +15,8 @@ const Shop = Loadable({ loader: () => import('./Shop'), loading: Loading, delay:
 const Payment = Loadable({ loader: () => import('./Payment'), loading: Loading, delay: 1000, render(loaded, props){ let Component = loaded.default; return <Component {...props}/>} })
 const Checkout = Loadable({ loader: () => import('./Checkout'), loading: Loading, delay: 1000, render(loaded, props){ let Component = loaded.default; return <Component {...props}/>} })
 const Result = Loadable({ loader: () => import('./Result'), loading: Loading, delay: 1000 })
+const Account = Loadable({ loader: () => import('./Account'), loading: Loading, delay: 1000, render(loaded, props){ let Component = loaded.default; return <Component {...props}/>} })
+const Identity = Loadable({ loader: () => import('./Identity'), loading: Loading, delay: 1000 })
 
 class Dashboard extends React.Component{
     constructor(props){
@@ -32,8 +34,7 @@ class Dashboard extends React.Component{
             brandInfo: null,
             showContent: false,                                  // when everything is done, show content
             openSearch: false,
-            selectedBrand: null,
-            amountInfo: null
+            selectedBrand: null
         }
     }
     componentDidMount(){
@@ -74,6 +75,8 @@ class Dashboard extends React.Component{
                 brandInfo: BrandParse(response),
                 showContent: true
             })
+            // The following is for experimental usage
+            window.username = this.state.username
             return null
         }).catch(this.Logout)
     }
@@ -93,17 +96,6 @@ class Dashboard extends React.Component{
         this.setState({
             selectedBrand: this.state.brandInfo.filter(item=>item.code === value)[0]
         },()=>this.props.history.push('/dashboard/payment'))
-    }
-    ConfirmAmount = (value)=>{
-        this.setState({
-            amountInfo: value
-        },()=>this.props.history.push('/dashboard/checkout'))
-    }
-    PurchaseResult = (value)=>{
-        this.props.history.push({
-            pathname: '/dashboard/result',
-            state: value
-        })
     }
     render(){
         if(!this.state.showContent)
@@ -131,9 +123,14 @@ class Dashboard extends React.Component{
                                         <i className="fas fa-map-marker-alt"></i>
                                     </NavLink> 
                                     <i className="fas fa-search" onClick={()=>this.setState({openSearch: true})}></i>
+                                    <img src={this.state.country==='Canada'?CanadaLOGO:USALOGO} alt="" onClick={()=>this.setState({openCountrySelection: true})} />
                                 </React.Fragment>
-            
-            if(!['payment', 'checkout', 'result'].includes(this.state.location))
+            if(this.state.location === 'account')
+                subMenu = <div className='Logout' onClick={this.Logout}>
+                                        <i className="fas fa-sign-out-alt"></i>
+                                        <p>LOGOUT</p>
+                                    </div>
+            if(!['payment', 'checkout', 'result', 'identity'].includes(this.state.location))
                 menu =  <div id='Dashboard-Menu'>
                                 <div className='Bar'>
                                     <div className='Controller'>
@@ -144,7 +141,6 @@ class Dashboard extends React.Component{
                                     {subMenu}
                                 </div>
                                 <div className='Bottom'>
-                                    <img src={this.state.country==='Canada'?CanadaLOGO:USALOGO} alt="" onClick={()=>this.setState({openCountrySelection: true})} />
                                     <img src={LOGO} alt="" />
                                 </div>
                                 </div>
@@ -160,8 +156,10 @@ class Dashboard extends React.Component{
                                 <Route exact path="/dashboard" render={(props)=> <Shop {...props} country={this.state.country} brandInfo={this.state.brandInfo} openSearch={this.state.openSearch} CloseSearch={()=>this.setState({openSearch: false})} SelectBrand={this.SelectBrand} />}/>
                                 <Route exact path="/dashboard/map" render={(props)=> <Shop {...props} />}/>
                                 <Route exact path="/dashboard/payment" render={(props)=> <Payment {...props} brandInfo={this.state.selectedBrand} promoInfo={this.state.promoInfo} ConfirmAmount={this.ConfirmAmount}/>}/>
-                                <Route exact path="/dashboard/checkout" render={(props)=> <Checkout {...props} amountInfo={this.state.amountInfo} PurchaseResult={this.PurchaseResult}/>}/>
+                                <Route exact path="/dashboard/checkout" component={Checkout}/>
                                 <Route exact path="/dashboard/result" component={Result}/>
+                                <Route exact path="/dashboard/account" render={(props)=> <Account {...props} username={this.state.username} kycCountry={this.state.kycCountry} promoInfo={this.state.promoInfo}/>}/>
+                                <Route exact path="/dashboard/identity" component={Identity}/>
                             </Switch>
                             {countrySelectionPanel}
                         </div>

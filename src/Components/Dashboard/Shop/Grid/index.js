@@ -7,8 +7,10 @@ import GiftLogo from '../../GiftLogo'
 class Grid extends React.Component{
     constructor(props){
         super(props)
-        this.featured = ['amazonca', 'amazonus', 'starbucksca', 'starbucksus', 'keg', 'walmart', 'bestbuy', 
-                                'aircanada', 'americanairlines', 'cineplex', 'milestones', 'montanas', 'sephora']
+        this.featured = {
+            'Canada': ['amazonca', 'starbucksca', 'aircanada', 'cineplex', 'grouponca', 'keg', 'milestones', 'montanas', 'oldnavyca', 'harveys', 'aeca', 'bananarepca', 'swisschalet', 'aerieca', 'kelseys'],
+            'United States': [ 'amazonus',  'starbucksus', 'uber', 'bestbuy', 'gamestop', 'walmart',  'hotels', 'sephora', 'amctheatres', 'americanairlines', 'ebay1', 'delta', 'nordstrom', 'wholefoods', 'columbia']
+        }
         this.state={
             category: 'All',
             keyword: '',
@@ -50,7 +52,7 @@ class Grid extends React.Component{
         this.props.SelectBrand(element.dataset.value)
     }
     render(){
-        let featuredCards = this.featured.map((card, index)=><GiftCard key={index} urlpath={card}/>)
+        let featuredCards = this.featured[this.props.country].map((card, index)=><GiftCard key={index} urlpath={card}/>)
         let allLogos = this.CategoryResult().map((info, index)=><GiftLogo key={index} urlpath={info.code}/>)
         let filterResult = null
         let borderClass = ""
