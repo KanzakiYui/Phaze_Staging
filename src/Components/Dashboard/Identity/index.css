@@ -109,6 +109,9 @@
     text-align: left;
     margin-bottom: 1.5rem;
 }
+#Identity-Photo p.FileName{
+    margin-bottom: 0;
+}
 #Identity-Photo>label.Upload{
     border-radius: 0.125rem;
     padding: 1.25rem;
@@ -133,10 +136,7 @@
 #Identity-Photo>label.Upload>input[type='file']{
     display: none;
 }
-#Identity-Photo button.button-2{
-    margin-top: 2rem;
-}
-#Identity-Photo button:last-child{
+#Identity-Photo button{
     margin-top: 2rem;
 }
 #Identity-Photo button.button-2>div{
@@ -145,8 +145,31 @@
     justify-content: space-between;
 }
 #Identity-Photo svg{
-    height: 1.25rem !important;
-    width: 1.25rem !important;
+    display: block;
+    margin: 3rem auto 0 auto;
+    height: 2.5rem !important;
+    width: 2.5rem !important;
+}
+#Identity-Photo p.ErrorMessage{
+    margin-top: 2rem;
+    color: var(--color-red-normal);
+}
+#Identity>div.Success>img{
+    display: block;
+    height: 3rem;
+    margin-bottom: 2rem;
+}
+#Identity>div.Success>p{
+    font-size: var(--font-size-large);
+    text-align: left;
+}
+#Identity>div.Success>p.Title{
+    margin: 3rem 0 1rem 0;
+    font-size: var(--font-size-extra);
+    text-align: left;
+}
+#Identity>div.Success>button{
+    margin-top: 3rem;
 }
 /*
     The following adjustments may be changed

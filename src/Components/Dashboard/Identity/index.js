@@ -2,29 +2,31 @@ import React from 'react'
 import './index.css'
 import {POSTAPI} from '../../../https'
 import Loader from 'react-loader-spinner'
-import {front, back} from './mockData'
+import {back} from './mockData'
+import LOGO from '../../../Media/Images/Logo.png'
 
 class Identity extends React.Component{
     constructor(props){
         super(props)
         this.state={
-            status: 0,                                          // 0 = legal, 1 = name, 2 = citizen, 3 = phone, 4 = code, 5 = ID
+            status: 0,                                          // 0 = legal, 1 = name, 2 = citizen, 3 = phone, 4 = code, 5 = ID, 6 = Success
             first_name: 'Jan',
             last_name: 'Kowalski',
             country_code: 'POL',
             phoneError: false,
             phone: null,
             codeError: false,
-            uploadStatus: 0,                                // 0 = initial, 1 = uploading, 2 = uploaded
+            uploaded: false,                                
             file: null,
             front_image: null,
+            processStatus: 0,                       //  0 = disabled, 1 = enabled (initial), 2 = loading, 3 = error, 4 = success (won't set status 4 since we can directly go to next screen)
         }
     }
     componentDidMount(){
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth'})
     }
     GoBack = ()=>{
-        if(this.state.status === 0)
+        if(this.state.status === 0 || this.state.status === 6)
             this.props.history.goBack()
         else
             this.setState({
@@ -70,6 +72,7 @@ class Identity extends React.Component{
                         status: 4
                     })
                     phoneEl.value=""                            // Edge case handle
+                    phoneEl.classList.remove('Checked')
                 }).catch(error=>{
                     if(error.statusCode === 401)
                         this.props.history.push('/')
@@ -81,7 +84,9 @@ class Identity extends React.Component{
     SubmitCode = (event)=>{
         event.preventDefault()
         let codeEl = event.target['identity-code']
-        this.setState({codeError: false},()=>{
+        this.setState({
+            codeError: false
+        },()=>{
             if(!codeEl.validity.valid)
                 codeEl.classList.add('Checked')
             else
@@ -102,11 +107,16 @@ class Identity extends React.Component{
         if(!file || file.type.indexOf('image') === -1)
             file = null
         this.setState({
-            file: file,
-            uploadStatus: file?1:0
+            file: file
         })
         if(file)
             this.ImageProcess(file)
+        else{
+            this.setState({
+                uploaded: false,
+                processStatus: 0
+            })
+        }
     }
     ImageProcess = (file)=>{
         let reader = new FileReader()
@@ -115,26 +125,44 @@ class Identity extends React.Component{
             data = data.slice(data.indexOf("base64,")+7)
             this.setState({
                 front_image: data,
-                uploadStatus: 2
+                uploaded: true,
+                processStatus: 1
             })
         })
         reader.readAsDataURL(file)
     }
     Submit = ()=>{
         let body = {
-            country_code: this.state.country_code,
+            //country_code: this.state.country_code,
+            first_name: 'Jan',
+            last_name: 'Kowalski',
+            country_code: 'POL',
             id_type: 'PASSPORT',
-            front_image: front,
+            front_image: this.state.front_image,
             back_image: back,
-            //front_image: this.state.front_image,
-            first_name: this.state.first_name,
-            last_name: this.state.last_name
+            //first_name: this.state.first_name,
+            //last_name: this.state.last_name
         }
+        this.setState({
+            processStatus: 2
+        })
+        
         POSTAPI('users/kyc_check_swiftdil', body).then(response=>{
             console.log(response)
+            window.scrollTo({ top: 0, left: 0, behavior: 'smooth'})                                 // edge case handle
+            this.setState({
+                status: 6
+            })
         }).catch(error=>{
             console.log(error)
+            this.setState({
+                uploaded: false,                                
+                file: null,
+                front_image: null,
+                processStatus: 3,    
+            })
         })
+        
     }
     render(){
         let content = null
@@ -144,28 +172,22 @@ class Identity extends React.Component{
                                     <p className={(this.state.status === 3 || this.state.status === 4) ? "Active":""}><span></span></p>
                                     <p className={this.state.status === 5 ? "Active":""}><span></span></p>
                                 </div>
-        let uploadButton = null
-        switch(this.state.uploadStatus){
+        let processButton = null
+        switch(this.state.processStatus){
             case 0:
-                uploadButton =    <label className='Upload' >
-                                                Upload  Photo Page<i className="fas fa-upload"></i>
-                                                <input type='file' onChange={(event)=>this.FileChange(event)} accept="image/*"></input>
-                                            </label>
+                processButton = <button className='button-disabled'>complete verification<i className="fas fa-arrow-right"></i></button>
                 break
             case 1:
-                uploadButton =   <button className='button-2'>
-                                                Uploading...
-                                                <Loader type='Oval' color='var(--color-blue-normal)'/>
-                                            </button>
+                processButton = <button className='button-1' onClick={this.Submit}>complete verification<i className="fas fa-arrow-right"></i></button>
                 break
             case 2:
-                uploadButton = <button className='button-2'>
-                                            Uploaded
-                                            <i className="fas fa-check"></i>
-                                         </button>
+                processButton = <Loader type='Oval' color='var(--color-blue-normal)'/>
+                break
+            case 3:
+                processButton = <button className='button-disabled'>complete verification<i className="fas fa-arrow-right"></i></button>
                 break
             default:
-                uploadButton = null                     
+                processButton = null
         }
         switch(this.state.status){
             case 0:
@@ -271,14 +293,35 @@ class Identity extends React.Component{
                                         <p className='Step-Title'>Upload your passport</p>
                                         <p>Please upload an image of the personal data page in your passport.</p>
                                         <p>Do not redact, watermark or otherwise obscure and part of your ID. This will help ensure we can verify your identity as quickly as possible. </p> 
-                                        {uploadButton}
+                                        <p className='FileName'>{this.state.file?this.state.file.name:""}</p>
+                                        {this.state.uploaded?
+                                            <button className='button-2'>
+                                                Uploaded
+                                                <i className="fas fa-check" style={{color: 'var(--color-blue-normal)'}}></i>
+                                            </button>
+                                        : 
+                                            <label className='Upload' >
+                                                Upload  Photo Page<i className="fas fa-upload"></i>
+                                                <input type='file' onChange={(event)=>this.FileChange(event)} accept="image/*"></input>
+                                            </label>
+                                        }
                                         <button onClick={this.GoBack} className='button-2 Goback'><i className="fas fa-long-arrow-alt-left"></i></button>
-                                        {this.state.uploadStatus === 2?
-                                            <button className='button-1' onClick={this.Submit}>complete verification<i className="fas fa-arrow-right"></i></button>:
-                                            <button className='button-disabled'>complete verification<i className="fas fa-arrow-right"></i></button>
+                                        {processButton}
+                                        {
+                                            this.state.processStatus === 3 ? <p className='ErrorMessage'>Failed to pass verification, please try again.</p>
+                                            :null
                                         }
                                     </div>
                 break
+            case 6:
+                return <div id='Identity'>
+                            <div className='Success'>
+                                <img src={LOGO} alt=""/>
+                                <p className='Title'>Success!</p>
+                                <p>Awesome - you sucessfully passed the identity verification process!</p>
+                                <button onClick={this.GoBack} className='button-1'>Back to Account<i className="fas fa-arrow-right"></i></button> 
+                            </div>
+                          </div>
             default:
                 content = null
         }
