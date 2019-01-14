@@ -17,6 +17,8 @@ const Checkout = Loadable({ loader: () => import('./Checkout'), loading: Loading
 const Result = Loadable({ loader: () => import('./Result'), loading: Loading, delay: 1000 })
 const Account = Loadable({ loader: () => import('./Account'), loading: Loading, delay: 1000, render(loaded, props){ let Component = loaded.default; return <Component {...props}/>} })
 const Identity = Loadable({ loader: () => import('./Identity'), loading: Loading, delay: 1000 })
+const ChangePassword = Loadable({ loader: () => import('./ChangePassword'), loading: Loading, delay: 1000 })
+const OrderHistory = Loadable({ loader: () => import('./OrderHistory'), loading: Loading, delay: 1000 })
 
 class Dashboard extends React.Component{
     constructor(props){
@@ -41,13 +43,10 @@ class Dashboard extends React.Component{
         this.UserCheck()
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth'})
     }
-    componentDidUpdate(){
+    Path = ()=>{
         let url = window.location.href.split('/')
         url = url[url.length-1] === ''? url[url.length - 2] : url[url.length - 1]
-        if(url !== this.state.location)
-            this.setState({
-                location: url.toLowerCase()
-            })
+        return url.toLowerCase()
     }
     UserCheck = async () =>{
         CheckAuth().then(response=>{
@@ -106,6 +105,7 @@ class Dashboard extends React.Component{
         let subMenu = null
         let menuActive = this.state.menuActive?"Active":""
         let countrySelectionPanel = null
+        let path = this.Path()
         if(this.state.openCountrySelection)
             countrySelectionPanel = <div id='CountrySelection'>
                                                         <i className="fas fa-times" onClick={()=>this.setState({openCountrySelection: false})}></i>
@@ -114,7 +114,7 @@ class Dashboard extends React.Component{
                                                         <p>Changing the country you shop from may affect product price and availability.</p>
                                                         <button className='button-1' onClick={this.CountryChanged}>Shop {this.state.country==='Canada'?'United States':'Canada'}<i className="fas fa-arrow-right"></i></button>
                                                     </div>
-        if(this.state.location === 'dashboard')
+        if(path === 'dashboard')
             subMenu =  <React.Fragment>
                                     <NavLink exact to='/dashboard/' activeClassName="Actived">
                                         <i className="fas fa-th-large"></i>
@@ -125,12 +125,12 @@ class Dashboard extends React.Component{
                                     <i className="fas fa-search" onClick={()=>this.setState({openSearch: true})}></i>
                                     <img src={this.state.country==='Canada'?CanadaLOGO:USALOGO} alt="" onClick={()=>this.setState({openCountrySelection: true})} />
                                 </React.Fragment>
-            if(this.state.location === 'account')
+            if(path === 'account')
                 subMenu = <div className='Logout' onClick={this.Logout}>
                                         <i className="fas fa-sign-out-alt"></i>
                                         <p>LOGOUT</p>
                                     </div>
-            if(!['payment', 'checkout', 'result', 'identity'].includes(this.state.location))
+            if(!['payment', 'checkout', 'result', 'identity', 'changepassword', 'orderhistory'].includes(path))        // the condition can be optimized
                 menu =  <div id='Dashboard-Menu'>
                                 <div className='Bar'>
                                     <div className='Controller'>
@@ -160,6 +160,8 @@ class Dashboard extends React.Component{
                                 <Route exact path="/dashboard/result" component={Result}/>
                                 <Route exact path="/dashboard/account" render={(props)=> <Account {...props} username={this.state.username} kycCountry={this.state.kycCountry} promoInfo={this.state.promoInfo}/>}/>
                                 <Route exact path="/dashboard/identity" component={Identity}/>
+                                <Route exact path="/dashboard/changepassword" component={ChangePassword}/>
+                                <Route exact path="/dashboard/orderhistory" component={OrderHistory}/>
                             </Switch>
                             {countrySelectionPanel}
                         </div>

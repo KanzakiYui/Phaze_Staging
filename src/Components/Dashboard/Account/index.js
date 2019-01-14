@@ -25,8 +25,8 @@ class Account extends React.Component{
                         {
                             this.props.kycCountry?null:<button className='button-1' onClick={()=>this.props.history.push('identity')}>Verify Your Identity<i className="fas fa-arrow-right"></i></button>
                         }
-                        <button className='button-2'>Change Password<i className="fas fa-arrow-right"></i></button>
-                        <button className='button-2'>View Order History<i className="fas fa-arrow-right"></i></button>
+                        <button className='button-2' onClick={()=>this.props.history.push('changepassword')}>Change Password<i className="fas fa-arrow-right"></i></button>
+                        <button className='button-2' onClick={()=>this.props.history.push('orderhistory')}>View Order History<i className="fas fa-arrow-right"></i></button>
                     </div>
     }
 }

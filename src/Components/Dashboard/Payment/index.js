@@ -139,7 +139,7 @@ class Payment extends React.Component{
                             <span>Total</span>
                             <span>${total.toFixed(2)} <small>{currency}</small></span>
                         </div>
-                        <button onClick={()=>this.props.history.push('/dashboard')} className='button-2 Goback'><i className="fas fa-long-arrow-alt-left"></i></button>
+                        <button type='button' onClick={()=>this.props.history.push('/dashboard')} className='button-2 Goback'><i className="fas fa-long-arrow-alt-left"></i></button>
                         <button className='button-2 Confirm' onClick={this.Confirm}>confirm<i className="fas fa-arrow-right"></i></button>
                         {this.state.openNote?
                             <div id='Payment-CreditNote'>
