@@ -6,6 +6,7 @@
 @import './CSS/animation.css';
 @import './CSS/buttons.css';
 @import './CSS/form.css';
+@import './CSS/scrollbar.css';
 
 body{
     font-family: 'Montserrat', sans-serif;

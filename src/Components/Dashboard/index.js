@@ -19,12 +19,13 @@ const Account = Loadable({ loader: () => import('./Account'), loading: Loading, 
 const Identity = Loadable({ loader: () => import('./Identity'), loading: Loading, delay: 1000 })
 const ChangePassword = Loadable({ loader: () => import('./ChangePassword'), loading: Loading, delay: 1000 })
 const OrderHistory = Loadable({ loader: () => import('./OrderHistory'), loading: Loading, delay: 1000 })
+const Wallet = Loadable({ loader: () => import('./Wallet'), loading: Loading, delay: 1000, render(loaded, props){ let Component = loaded.default; return <Component {...props}/>} })
+const WalletDetail = Loadable({ loader: () => import('./WalletDetail'), loading: Loading, delay: 1000, render(loaded, props){ let Component = loaded.default; return <Component {...props}/>} })
 
 class Dashboard extends React.Component{
     constructor(props){
         super(props)
         this.state={
-            location: 'dashboard',                                               // shop, wallet, account
             country: 'Canada',                                          // by default
             openCountrySelection: false,
             menuActive: false,
@@ -42,6 +43,10 @@ class Dashboard extends React.Component{
     componentDidMount(){
         this.UserCheck()
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth'})
+        //this.Test()
+    }
+    Test = ()=>{
+        GetAPI('crypto/get_fee/crypto/LTC/amount/0.001').then(response=>console.log(response)).catch(error=>console.log(error))
     }
     Path = ()=>{
         let url = window.location.href.split('/')
@@ -130,24 +135,24 @@ class Dashboard extends React.Component{
                                         <i className="fas fa-sign-out-alt"></i>
                                         <p>LOGOUT</p>
                                     </div>
-            if(!['payment', 'checkout', 'result', 'identity', 'changepassword', 'orderhistory'].includes(path))        // the condition can be optimized
+            if(['dashboard', 'account', 'wallet'].includes(path))        // the condition can be optimized
                 menu =  <div id='Dashboard-Menu'>
                                 <div className='Bar'>
                                     <div className='Controller'>
                                         <i className="fas fa-bars" onClick={()=>this.setState(prevState=>({menuActive: !prevState.menuActive}))}></i>
-                                    <span>{this.state.location}</span>
-                                </div>
-                                <div className='SubMenu'>
-                                    {subMenu}
-                                </div>
-                                <div className='Bottom'>
-                                    <img src={LOGO} alt="" />
-                                </div>
+                                        <span>{path}</span>
+                                    </div>
+                                    <div className='SubMenu'>
+                                        {subMenu}
+                                    </div>
+                                    <div className='Bottom'>
+                                        <img src={LOGO} alt="" />
+                                    </div>
                                 </div>
                                 <div className={'Panel '+menuActive}>
-                                    <NavLink exact to='/dashboard' onClick={()=>this.setState({location: 'shop', menuActive: false})}>Shop</NavLink>
-                                    <NavLink exact to='/dashboard/wallet' onClick={()=>this.setState({location: 'wallet', menuActive: false})}>Wallet</NavLink>
-                                    <NavLink exact to='/dashboard/account' onClick={()=>this.setState({location: 'account', menuActive: false})}>Account</NavLink>
+                                    <NavLink exact to='/dashboard' onClick={()=>this.setState({menuActive: false})}>Shop</NavLink>
+                                    <NavLink exact to='/dashboard/wallet' onClick={()=>this.setState({menuActive: false})}>Wallet</NavLink>
+                                    <NavLink exact to='/dashboard/account' onClick={()=>this.setState({menuActive: false})}>Account</NavLink>
                                 </div>
                             </div>
             return  <div id='Dashboard'>
@@ -162,6 +167,8 @@ class Dashboard extends React.Component{
                                 <Route exact path="/dashboard/identity" component={Identity}/>
                                 <Route exact path="/dashboard/changepassword" component={ChangePassword}/>
                                 <Route exact path="/dashboard/orderhistory" component={OrderHistory}/>
+                                <Route exact path="/dashboard/wallet" render={(props)=> <Wallet {...props} kycVerified={this.state.kycVerified} kycCountry={this.state.kycCountry} />}/>
+                                <Route exact path="/dashboard/walletdetail" render={(props)=> <WalletDetail {...props} kycVerified={this.state.kycVerified} kycCountry={this.state.kycCountry} />}/>
                             </Switch>
                             {countrySelectionPanel}
                         </div>

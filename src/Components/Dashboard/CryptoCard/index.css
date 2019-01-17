@@ -71,3 +71,27 @@ div.CryptoCard.Litecoin>div:last-child>p:last-child{
     font-size: var(--font-size-larger);
     color: var(--color-white-normal);
 }
+div.CryptoCard.BitcoinCash{
+    background: linear-gradient(212.19deg, var(--color-blue-light), var(--color-blue-normal));
+}
+div.CryptoCard.BitcoinCash>div:first-child>p{
+    font-weight: 600;
+    font-size: var(--font-size-large);
+    color: var(--color-white-normal);
+}
+div.CryptoCard.BitcoinCash>div:first-child>img{
+    height: 1.2rem;
+    margin-right: 0.2rem;
+}
+div.CryptoCard.BitcoinCash>div:first-child>p>span{
+    color: rgb(247, 148, 29);
+}
+/* The following are placeholders*/
+div.CryptoCard.Bitcoin>div:last-child>p:first-child{
+    font-size: var(--font-size-small);
+    color: var(--color-white-darkest);
+}
+div.CryptoCard.Bitcoin>div:last-child>p:last-child{
+    font-size: var(--font-size-larger);
+    color: var(--color-white-normal);
+}

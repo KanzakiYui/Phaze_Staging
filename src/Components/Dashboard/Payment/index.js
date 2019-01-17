@@ -109,6 +109,13 @@ class Payment extends React.Component{
                                 .00 {this.state.priceError?<p className='Error'>{'only '+placeholder+' is allowed'}</p>:null}
                             </div>
         }
+        let applyButton = <button className='Disabled'>Not Available</button>
+        if(this.props.promoInfo.amount !==0 && this.props.promoInfo.code){
+            if(this.state.apply)
+                applyButton = <button className='Apply'><i className="fas fa-check"></i>Applied</button>
+            else
+                applyButton = <button onClick={()=>this.setState({apply: true})}><i className="fas fa-long-arrow-alt-left"></i>Apply</button>
+        }
         return  <div id='Payment'>
                         <div id='Payment-Background'></div>
                         <p className='Goback' onClick={()=>this.props.history.push('/dashboard')}><i className="fas fa-long-arrow-alt-left"></i> SHOP</p>
@@ -129,10 +136,7 @@ class Payment extends React.Component{
                                 <i><img src={LOGO} alt="" /></i>
                                 <span>(-)</span>
                                 <span><i className="fas fa-exclamation-circle" onClick={()=>this.setState({openNote: true})}></i>${discount.toFixed(2)}</span>
-                                {this.state.apply?
-                                     <button className='Apply'><i className="fas fa-check"></i>Applied</button>
-                                    :<button onClick={()=>this.setState({apply: true})}><i className="fas fa-long-arrow-alt-left"></i>Apply</button>
-                                }   
+                                {applyButton}   
                             </div>
                         </div>
                         <div className='Total'>

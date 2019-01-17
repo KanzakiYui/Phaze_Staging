@@ -104,12 +104,18 @@
     border: 0 !important;
     background-color: var(--color-white-dark);
     box-shadow: 0 0 0 0 transparent;
-    width: 8rem;
+    width: 10rem;
     font-size: var(--font-size-smallest);
 }
 #Payment>div.DetailPanel button.Apply{
     background-color: var(--color-blue-normal);
     color: var(--color-white-normal);
+}
+#Payment>div.DetailPanel button.Disabled{
+    justify-content: center;
+}
+#Payment>div.DetailPanel button.Disabled:hover{
+    cursor: not-allowed;
 }
 #Payment>div.Total{
     margin: 2rem 0 5rem 3.5rem;
