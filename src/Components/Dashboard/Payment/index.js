@@ -109,7 +109,7 @@ class Payment extends React.Component{
                                 .00 {this.state.priceError?<p className='Error'>{'only '+placeholder+' is allowed'}</p>:null}
                             </div>
         }
-        let applyButton = <button className='Disabled'>Not Available</button>
+        let applyButton = <button className='Disabled'>Inavailable</button>
         if(this.props.promoInfo.amount !==0 && this.props.promoInfo.code){
             if(this.state.apply)
                 applyButton = <button className='Apply'><i className="fas fa-check"></i>Applied</button>

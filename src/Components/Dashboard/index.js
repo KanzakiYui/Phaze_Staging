@@ -46,7 +46,7 @@ class Dashboard extends React.Component{
         //this.Test()
     }
     Test = ()=>{
-        GetAPI('crypto/get_fee/crypto/LTC/amount/0.001').then(response=>console.log(response)).catch(error=>console.log(error))
+        
     }
     Path = ()=>{
         let url = window.location.href.split('/')
@@ -76,7 +76,7 @@ class Dashboard extends React.Component{
     GetBrands = ()=>{
         GetAPI('merchant/list_brands/country/ALL').then(response=>{
             this.setState({
-                brandInfo: BrandParse(response),
+                brandInfo: BrandParse(response.brands),
                 showContent: true
             })
             // The following is for experimental usage

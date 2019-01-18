@@ -10,7 +10,7 @@
 
 /* the followings are for webkit */
 ::-webkit-scrollbar{
-    width: 0.5rem;
+    width: 0;
 }
 ::-webkit-scrollbar-track{
     background-color: transparent;

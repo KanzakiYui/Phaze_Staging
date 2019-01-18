@@ -13,6 +13,7 @@ class Wallet extends React.Component{
             ETHbalance: 0,
             LTCbalance: 0,
             selected: null,
+            inactivedMsgOpen: false
         }
     }
     componentDidMount(){
@@ -31,8 +32,10 @@ class Wallet extends React.Component{
         if(!element)
             return
         let wallet = element.dataset.value
-        if( wallet === 'BitcoinCash'){
-            // inactived wallet
+        if( wallet === 'BitcoinCash' ){
+            this.setState({
+                inactivedMsgOpen: true
+            })
         }
         else
             this.props.history.push({
@@ -88,6 +91,16 @@ class Wallet extends React.Component{
                                 <span>BCH {this.state.BCHbalance}</span>
                             </p>
                         </div>
+                        {this.state.inactivedMsgOpen?
+                            <div className='InactiveBox'>
+                                <div className='Main'>
+                                    <p>BitcoinCash Notice</p>
+                                    <p>We have temporarily stopped supporting BCH due to the recent BCH hard fork. BCH will soon be supported again in the near future. Thank you for your understanding!</p>
+                                    <p><span onClick={()=>this.setState({inactivedMsgOpen: false})}>OK</span></p>
+                                </div>
+                            </div>
+                            : null
+                        }
                     </div>
     }
 }

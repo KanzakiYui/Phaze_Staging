@@ -17,7 +17,8 @@ class WalletDetail extends React.Component{
         if(!this.walletName || !this.kycVerified)
             return null
         return  <div id='Wallet-Detail'>
-        
+                        <p className='Goback' onClick={()=>this.props.history.goBack()}><i className="fas fa-long-arrow-alt-left"></i> BACK</p>
+                                
                     </div>
     }
 }

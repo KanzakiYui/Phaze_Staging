@@ -107,3 +107,47 @@
     font-size: var(--font-size-smallest);
     margin: 0.5rem 0 1.5rem 0;
 }
+
+#Wallet>div.InactiveBox{
+    animation: FadeIn 1.5s;
+    position: fixed;
+    min-width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+#Wallet>div.InactiveBox>div.Main{
+    display: inline-block;
+    background-color: var(--color-white-normal);
+    max-width: 22rem;
+    padding: 1.5rem;
+    z-index: 2;
+    border-radius: 0.25rem;
+}
+#Wallet>div.InactiveBox>div.Main>p:first-child{
+    text-align: left;
+    font-weight: 600;
+    font-size: var(--font-size-larger);
+    margin-bottom: 1.5rem;
+}
+#Wallet>div.InactiveBox>div.Main>p:nth-child(2){
+    text-align: justify;
+    line-height: 2 !important;
+    margin-bottom: 1.5rem;
+}
+#Wallet>div.InactiveBox>div.Main>p:last-child{
+    text-align: right;
+}
+#Wallet>div.InactiveBox>div.Main>p:last-child>span{
+    color: var(--color-blue-normal);
+    font-weight: 600;
+    padding-right: 2rem;
+}
+#Wallet>div.InactiveBox>div.Main>p:last-child>span:hover{
+    cursor: pointer;
+}
