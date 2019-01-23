@@ -140,7 +140,7 @@ class Checkout extends React.Component{
                         <p className={'Error '+errorClass}><i className="fas fa-exclamation-circle"></i>{this.state.errorMessage}</p>
                         <button onClick={()=>this.props.history.push('/dashboard')} className='button-2 Goback'><i className="fas fa-long-arrow-alt-left"></i></button>
                         <button className='button-2' onClick={this.Pay}>confirm {walletCode} {price} <i className="fas fa-arrow-right"></i></button>
-                        <button className='button-1' onClick={()=>this.props.history.push('/dashboard/wallet')}>fund this wallet<i className="fas fa-arrow-right"></i></button>
+                        <button className='button-1' onClick={()=>this.props.history.push('/dashboard/wallet')}>Deposit<i className="fas fa-arrow-right"></i></button>
                     </div>
     }
 }

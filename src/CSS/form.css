@@ -20,10 +20,13 @@ form>div.Inline-Input>select>option[value=""][disabled]{
 form>div.Inline-Input>select:required:invalid{
     color: var(--color-white-darkest);
   }
-form>div.Inline-Input>label{
+  form>div.Inline-Input>label{
     position: absolute;
     right: 1rem;
     top: 0.75rem;
+}
+form>div.Inline-Input>label>img{
+    height: 1.5rem;
 }
 form>div.Inline-Input>p{
     opacity: 0;

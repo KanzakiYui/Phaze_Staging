@@ -86,6 +86,9 @@
 #Checkout>div.CryptoCard-Content>div:last-child{
     margin-right: calc(100vw - 2.5rem - 19.2rem);
 }
+#Checkout div.CryptoCard{
+    box-shadow: 0px 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
 @media all and (min-width: 1024px){
     #Checkout>div.CryptoCard-Content{
         padding-bottom: 1rem;

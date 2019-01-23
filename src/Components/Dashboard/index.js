@@ -21,6 +21,7 @@ const ChangePassword = Loadable({ loader: () => import('./ChangePassword'), load
 const OrderHistory = Loadable({ loader: () => import('./OrderHistory'), loading: Loading, delay: 1000 })
 const Wallet = Loadable({ loader: () => import('./Wallet'), loading: Loading, delay: 1000, render(loaded, props){ let Component = loaded.default; return <Component {...props}/>} })
 const WalletDetail = Loadable({ loader: () => import('./WalletDetail'), loading: Loading, delay: 1000, render(loaded, props){ let Component = loaded.default; return <Component {...props}/>} })
+const Deposit = Loadable({ loader: () => import('./Deposit'), loading: Loading, delay: 1000, render(loaded, props){ let Component = loaded.default; return <Component {...props}/>} })
 
 class Dashboard extends React.Component{
     constructor(props){
@@ -43,10 +44,6 @@ class Dashboard extends React.Component{
     componentDidMount(){
         this.UserCheck()
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth'})
-        //this.Test()
-    }
-    Test = ()=>{
-        
     }
     Path = ()=>{
         let url = window.location.href.split('/')
@@ -79,8 +76,6 @@ class Dashboard extends React.Component{
                 brandInfo: BrandParse(response.brands),
                 showContent: true
             })
-            // The following is for experimental usage
-            window.username = this.state.username
             return null
         }).catch(this.Logout)
     }
@@ -169,6 +164,7 @@ class Dashboard extends React.Component{
                                 <Route exact path="/dashboard/orderhistory" component={OrderHistory}/>
                                 <Route exact path="/dashboard/wallet" render={(props)=> <Wallet {...props} kycVerified={this.state.kycVerified} kycCountry={this.state.kycCountry} />}/>
                                 <Route exact path="/dashboard/walletdetail" render={(props)=> <WalletDetail {...props} kycVerified={this.state.kycVerified} kycCountry={this.state.kycCountry} />}/>
+                                <Route exact path="/dashboard/deposit" render={(props)=> <Deposit {...props} kycVerified={this.state.kycVerified} />}/>
                             </Switch>
                             {countrySelectionPanel}
                         </div>

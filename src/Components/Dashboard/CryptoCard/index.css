@@ -72,12 +72,12 @@ div.CryptoCard.Litecoin>div:last-child>p:last-child{
     color: var(--color-white-normal);
 }
 div.CryptoCard.BitcoinCash{
-    background: linear-gradient(212.19deg, var(--color-blue-light), var(--color-blue-normal));
+    background: linear-gradient(212.19deg, rgb(230, 226, 211), var(--color-gold-normal));
 }
 div.CryptoCard.BitcoinCash>div:first-child>p{
     font-weight: 600;
     font-size: var(--font-size-large);
-    color: var(--color-white-normal);
+    color: var(--color-dark-normal);
 }
 div.CryptoCard.BitcoinCash>div:first-child>img{
     height: 1.2rem;

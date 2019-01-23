@@ -1,6 +1,7 @@
 import React from 'react'
 import './index.css'
 import GiftLogo from '../../GiftLogo'
+import {DateShow, TimeShow} from '../../../../Utilities/Time'
 
 class OrderSnippet extends React.Component{
     constructor(props){
@@ -79,16 +80,3 @@ class OrderSnippet extends React.Component{
 }
 
 export default OrderSnippet
-
-let monthNumberMapping = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
-
-function DateShow(date){
-    let array = date.split('-')
-    return monthNumberMapping[Number(array[1]) - 1] + ' ' + array[2] + ', ' + array[0]
-}
-
-function TimeShow(time){
-    let array = time.split(' ')
-    array[1] = array[1].includes('p')?'PM':'AM'
-    return array[0]+array[1]
-}

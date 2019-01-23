@@ -14,7 +14,8 @@ class OrderHistory extends React.Component{
             data: null,
             pageIndex: 0,
             totalPage: 1,
-            prev: false
+            prev: false,
+            next: false
         }
     }
     componentDidMount(){
