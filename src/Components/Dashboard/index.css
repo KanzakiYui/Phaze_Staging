@@ -43,7 +43,8 @@
 #Dashboard-Menu>div.Bar>div.SubMenu{
     display: flex;
     flex-grow: 1;
-    justify-content: center;
+    justify-content: flex-end;
+    padding-right: 2.5rem;
     align-items: center;
     position: relative;
 }
@@ -160,6 +161,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        padding-right: 0;
     }
     #Dashboard-Menu>div.Bar>div.SubMenu i{
         margin-left: 0;

@@ -13,7 +13,7 @@ class Checkout extends React.Component{
             balance: { 'Bitcoin': 0, 'Ethereum': 0, 'Litecoin': 0},
             method: 'Bitcoin',
             rate: 0,
-            payError: false,
+            payError: false,                                                
             errorMessage: null
         }
         this.currency = ''
@@ -89,6 +89,7 @@ class Checkout extends React.Component{
             if(this.props.location.state.apply)
                 body.discount_code = this.props.location.state.promo
             POSTAPI('merchant/purchase', body).then(response=>{
+                console.log(response)
                 let info = {
                     brandcode: this.props.location.state.code,
                     brandname: this.props.location.state.name,

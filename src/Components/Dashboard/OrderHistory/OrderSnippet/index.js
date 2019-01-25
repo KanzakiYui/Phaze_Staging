@@ -2,6 +2,7 @@ import React from 'react'
 import './index.css'
 import GiftLogo from '../../GiftLogo'
 import {DateShow, TimeShow} from '../../../../Utilities/Time'
+import AutofillLink from '../../../../Utilities/Autofill'
 
 class OrderSnippet extends React.Component{
     constructor(props){
@@ -18,6 +19,9 @@ class OrderSnippet extends React.Component{
         let credit = price + fee - total
         let rate = total / Number(this.props.info.price_crypto)
         let detailType = this.props.info.link?'Link':'NoLink'
+        let autofillLink = null
+        if(this.props.info.code)
+            autofillLink = AutofillLink(this.props.info.brand, this.props.info.code, this.props.info.pin)
         return <div className='OrderSnippet'>
                     <div className='GeneralInfo' onClick={()=>this.setState({expand: !this.state.expand})}>
                         <GiftLogo type={0} urlpath = {this.props.info.brand} />
@@ -72,7 +76,8 @@ class OrderSnippet extends React.Component{
                             </div>:null
                         }
                         {
-                            (this.props.info.code || this.props.info.pin)?<a className='Link' href='https://www.google.ca' target="_blank" rel="noopener noreferrer">AUTOFILL GIFT CARD CODE</a>:null
+                            ((this.props.info.code || this.props.info.pin) && autofillLink) ?
+                            <a className='Link' href={autofillLink} target="_blank" rel="noopener noreferrer">Apply Gift Card</a>:null
                         }
                     </div>
                   </div>

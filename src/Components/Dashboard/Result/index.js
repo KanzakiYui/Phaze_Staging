@@ -1,6 +1,7 @@
 import React from 'react'
 import './index.css'
 import GiftCard from '../GiftCard'
+import AutofillLink from '../../../Utilities/Autofill'
 
 class Result extends React.Component{
     constructor(props){
@@ -63,20 +64,25 @@ class Result extends React.Component{
             console.log(error)
         }
     }
+    SendEmail = ()=>{
+        console.log(this.state.info)
+    }
     render(){
         if(!this.props.location.state || !this.state.info)
             return null
-        let content = null                                    
+        let content = null
+        let autofillLink = null                                    
         switch(this.state.type){
             case 0:
                 content = <div className='LinkType'>
                                     <p className='Goback' onClick={()=>this.props.history.push('/dashboard')}><i className="fas fa-long-arrow-alt-left"></i> SHOP</p>
                                     <button onClick={()=>this.props.history.push('/dashboard')} className='button-2 Goback'><i className="fas fa-long-arrow-alt-left"></i></button>
                                     <button className='button-1' onClick={()=>window.open(this.state.info.link, '_blank')}>view gift card<i className="fas fa-arrow-right"></i></button>
-                                    <button className='button-2'>email me my gift card<i className="fas fa-directions"></i></button>
+                                    <button className='button-2' onClick={this.SendEmail}>email me my gift card<i className="fas fa-directions"></i></button>
                                 </div>
                 break
             case 1:
+                autofillLink = AutofillLink(this.state.info.brandcode, this.state.info.code)
                 content = <div className='CodeType'>
                                     <p className='Goback' onClick={()=>this.props.history.push('/dashboard')}><i className="fas fa-long-arrow-alt-left"></i> SHOP</p>
                                     <p className='Tooltip'>GIFT CARD CODE</p>
@@ -85,11 +91,14 @@ class Result extends React.Component{
                                         {this.state.copyCode?<i className="fas fa-check"></i>:<i onClick={this.CopyCode} className="far fa-copy"></i>}
                                     </p>
                                     <button onClick={()=>this.props.history.push('/dashboard')} className='button-2 Goback'><i className="fas fa-long-arrow-alt-left"></i></button>
-                                    <button className='button-1'>autofill gift card code<i className="fas fa-arrow-right"></i></button>
-                                    <button className='button-2'>email me my gift card<i className="fas fa-directions"></i></button>
+                                    {
+                                        autofillLink ? <button className='button-1' onClick={()=>window.open(autofillLink, '_blank')}>Apply Gift Card<i className="fas fa-arrow-right"></i></button> : null
+                                    }
+                                    <button className='button-2' onClick={this.SendEmail}>email me my gift card<i className="fas fa-directions"></i></button>
                                 </div>
                 break
             case 2:
+                autofillLink = AutofillLink(this.state.info.brandcode, this.state.info.code, this.state.info.pin)
                 content = <div className='PINType'>
                                     <p className='Goback' onClick={()=>this.props.history.push('/dashboard')}><i className="fas fa-long-arrow-alt-left"></i> SHOP</p>
                                     <p className='Tooltip'>GIFT CARD CODE</p>
@@ -103,8 +112,10 @@ class Result extends React.Component{
                                         {this.state.copyPIN?<i className="fas fa-check"></i>:<i onClick={this.CopyPIN} className="far fa-copy"></i>}
                                     </p>
                                     <button onClick={()=>this.props.history.push('/dashboard')} className='button-2 Goback'><i className="fas fa-long-arrow-alt-left"></i></button>
-                                    <button className='button-1'>autofill gift card code<i className="fas fa-arrow-right"></i></button>
-                                    <button className='button-2'>email me my gift card<i className="fas fa-directions"></i></button>
+                                    {
+                                        autofillLink ? <button className='button-1' onClick={()=>window.open(autofillLink, '_blank')}>Apply Gift Card<i className="fas fa-arrow-right"></i></button> : null
+                                    }
+                                    <button className='button-2' onClick={this.SendEmail}>email me my gift card<i className="fas fa-directions"></i></button>
                                 </div>
                 break
             default:

@@ -4,6 +4,7 @@ import {DateShow, TimeShow} from '../../../../Utilities/Time'
 import DepositIcon from '../../../../Media/Svgs/deposit.svg'
 import WithdrawIcon from '../../../../Media/Svgs/withdraw.svg'
 import ShoppingIcon from '../../../../Media/Svgs/shppoing.svg'
+import AutofillLink from '../../../../Utilities/Autofill'
 
 class WalletTransactionSnippt extends React.Component{
     constructor(props){
@@ -20,10 +21,12 @@ class WalletTransactionSnippt extends React.Component{
     }
     componentDidUpdate(){
         let type = this.props.info.status?0:(this.props.info.other_address?1:2)                    // 0 = deposit, 1 = withdraw, 2 = purchase
-        if(type !== this.state.type)
+        if(type !== this.state.type){
             this.setState({
                 type: type
             })
+        }
+            
     }
     render(){
         let date = DateShow(new Date(this.props.info.time).toLocaleDateString('en-ca'))
@@ -35,6 +38,9 @@ class WalletTransactionSnippt extends React.Component{
             price = price + Number(this.props.info.fee_charged)
         price = (price * Number(this.props.rate)).toFixed(2)
         let purchasePrice = (Number(this.props.info.price_charged)/100).toFixed(2)
+        let autofillLink = null
+        if(this.props.info.code)
+            autofillLink = AutofillLink(this.props.info.brand, this.props.info.code, this.props.info.pin)
         let details = [
             <p>Status<span>{this.props.info.status}</span></p>,
             <p className='Address'>Wallet Address<span>{this.props.info.other_address}</span></p>,
@@ -42,7 +48,7 @@ class WalletTransactionSnippt extends React.Component{
                 {this.props.info.link?<a href={this.props.info.link} target='_blank' rel="noopener noreferrer">View Gift Card</a>:null}
                 {this.props.info.code?<p>Gift Card Code<span>{this.props.info.code}</span></p>:null}
                 {this.props.info.pin?<p>Gift Card PIN<span>{this.props.info.pin}</span></p>:null}
-                {!this.props.info.link?<a href='https://www.google.ca' target='_blank' rel="noopener noreferrer">Apply Gift Card Code</a>:null}
+                {autofillLink?<a href={autofillLink} target='_blank' rel="noopener noreferrer">Apply Gift Card</a>:null}
             </React.Fragment>
         ]
         return  <div className='WalletTransaction'>

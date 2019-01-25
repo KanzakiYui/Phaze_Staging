@@ -17,9 +17,9 @@ class Deposit extends React.Component{
         }
     }
     componentDidMount(){
-        if(!this.props.kycVerified)
-            this.props.history.goBack()
         this.walletName = this.props.location.state
+        if(!this.props.kycVerified || !this.walletName)
+            this.props.history.goBack()
         this.cryptoCurrency = walletToCode[this.walletName]
         this.GetBalance()
     }

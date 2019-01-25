@@ -77,7 +77,10 @@ class WalletDetail extends React.Component{
         })
     }
     Withdraw = () =>{
-
+        this.props.history.push({
+            pathname: '/dashboard/withdraw',
+            state: this.walletName
+        })
     }
     render(){
         if(!this.walletName || !this.kycVerified || !this.state.showContent)

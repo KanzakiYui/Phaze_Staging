@@ -22,6 +22,8 @@ class Wallet extends React.Component{
         }
     }
     componentDidMount(){
+        if(!this.props.kycVerified)
+            return
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth'})
         this.fiatCurrency = codeToCurrency[countryToCode[this.props.kycCountry]]
         GetAPI('users/list_balance/crypto/ALL').then(response=>{

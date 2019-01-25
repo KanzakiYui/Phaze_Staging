@@ -22,6 +22,7 @@ const OrderHistory = Loadable({ loader: () => import('./OrderHistory'), loading:
 const Wallet = Loadable({ loader: () => import('./Wallet'), loading: Loading, delay: 1000, render(loaded, props){ let Component = loaded.default; return <Component {...props}/>} })
 const WalletDetail = Loadable({ loader: () => import('./WalletDetail'), loading: Loading, delay: 1000, render(loaded, props){ let Component = loaded.default; return <Component {...props}/>} })
 const Deposit = Loadable({ loader: () => import('./Deposit'), loading: Loading, delay: 1000, render(loaded, props){ let Component = loaded.default; return <Component {...props}/>} })
+const Withdraw = Loadable({ loader: () => import('./Withdraw'), loading: Loading, delay: 1000, render(loaded, props){ let Component = loaded.default; return <Component {...props}/>} })
 
 class Dashboard extends React.Component{
     constructor(props){
@@ -116,12 +117,6 @@ class Dashboard extends React.Component{
                                                     </div>
         if(path === 'dashboard')
             subMenu =  <React.Fragment>
-                                    <NavLink exact to='/dashboard/' activeClassName="Actived">
-                                        <i className="fas fa-th-large"></i>
-                                    </NavLink>
-                                    <NavLink exact to='/dashboard/map' activeClassName="Actived">
-                                        <i className="fas fa-map-marker-alt"></i>
-                                    </NavLink> 
                                     <i className="fas fa-search" onClick={()=>this.setState({openSearch: true})}></i>
                                     <img src={this.state.country==='Canada'?CanadaLOGO:USALOGO} alt="" onClick={()=>this.setState({openCountrySelection: true})} />
                                 </React.Fragment>
@@ -165,6 +160,7 @@ class Dashboard extends React.Component{
                                 <Route exact path="/dashboard/wallet" render={(props)=> <Wallet {...props} kycVerified={this.state.kycVerified} kycCountry={this.state.kycCountry} />}/>
                                 <Route exact path="/dashboard/walletdetail" render={(props)=> <WalletDetail {...props} kycVerified={this.state.kycVerified} kycCountry={this.state.kycCountry} />}/>
                                 <Route exact path="/dashboard/deposit" render={(props)=> <Deposit {...props} kycVerified={this.state.kycVerified} />}/>
+                                <Route exact path="/dashboard/withdraw" render={(props)=> <Withdraw {...props} kycVerified={this.state.kycVerified} />}/>
                             </Switch>
                             {countrySelectionPanel}
                         </div>
