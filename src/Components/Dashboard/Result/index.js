@@ -2,6 +2,7 @@ import React from 'react'
 import './index.css'
 import GiftCard from '../GiftCard'
 import AutofillLink from '../../../Utilities/Autofill'
+import {POSTAPI} from '../../../https'
 
 class Result extends React.Component{
     constructor(props){
@@ -65,7 +66,9 @@ class Result extends React.Component{
         }
     }
     SendEmail = ()=>{
-        console.log(this.state.info)
+        POSTAPI('users/email_txn', {txn_id: this.state.info.id}).then(response=>{
+            console.log(response)
+        }).catch(error=>console.log(error))
     }
     render(){
         if(!this.props.location.state || !this.state.info)

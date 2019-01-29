@@ -124,7 +124,10 @@
     cursor: pointer;
 }
 
-#Withdraw-Legal{
+#Withdraw-Legal,
+#Camera-Block,
+#QRScanner,
+#Withdraw-Loading{
     animation: FadeIn 1.5s;
     position: fixed;
     min-width: 100vw;
@@ -137,7 +140,8 @@
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.4);
 }
-#Withdraw-Legal>div.Main{
+#Withdraw-Legal>div.Main,
+#Camera-Block>div.Main{
     display: inline-block;
     background-color: var(--color-white-normal);
     max-width: 22rem;
@@ -145,25 +149,138 @@
     z-index: 2;
     border-radius: 0.25rem;
 }
-#Withdraw-Legal>div.Main>p{
+#Withdraw-Legal>div.Main>p,
+#Camera-Block>div.Main>p{
     text-align: left;
     line-height: 2 !important;
     margin-bottom: 1.5rem;
 }
-#Withdraw-Legal>div.Main>p.Title{
+#Withdraw-Legal>div.Main>p.Title,
+#Camera-Block>div.Main>p.Title{
     font-weight: 600;
     font-size: var(--font-size-larger);
     margin-bottom: 1.5rem;
 }
-#Withdraw-Legal>div.Main>p:last-child{
+#Withdraw-Legal>div.Main>p:last-child,
+#Camera-Block>div.Main>p:last-child{
     text-align: right;
     margin: 0;
 }
-#Withdraw-Legal>div.Main>p:last-child>span{
+#Withdraw-Legal>div.Main>p:last-child>span,
+#Camera-Block>div.Main>p:last-child>span{
     color: var(--color-blue-normal);
     font-weight: 600;
     padding-right: 2rem;
 }
-#Withdraw-Legal>div.Main>p:last-child>span:hover{
+#Withdraw-Legal>div.Main>p:last-child>span:hover,
+#Camera-Block>div.Main>p:last-child>span:hover{
     cursor: pointer;
+}
+#Camera-Permission{
+    animation: FadeIn 1.5s;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(215.42deg, var(--color-white-normal), var(--color-white-dark));
+    padding: 50% calc(5% + 1.5rem) 0 calc(5% + 1.5rem);
+}
+#Camera-Permission>i{
+    font-size: var(--font-size-larger);
+    position: absolute;
+    top: 5rem;
+}
+#Camera-Permission>i:hover{
+    cursor: pointer;
+}
+#Camera-Permission>div{
+    height: 100%;
+    width: 100%;
+}
+#Camera-Permission>div>i{
+    font-size: var(--font-size-extra);
+}
+#Camera-Permission>div>p{
+    text-align: left;
+    color: var(--color-grey-dark);
+    margin-bottom: 1.5rem;
+}
+#Camera-Permission>div>p.Title{
+    font-size: var(--font-size-extra);
+    color: var(--color-black-dark);
+}
+#Camera-Permission>div>button{
+    margin-bottom: 1rem;
+}
+@media all and (min-width: 1024px){
+    #Camera-Permission{
+        padding: 15% 15% 0 15%;
+    }
+    #Camera-Permission>div{
+        max-width: 19.2rem;
+    }
+}
+#QRScanner{
+    background-color: rgba(15, 15, 15, 0.85);
+}
+#QRScanner>i{
+    color: var(--color-white-normal);
+    position: absolute;
+    top: 2.5rem;
+    left: 2.5rem;
+}
+#QRScanner>i:hover{
+    cursor: pointer;
+}
+#QRScanner>video{
+    width: 90%;
+    max-width: 24rem;
+}
+#Withdraw-Loading>div{
+    background: 0;
+}
+#Withdraw-Loading svg{
+    width: 5rem;
+    height: 5rem;
+}
+#Withdraw p.AuthError{
+    color: var(--color-red-normal);
+    font-weight: 500;
+    text-transform: uppercase;
+    text-align: left;
+}
+#Withdraw-Success{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    padding: 7rem 2.5rem 0 2.5rem;
+    box-shadow: 0 0 0 0 transparent;
+}
+@media all and (min-width: 1024px){
+    #Withdraw-Success{
+        padding: 7rem 0 0 15%;
+    }
+    #Withdraw-Success>*{
+        max-width: 19.2rem;
+    }
+}
+#Withdraw-Success>img {
+    display: block;
+    height: 3rem;
+    margin-bottom: 2rem;
+}
+#Withdraw-Success>p.Title {
+    font-size: var(--font-size-largest);
+    font-weight: 400;
+    text-align: left;
+    margin-bottom: 1rem;
+}
+#Withdraw-Success>p {
+    font-size: var(--font-size-small);
+    text-align: left;
+    color: var(--color-grey-dark);
+    margin-bottom: 3rem;
 }

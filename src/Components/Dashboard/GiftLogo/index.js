@@ -24,6 +24,7 @@ class GiftLogo extends React.Component{
         })).catch(this.GetPlaceHolder)
     }
     GetPlaceHolder = ()=>{
+        console.log(this.props.urlpath)
         import('../../../Media/Images/Logos/blank.png').then(url=>this.setState({
             urlpath: this.props.urlpath,
             url: url.default

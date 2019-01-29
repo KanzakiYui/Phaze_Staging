@@ -3,7 +3,9 @@ import './index.css'
 import {walletToCode} from '../../../constants'
 import CryptoCard from '../CryptoCard'
 import CustomLoader from '../../../Utilities/CustomLoader'
-import {GetAPI, GetOther} from '../../../https'
+import {GetAPI, GetOther, POSTAPI} from '../../../https'
+import { BrowserQRCodeReader } from '@zxing/library'
+import LOGO from '../../../Media/Images/Logo.png'
 
 class Withdraw extends React.Component{
     constructor(props){
@@ -16,7 +18,13 @@ class Withdraw extends React.Component{
             rateUSD: 1,
             fee: 0,
             amount: 0,
-            legalNotice: 0                                                      // 0 means nothing, 1 means 1st notice, 2 means 2nd notice, etc.           
+            legalNotice: 0,                                                      // 0 means nothing, 1 means 1st notice, 2 means 2nd notice, etc. 
+            cameraPermissionOpen: false, 
+            cameraPermissionBlockOpen: false,
+            scanner: null,
+            scannerOpen: false,
+            loadingOpen: false,      
+            success: false         
         }
     }
     componentDidMount(){
@@ -70,25 +78,87 @@ class Withdraw extends React.Component{
     }
 
 
-    Scan = ()=>{
-        let codeReader = new window.ZXing.BrowserQRCodeReader()
-        codeReader.decodeFromInputVideoDevice(undefined, 'video').then(result =>{ 
-            let data = result.text
-            if(data.includes(':'))                                                              // handle edge case from coinbase
-                data = data.split(':').pop()
-            alert(data)
-            codeReader.reset()
+    ScanPermission = ()=>{
+        navigator.permissions.query({name: 'camera'}).then(result=>{
+            let state = result.state
+            this.setState({
+                cameraPermissionOpen: state === 'prompt' ? true : false, 
+                cameraPermissionBlockOpen: state === 'denied' ? true : false
+            },()=>{
+                if(state === 'granted')
+                    this.Scan()
+            })
         })
-        .catch(error => alert(error))
+    }
+    Scan = () =>{
+        let codeReader = new BrowserQRCodeReader()
+        this.setState({
+            cameraPermissionOpen: false,
+            cameraPermissionBlockOpen: false,
+            scanner: codeReader,
+            scannerOpen: true
+        },()=>{
+            this.state.scanner.decodeFromInputVideoDevice(undefined, 'video').then(result =>{ 
+                let data = result.text
+                if(data.includes(':'))                                                              // handle edge case from coinbase
+                    data = data.split(':').pop()
+                document.getElementById('send-address').value = data
+                this.CloseScan()
+            }).catch(error => alert(error))
+        })
+    }
+    CloseScan = ()=>{
+        this.state.scanner.stopStreams()                                                 // this part can be improved ?
+        this.setState({
+            scanner: null,
+            scannerOpen: false
+        })
     }
     Send = (event) =>{
         event.preventDefault()
+        event.preventDefault()
+        let addressEl = event.target['send-address']
+        let amountEl = event.target['send-amount']
+        if(!addressEl.validity.valid || !amountEl.validity.valid){
+            addressEl.classList.add('Checked')
+            amountEl.classList.add('Checked')
+            this.setState({ authMessage: null })
+        }
+        else{
+            this.setState({
+                loadingOpen: true
+            },()=>{
+                let body = {
+                    addr: addressEl.value,
+                    crypto: this.cryptoCurrency,
+                    amount: amountEl.value
+                }
+                POSTAPI('crypto/send', body).then(response=>{
+                    this.setState({success: true})
+                }).catch(error=>{
+                    if(error.statusCode === 401)
+                        this.props.history.push('/')
+                    else if(error.statusCode === 400)
+                        this.setState({loadingOpen: false, authMessage: 'Your balance is insuffiecient'})
+                    else
+                        this.setState({loadingOpen: false, authMessage: 'Please try again'})
+                })
+            })
+        }
     }
     render(){
         if(!this.props.kycVerified)
             return null
         if(!this.state.showContent)
             return  <CustomLoader type='Oval' message='Loading Data' color='var(--color-red-normal)'/>
+        if(this.state.success)
+            return  <div id='Withdraw-Success'>
+                            <img src={LOGO} alt="" />
+                            <p className='Title'>Transaction started successfully!</p>
+                            <p>You withdraw request is started to be processed. It may take a while, you can check on your side to view current transaction status.</p>
+                            <p>For withdraw detail, you can refer to transaction history of your {this.walletName} wallet.</p>
+                            <button className='button-1' onClick={()=>this.props.history.push('/dashboard/wallet')}>Back to Wallet<i className="fas fa-arrow-right"></i></button>
+                        </div>
         let amountInCAD = (Number(this.state.balance) * Number(this.state.rateCAD)).toFixed(2)
         let amountInUSD = (Number(this.state.balance) * Number(this.state.rateUSD)).toFixed(2)
         let fee = Number(this.state.fee).toFixed(8)
@@ -121,29 +191,28 @@ class Withdraw extends React.Component{
                                     <p>letters or numbers required</p>
                                 </div>
                                 <div className='Inline-Input'>
-                                    <input id='send-amount' name='send-amount' type='number' placeholder={'amount in '+this.cryptoCurrency} required onChange={(event)=>this.AmountChange(event)}></input>
+                                    <input id='send-amount' name='send-amount' type='number' step='0.00000001' placeholder={'amount in '+this.cryptoCurrency} required onChange={(event)=>this.AmountChange(event)}></input>
                                     <label htmlFor='send-amount'>
                                         <i className="fas fa-money-bill"></i>
                                     </label>
                                     <i className="question far fa-question-circle" onClick={()=>this.setState({legalNotice: 2})}></i>
-                                    <p>amount is required</p>
+                                    <p>amount is required, minimum is 0.00000001</p>
                                 </div>
                                 <div className='Calculation'>
                                     <div>
                                         <p>Transaction Fee</p>
-                                        <p>{fee}</p>
+                                        <p>{fee} {this.cryptoCurrency}</p>
                                     </div>
                                     <div>
                                         <p>Total</p>
-                                        <p>{total}</p>
+                                        <p>{total} {this.cryptoCurrency}</p>
                                     </div>
                                 </div>
+                                <button type='button' className='button-2 Photo' onClick={this.ScanPermission}>Scan QR Code<i className="fas fa-camera-retro"></i></button>
                                 {this.state.authMessage?
                                     <p className='AuthError'>{this.state.authMessage}</p>
-                                :null
+                                    :null
                                 }
-                                <button type='button' className='button-2 Photo' onClick={this.Scan}>Scan QR Code<i className="fas fa-camera-retro"></i></button>
-                                <video id='video' height='256' width='256'></video>
                                 <button type='button' onClick={()=>this.props.history.goBack()} className='button-2 Goback'><i className="fas fa-long-arrow-alt-left"></i></button>          
                                 <button type='submit' className='button-1'>Confirm to Send<i className="fas fa-arrow-right"></i></button>
                             </form>
@@ -155,6 +224,47 @@ class Withdraw extends React.Component{
                                         <p><span onClick={()=>this.setState({legalNotice: 0})}>OK</span></p>
                                     </div>
                                 </div>
+                            }
+                            {
+                                this.state.cameraPermissionOpen ?
+                                <div id='Camera-Permission'>
+                                    <i className="fas fa-times" onClick={()=>this.setState({cameraPermissionOpen: false})}></i>
+                                    <div>
+                                        <i className="fas fa-camera-retro"></i>
+                                        <p className='Title'>Camera Permission</p>
+                                        <p>In order to enable scan functionality, please grant Phaze permission to access to your camera.</p>
+                                        <button className='button-1' onClick={this.Scan}>Grant<i className="fas fa-long-arrow-alt-left"></i></button> 
+                                        <button className='button-2' onClick={()=>this.setState({cameraPermissionOpen: false})}><i className="fas fa-long-arrow-alt-right"></i>Deny</button>          
+                                    </div>
+                                </div>
+                                :null
+                            }
+                            {
+                                this.state.cameraPermissionBlockOpen?
+                                <div id='Camera-Block'>
+                                    <div className='Main'>
+                                        <p className='Title'>Camera is Blocked</p>
+                                        <p>You previously blocked Phaze to access to your camera, so scan functionality is disabled.</p>
+                                        <p>You can manully change your browser setting to grant Phaze permission. For detail process, please refer to your broswer's support page.</p>
+                                        <p><span onClick={()=>this.setState({cameraPermissionBlockOpen: false})}>OK</span></p>
+                                    </div>
+                                </div>
+                                :null
+                            }
+                            {
+                                this.state.scannerOpen?
+                                <div id='QRScanner'>
+                                    <i className="fas fa-times" onClick={this.CloseScan}></i>
+                                    <video id='video'></video>
+                                </div>
+                                :null
+                            }
+                            {
+                                this.state.loadingOpen?
+                                <div id='Withdraw-Loading'>
+                                    <CustomLoader type='Oval' message={null} color='var(--color-blue-normal)'/>
+                                </div>
+                                :null
                             }
                     </div>
     }

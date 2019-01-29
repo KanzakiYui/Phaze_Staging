@@ -11,6 +11,7 @@ div.WalletTransaction>img{
 }
 div.WalletTransaction>div{
     flex-grow: 1;
+    max-width: 85%;
 }
 div.WalletTransaction>div>div.General:hover{
     cursor: pointer;
