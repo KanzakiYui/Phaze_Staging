@@ -1,18 +1,20 @@
 import React from 'react'
 import './index.css'
 import LOGO from '../../Media/Images/Logo.png'
-import {POSTAPI} from '../../https'
+import {POSTAPI, CheckAuth} from '../../https'
 import GiftCard from '../Dashboard/GiftCard'
 
 class Login extends React.Component{
     constructor(props){
         super(props)
         this.state={
+            logged: true,                                       // when false, then we show login panel
             authMessage: null
         }
     }
     componentDidMount(){
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth'})
+        CheckAuth().then(()=>this.props.history.push('/dashboard')).catch(()=>this.setState({logged: false}))
     }
     LoginAccount = (event)=>{
         event.preventDefault()
@@ -36,6 +38,8 @@ class Login extends React.Component{
         }
     }
     render(){
+        if(this.state.logged)
+            return null
         let Row1 = ['amazonca', 'aircanada', 'starbucksca', 'walmart'].map((url, index)=><GiftCard type={0} key={index} urlpath={url} />)
         let Row2 = ['keg', 'sephora', 'cineplex', 'milestones'].map((url, index)=><GiftCard type={0} key={index} urlpath={url} />)
         return  <div id='Login'>

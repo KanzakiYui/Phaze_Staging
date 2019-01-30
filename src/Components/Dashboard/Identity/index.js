@@ -138,8 +138,8 @@ class Identity extends React.Component{
             last_name: 'Kowalski',
             country_code: 'POL',
             id_type: 'PASSPORT',
-            front_image: this.state.front_image,
-            back_image: back,
+            front_image: this.state.front_image,                                                 //user-input
+            back_image: back,                                                                           //hard-coded
             //first_name: this.state.first_name,
             //last_name: this.state.last_name
         }
@@ -147,6 +147,7 @@ class Identity extends React.Component{
             processStatus: 2
         })
         
+        // Be careful with KYC response (200 & error) in production version
         POSTAPI('users/kyc_check_swiftdil', body).then(response=>{
             console.log(response)
             window.scrollTo({ top: 0, left: 0, behavior: 'smooth'})                                 // edge case handle
