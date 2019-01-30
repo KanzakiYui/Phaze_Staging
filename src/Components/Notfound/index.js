@@ -17,8 +17,8 @@ class Notfound extends React.Component{
                                 <br />
                                 Please check your url or contact us if you faced a problem.
                             </p>
-                            <button className='button-1' onClick={()=>window.location.href="https://www.phaze.io"}>
-                                go to PHAZE.io<i className="fas fa-arrow-right"></i>
+                            <button className='button-1' onClick={()=>this.props.history.push('/dashboard')}>
+                                go to Phaze<i className="fas fa-arrow-right"></i>
                             </button>
                         </div>
                     </div>

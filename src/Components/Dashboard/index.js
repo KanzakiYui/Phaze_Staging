@@ -9,6 +9,7 @@ import {Switch, Route, NavLink} from 'react-router-dom'
 import LOGO from '../../Media/Images/Logo.png'
 import CanadaLOGO from '../../Media/Images/CountryLogos/Canada.png'
 import USALOGO from  '../../Media/Images/CountryLogos/United States.png'
+import Notfound from '../Notfound'
 
 const Notverified = Loadable({ loader: () => import('./Notverified'), loading: Loading, delay: 1000, render(loaded, props){ let Component = loaded.default; return <Component {...props}/>} })
 const Shop = Loadable({ loader: () => import('./Shop'), loading: Loading, delay: 1000, render(loaded, props){ let Component = loaded.default; return <Component {...props}/>} })
@@ -53,7 +54,6 @@ class Dashboard extends React.Component{
     }
     UserCheck = async () =>{
         CheckAuth().then(response=>{
-            console.log(response)
             if(!response.type)
                 this.setState({showContent: true, username: response.username})  
             else if(response.type==='EMAIL_VERIFIED')
@@ -76,9 +76,17 @@ class Dashboard extends React.Component{
             this.setState({
                 brandInfo: BrandParse(response.brands),
                 showContent: true
-            })
+            }, this.Test)
             return null
         }).catch(this.Logout)
+    }
+    Test = () =>{
+        /*
+        let array = this.state.brandInfo.map(value=>value.code)
+        array.forEach(value=>{
+            import('../../Media/Images/test/'+value+'.png').then(()=>{}).catch(()=>console.log(value))
+        })
+        */
     }
     Logout = ()=>{
         GetAPI('public/logout').then(()=>{
@@ -161,6 +169,7 @@ class Dashboard extends React.Component{
                                 <Route exact path="/dashboard/walletdetail" render={(props)=> <WalletDetail {...props} kycVerified={this.state.kycVerified} kycCountry={this.state.kycCountry} />}/>
                                 <Route exact path="/dashboard/deposit" render={(props)=> <Deposit {...props} kycVerified={this.state.kycVerified} />}/>
                                 <Route exact path="/dashboard/withdraw" render={(props)=> <Withdraw {...props} kycVerified={this.state.kycVerified} />}/>
+                                <Route component={Notfound}/>
                             </Switch>
                             {countrySelectionPanel}
                         </div>

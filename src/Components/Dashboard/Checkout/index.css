@@ -131,3 +131,13 @@
 #Checkout>p.Error.Actived{
     opacity: 1;
 }
+#Checkout div.Loading{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-white-normal);
+    width: 19.2rem;
+}
+#Checkout div.Loading>p{
+    margin-right: 1.5rem;
+}

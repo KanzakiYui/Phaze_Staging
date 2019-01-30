@@ -115,6 +115,9 @@
     position: absolute;
     top: 5rem;
 }
+#CountrySelection>i:hover{
+    cursor: pointer;
+}
 #CountrySelection>p:nth-child(2){
     font-size: var(--font-size-extra);
     margin-bottom: 0.5rem;

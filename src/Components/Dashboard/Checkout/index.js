@@ -5,6 +5,7 @@ import CryptoCard from '../CryptoCard'
 import {GetAPI, GetOther, POSTAPI} from '../../../https'
 import Debounce from '../../../Utilities/Debounce'
 import {walletToCode, countryToCode, codeToCurrency} from '../../../constants'
+import Loader from 'react-loader-spinner'
 
 class Checkout extends React.Component{
     constructor(props){
@@ -14,7 +15,8 @@ class Checkout extends React.Component{
             method: 'Bitcoin',
             rate: 0,
             payError: false,                                                
-            errorMessage: null
+            errorMessage: null,
+            loading: false
         }
         this.currency = ''
     }
@@ -77,7 +79,8 @@ class Checkout extends React.Component{
     }
     Pay = ()=>{
         this.setState({
-            payError: false
+            payError: false,
+            loading: true
         },()=>{
             let body = {
                 brand: this.props.location.state.code,
@@ -113,7 +116,8 @@ class Checkout extends React.Component{
                 else
                     this.setState({
                         payError: true,
-                        errorMessage: error.statusCode === 400 ? 'Insufficient Balance' : 'Please Try Again'
+                        errorMessage: error.statusCode === 400 ? 'Insufficient Balance' : 'Please Try Again',
+                        loading: false
                     })
             })                       
         })
@@ -140,7 +144,15 @@ class Checkout extends React.Component{
                         <p className='Rate'>Exchange Rate {walletCode} 1.00 = ${this.state.rate} {this.currency}</p>
                         <p className={'Error '+errorClass}><i className="fas fa-exclamation-circle"></i>{this.state.errorMessage}</p>
                         <button onClick={()=>this.props.history.push('/dashboard')} className='button-2 Goback'><i className="fas fa-long-arrow-alt-left"></i></button>
-                        <button className='button-2' onClick={this.Pay}>confirm {walletCode} {price} <i className="fas fa-arrow-right"></i></button>
+                        {
+                            this.state.loading
+                            ?  <div className='Loading'>
+                                    <p>Please wait...</p>
+                                    <Loader type='Oval' color="var(--color-white-normal)" height="25" width="25"/>
+                                </div>
+                            :<button className='button-2' onClick={this.Pay}>confirm {walletCode} {price} <i className="fas fa-arrow-right"></i></button>
+                        }
+                        
                         <button className='button-1' onClick={()=>this.props.history.push('/dashboard/wallet')}>Deposit<i className="fas fa-arrow-right"></i></button>
                     </div>
     }

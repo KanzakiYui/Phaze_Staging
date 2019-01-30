@@ -148,7 +148,10 @@ class Payment extends React.Component{
                         {this.state.openNote?
                             <div id='Payment-CreditNote'>
                                 <i className="fas fa-times" onClick={()=>this.setState({openNote: false})}></i>
-
+                                <p className='Title'>Phaze Credit Guideline</p>
+                                <p>Thank you for using Phaze for your daily expense. You currently have <span>{this.props.promoInfo.amount}</span>. Each credit can be redeemed as <span>$1</span> depends on brand country.</p>
+                                <p>When you choose to apply credit for current purchase, simply click the Apply button on the right.</p>
+                                <p>The amount you can apply is automatically calculated. It will be either <span>{(this.props.promoInfo.rate*100).toFixed(2)}%</span> of your total bill or your current credit balance, depending on which number is smaller.</p>
                             </div>
                             :null
                         }

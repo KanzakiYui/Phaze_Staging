@@ -11,7 +11,8 @@ class Result extends React.Component{
             info: null,
             type: 0,
             copyCode: false,
-            copyPIN: false
+            copyPIN: false,
+            sent: false
         }
     }
     componentDidMount(){
@@ -44,7 +45,7 @@ class Result extends React.Component{
                 copyCode: true
             })
         }catch(error){
-            console.log(error)
+            alert(error)
         }
     }
     CopyPIN = ()=>{
@@ -62,12 +63,14 @@ class Result extends React.Component{
                 copyPIN: true
             })
         }catch(error){
-            console.log(error)
+            alert(error)
         }
     }
     SendEmail = ()=>{
         POSTAPI('users/email_txn', {txn_id: this.state.info.id}).then(response=>{
-            console.log(response)
+            this.setState({
+                sent: true
+            })
         }).catch(error=>console.log(error))
     }
     render(){
@@ -81,7 +84,11 @@ class Result extends React.Component{
                                     <p className='Goback' onClick={()=>this.props.history.push('/dashboard')}><i className="fas fa-long-arrow-alt-left"></i> SHOP</p>
                                     <button onClick={()=>this.props.history.push('/dashboard')} className='button-2 Goback'><i className="fas fa-long-arrow-alt-left"></i></button>
                                     <button className='button-1' onClick={()=>window.open(this.state.info.link, '_blank')}>view gift card<i className="fas fa-arrow-right"></i></button>
-                                    <button className='button-2' onClick={this.SendEmail}>email me my gift card<i className="fas fa-directions"></i></button>
+                                    {
+                                        this.state.sent?
+                                        <button className='button-2'>email sent<i className="fas fa-check"></i></button>
+                                        :<button className='button-2' onClick={this.SendEmail}>email me my gift card<i className="fas fa-directions"></i></button>
+                                    }
                                 </div>
                 break
             case 1:
@@ -97,8 +104,12 @@ class Result extends React.Component{
                                     {
                                         autofillLink ? <button className='button-1' onClick={()=>window.open(autofillLink, '_blank')}>Apply Gift Card<i className="fas fa-arrow-right"></i></button> : null
                                     }
-                                    <button className='button-2' onClick={this.SendEmail}>email me my gift card<i className="fas fa-directions"></i></button>
-                                </div>
+                                    {
+                                        this.state.sent?
+                                        <button className='button-2'>email sent<i className="fas fa-check"></i></button>
+                                        :<button className='button-2' onClick={this.SendEmail}>email me my gift card<i className="fas fa-directions"></i></button>
+                                    }
+                                    </div>
                 break
             case 2:
                 autofillLink = AutofillLink(this.state.info.brandcode, this.state.info.code, this.state.info.pin)
@@ -118,8 +129,12 @@ class Result extends React.Component{
                                     {
                                         autofillLink ? <button className='button-1' onClick={()=>window.open(autofillLink, '_blank')}>Apply Gift Card<i className="fas fa-arrow-right"></i></button> : null
                                     }
-                                    <button className='button-2' onClick={this.SendEmail}>email me my gift card<i className="fas fa-directions"></i></button>
-                                </div>
+                                    {
+                                        this.state.sent?
+                                        <button className='button-2'>email sent<i className="fas fa-check"></i></button>
+                                        :<button className='button-2' onClick={this.SendEmail}>email me my gift card<i className="fas fa-directions"></i></button>
+                                    }
+                                    </div>
                 break
             default:
                 content = null

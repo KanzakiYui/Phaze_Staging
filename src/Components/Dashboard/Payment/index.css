@@ -163,8 +163,8 @@
     top: 0;
     left: 0;
     z-index: 10;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background-color: rgba(255, 255, 255, 0.95);
     padding: 50% calc(5% + 1.5rem) 0 calc(5% + 1.5rem);
     display: flex;
@@ -179,6 +179,28 @@
 }
 #Payment-CreditNote>i:hover{
     cursor: pointer;
+}
+#Payment-CreditNote>p{
+    width: 100%;
+    text-align: justify;
+    margin-bottom: 1rem;
+}
+@media all and (min-width: 1024px){
+    #Payment-CreditNote{
+        padding: 15% 15% 0 15%;
+    }
+    #Payment-CreditNote>p{
+        max-width: 19.2rem;
+    }
+}
+#Payment-CreditNote>p.Title{
+    text-align: left;
+    font-size: var(--font-size-extra);
+    margin-bottom: 2rem;
+}
+#Payment-CreditNote>p>span{
+    color: var(--color-blue-normal);
+    font-weight: 600;
 }
 #Payment>div.Range-Content>img{
     height: 12rem;
