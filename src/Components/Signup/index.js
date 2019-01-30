@@ -63,7 +63,7 @@ class Signup extends React.Component{
                             <p className='Title'>Create your account</p>
                             <form noValidate onSubmit={(event)=>this.CreateAccount(event)}>
                                 <div className='Inline-Input'>
-                                    <input id='signup-email' name='signup-email' type='email' maxLength='24' placeholder='e-mail' required spellCheck="false"></input>
+                                    <input id='signup-email' name='signup-email' type='email' maxLength='40' placeholder='e-mail' required spellCheck="false"></input>
                                     <label htmlFor='signup-email'>
                                         <i className="far fa-envelope"></i>
                                     </label>

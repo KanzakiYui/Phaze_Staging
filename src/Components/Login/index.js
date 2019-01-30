@@ -63,7 +63,7 @@ class Login extends React.Component{
                             <p className='Description'>Spend your crypto internationally at over 100,000 locations - online and in-store.</p>
                             <form noValidate onSubmit={(event)=>this.LoginAccount(event)}>
                                 <div className='Inline-Input'>
-                                    <input id='login-email' name='login-email' type='email' maxLength='24' placeholder='e-mail' required spellCheck="false"></input>
+                                    <input id='login-email' name='login-email' type='email' maxLength='40' placeholder='e-mail' required spellCheck="false"></input>
                                     <label htmlFor='login-email'>
                                         <i className="far fa-envelope"></i>
                                     </label>
