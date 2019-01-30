@@ -8,6 +8,7 @@ const Signup = Loadable({ loader: () => import('./Signup'), loading: Load, delay
 const Forgot = Loadable({ loader: () => import('./Forgot'), loading: Load, delay: 1000 })
 const Notfound = Loadable({ loader: () => import('./Notfound'), loading: Load, delay: 1000 })
 const Dashboard = Loadable({ loader: () => import('./Dashboard'), loading: Load, delay: 1000 })
+const EmailVerify = Loadable({ loader: () => import('./EmailVerify'), loading: Load, delay: 1000 })
 
 class App extends React.Component{
     render(){
@@ -19,6 +20,7 @@ class App extends React.Component{
                         <Route exact path="/signup" component={Signup}/>
                         <Route exact path="/forgot/:code" component={Forgot}/>
                         <Route exact path="/forgot" component={Forgot}/>
+                        <Route exact path="/emailverify/:code" component={EmailVerify}/>
                         <Route path="/dashboard" component={Dashboard}/>
                         <Route component={Notfound}/>
                     </Switch>
