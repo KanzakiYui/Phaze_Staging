@@ -76,17 +76,9 @@ class Dashboard extends React.Component{
             this.setState({
                 brandInfo: BrandParse(response.brands),
                 showContent: true
-            }, this.Test)
+            })
             return null
         }).catch(this.Logout)
-    }
-    Test = () =>{
-        /*
-        let array = this.state.brandInfo.map(value=>value.code)
-        array.forEach(value=>{
-            import('../../Media/Images/test/'+value+'.png').then(()=>{}).catch(()=>console.log(value))
-        })
-        */
     }
     Logout = ()=>{
         GetAPI('public/logout').then(()=>{
@@ -194,12 +186,22 @@ function PromotionParse(rawData){
 }
 
 function BrandParse(rawData){
-    let newArray = rawData.map(item=>{
+    let exceptions = [
+        '???','brinker','americascores','charitychoice','cityyear','cleanwaterfund','codeorg','grameen','habitatforhumanity',
+        'instedd','jhbloomberg','karmakarma','nationalpark','ride2recovery','specialolympics','summersearch','natureconservancy',
+        'worldofchildren','bloomin','girlswhocode','landrys','americancs','huntsman'
+    ]
+    let newArray = []
+    rawData.forEach(item=>{
+        if(exceptions.includes(item.internal_id)){
+            exceptions[exceptions.indexOf(item.internal_id)] = null
+            return
+        }
         let country = currencyToCountry[codeToCurrency[item.country]]
         if(item.denominations.indexOf('-')!== -1){
             let min = Number(item.denominations.split('-').shift())/100
             let max = Number(item.denominations.split('-').pop())/100
-            return {
+            newArray.push({
                 index: item.index ? item.index : 9999,                      // this solution is just a placeholder here 
                 code: item.internal_id, 
                 name: item.brand_name, 
@@ -208,11 +210,11 @@ function BrandParse(rawData){
                 max: max,
                 acceptCents: item.openRange === false ? false : true,
                 category: item.category
-            }
+            }) 
         }
         else{
             let array = item.denominations.split(' ').map(item=>Number(item)/100)
-            return {
+            newArray.push({
                 index: item.index ? item.index : 9999,                      // this solution is just a placeholder here 
                 code: item.internal_id, 
                 name: item.brand_name, 
@@ -220,7 +222,7 @@ function BrandParse(rawData){
                 array: array, 
                 acceptCents: item.openRange === false ? false : true,
                 category: item.category
-            }
+            })
         }
     })
     newArray.sort((a, b)=>a.index - b.index)

@@ -24,14 +24,15 @@ class GiftLogo extends React.Component{
         })).catch(this.GetPlaceHolder)
     }
     GetPlaceHolder = ()=>{
+        console.log('Missing Logo:', this.props.urlpath)
+        /*
         import('../../../Media/Images/Logos/blank.png').then(url=>this.setState({
             urlpath: this.props.urlpath,
             url: url.default
         })).catch(()=>{})
+        */
     }
     render(){
-        if(this.props.urlpath === '???')                                                                                        //edge case handle
-            return null
         switch(this.props.type){
             case 0:
                 return <img src={this.state.url} alt="" />

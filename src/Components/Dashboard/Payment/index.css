@@ -187,7 +187,7 @@
 }
 @media all and (min-width: 1024px){
     #Payment-CreditNote{
-        padding: 15% 15% 0 15%;
+        padding: 10% 15% 0 15%;
     }
     #Payment-CreditNote>p{
         max-width: 19.2rem;
@@ -196,7 +196,7 @@
 #Payment-CreditNote>p.Title{
     text-align: left;
     font-size: var(--font-size-extra);
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 #Payment-CreditNote>p>span{
     color: var(--color-blue-normal);

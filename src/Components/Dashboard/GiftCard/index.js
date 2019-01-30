@@ -24,10 +24,13 @@ class GiftCard extends React.Component{
         })).catch(this.GetPlaceHolder)
     }
     GetPlaceHolder = ()=>{
+        console.log('Missing Images:', this.props.urlpath)
+        /*
         import('../../../Media/Images/Cards/blank.png').then(url=>this.setState({
             urlpath: this.props.urlpath,
             url: url.default
         })).catch(()=>{})
+        */
     }
     render(){
         return  <img data-value={this.props.urlpath} className='GiftCard-Simple' src={this.state.url} alt="" />

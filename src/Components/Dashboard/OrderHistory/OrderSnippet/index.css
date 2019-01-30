@@ -16,7 +16,6 @@ div.OrderSnippet>div.GeneralInfo:hover{
 }
 div.OrderSnippet>div.GeneralInfo>img{
     width: 3rem;
-    height: 3rem;
 }
 div.OrderSnippet>div.GeneralInfo>div:nth-child(2){
     flex-grow: 1;

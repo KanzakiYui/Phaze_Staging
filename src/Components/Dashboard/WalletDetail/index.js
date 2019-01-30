@@ -51,7 +51,6 @@ class WalletDetail extends React.Component{
             GetAPI('users/list_txns_crypto/crypto/'+this.cryptoCurrency)
         ])
         let data = response1.result.concat(response2.result)
-        console.log(response1, response2)
         data.sort((a, b)=>new Date(b.time).getTime() - new Date(a.time).getTime())
         this.setState({
             showContent: true,
